@@ -1,4 +1,4 @@
-import heroBg from "@/images/hero-bg.jpeg";
+import heroVideo from "@/videos/herobg.mp4";
 import tptLogo from "@/images/TPT.png";
 
 import marianLogo from "@/logos/marian-logo.png";
@@ -19,11 +19,14 @@ export default function HeroSection() {
   return (
     <section id="hero" className="relative min-h-screen flex flex-col justify-between pt-6 pb-10 sm:py-0">
       {/* Background */}
-      <div className="absolute inset-0 w-full h-full">
-        <img
-          src={heroBg}
-          alt=""
-          className="w-full h-full object-cover"
+      <div className="absolute inset-0 w-full h-full overflow-hidden">
+        <video
+          src={heroVideo}
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="w-full h-full object-cover scale-[1.08]"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[#0d0518]/70 via-[#0d0518]/30 to-[#0d0518]" />
       </div>

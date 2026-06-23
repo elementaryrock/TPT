@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { useState, useEffect } from "react";
+import logo from "@/images/TPT.png";
 
 const navLinks = [
   { href: "#what-is-tpt", label: "About" },
@@ -48,8 +49,8 @@ export default function Header() {
             : "bg-white/[0.03] backdrop-blur-sm border border-white/[0.05]"
         }`}
       >
-        <Link to="/" className="text-sm font-bold text-white/90 font-heading tracking-wide">
-          TPT 4.0
+        <Link to="/" className="flex items-center">
+          <img src={logo} alt="TPT Logo" className="h-7 w-auto" />
         </Link>
 
         {/* Desktop */}
