@@ -50,7 +50,7 @@ export default function Header() {
         }`}
       >
         <Link to="/" className="flex items-center">
-          <img src={logo} alt="TPT Logo" className="h-7 w-auto" />
+          <img src={logo} alt="TPT Logo" className="h-5 sm:h-5.5 w-auto object-contain" />
         </Link>
 
         {/* Desktop */}
