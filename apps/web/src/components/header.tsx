@@ -76,7 +76,7 @@ export default function Header() {
           href="https://makemypass.com/event/the-perfect-trajectory-4-0"
           target="_blank"
           rel="noopener noreferrer"
-          className="hidden md:block text-[13px] font-medium text-white bg-purple-600 px-4 py-1 rounded-full hover:bg-purple-500 transition-colors duration-200"
+          className="hidden md:block text-[13px] font-bold text-white bg-gradient-to-r from-[#f43f72] to-[#a855f7] px-4 py-1.5 rounded-full hover:opacity-95 hover:shadow-[0_0_15px_rgba(244,63,114,0.4)] transition-all duration-200"
         >
           Register
         </a>
@@ -115,7 +115,7 @@ export default function Header() {
             href="https://makemypass.com/event/the-perfect-trajectory-4-0"
             target="_blank"
             rel="noopener noreferrer"
-            className="block px-3 py-2.5 text-sm font-medium text-white text-center bg-purple-600 rounded-lg mt-1"
+            className="block px-3 py-2.5 text-sm font-bold text-white text-center bg-gradient-to-r from-[#f43f72] to-[#a855f7] rounded-lg mt-1 hover:opacity-95"
           >
             Register Now
           </a>

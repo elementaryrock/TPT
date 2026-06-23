@@ -24,7 +24,7 @@ export default function RegistrationSection() {
               href="https://makemypass.com/event/the-perfect-trajectory-4-0"
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center gap-2 px-8 py-3 rounded-full bg-gradient-to-r from-purple-600 to-violet-600 text-white font-bold text-sm shadow-lg shadow-purple-900/50 hover:shadow-purple-700/60 hover:scale-105 transition-all duration-300"
+              className="group inline-flex items-center gap-2 px-8 py-3 rounded-full bg-gradient-to-r from-[#f43f72] to-[#a855f7] text-white font-bold text-sm shadow-lg shadow-[#f43f72]/20 hover:shadow-[0_0_15px_rgba(244,63,114,0.4)] hover:scale-105 transition-all duration-300"
             >
               Register on MakeMyPass
               <svg
