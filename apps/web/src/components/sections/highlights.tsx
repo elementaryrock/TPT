@@ -40,10 +40,27 @@ const highlights = [
 export default function HighlightsSection() {
   return (
     <section id="highlights" className="relative py-24 md:py-32">
-      {/* Background accent */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-purple-950/20 to-transparent pointer-events-none" />
+      {/* ── Background Layers ── */}
+      {/* Background is handled globally by .tpt-bg for seamless blending */}
 
-      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Circuit-board grid */}
+      <div className="absolute inset-0 pointer-events-none opacity-[0.04]">
+        <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="high-grid" width="60" height="60" patternUnits="userSpaceOnUse">
+              <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#a855f7" strokeWidth="0.5" />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#high-grid)" />
+        </svg>
+      </div>
+
+      {/* Ambient glows */}
+      <div className="absolute left-1/2 top-[20%] -translate-x-1/2 w-[800px] h-[800px] bg-purple-600/[0.07] rounded-full blur-[160px] pointer-events-none" />
+      <div className="absolute left-1/2 bottom-[10%] -translate-x-1/2 w-[900px] h-[500px] bg-purple-800/[0.05] rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute right-[10%] top-[40%] w-[400px] h-[400px] bg-[#f43f72]/[0.03] rounded-full blur-[120px] pointer-events-none" />
+
+      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section header */}
         <div className="text-center mb-16">
           <p className="text-purple-400 text-sm font-semibold tracking-[0.2em] uppercase mb-3">

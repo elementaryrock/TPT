@@ -148,13 +148,7 @@
 /* ===== TPT Custom Styles ===== */
 
 .tpt-bg {
-  background: linear-gradient(
-    180deg,
-    #0d0518 0%,
-    #1a0a2e 15%,
-    #150826 50%,
-    #0d0518 100%
-  );
+  background: #0d0518;
 }
 
 .font-heading {

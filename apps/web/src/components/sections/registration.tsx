@@ -1,8 +1,8 @@
 export default function RegistrationSection() {
   return (
-    <section id="registration" className="relative py-24 md:py-32 overflow-hidden">
+    <section id="registration" className="relative py-24 md:py-32">
       {/* ── Background Layers ── */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#0d0518] via-[#0a0312] to-[#0d0518] pointer-events-none" />
+      {/* Background is handled globally by .tpt-bg for seamless blending */}
 
       {/* Circuit-board grid */}
       <div className="absolute inset-0 pointer-events-none opacity-[0.04]">

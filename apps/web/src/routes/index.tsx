@@ -15,7 +15,7 @@ export const Route = createFileRoute("/")(  {
 
 function HomeComponent() {
   return (
-    <main className="relative">
+    <main className="relative overflow-x-hidden">
       <HeroSection />
       <WhatIsTptSection />
       <OrganisersSection />

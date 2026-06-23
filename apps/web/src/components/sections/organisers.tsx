@@ -64,7 +64,7 @@ export default function OrganisersSection() {
   return (
     <section
       id="organisers"
-      className="relative py-16 sm:py-24 md:py-36 overflow-hidden"
+      className="relative py-16 sm:py-24 md:py-36"
     >
       {/* ── Background Layers ── */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#150826] via-[#120620] to-[#0d0518] pointer-events-none" />
