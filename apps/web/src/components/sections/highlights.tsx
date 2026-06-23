@@ -1,113 +1,132 @@
-import { useState, useEffect, useCallback } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import {
+  ArrowLeft,
+  ArrowRight,
+  ChevronLeft,
+  ChevronRight,
+  Expand,
+  Handshake,
+  Lightbulb,
+  Maximize2,
+  MessageSquareText,
+  Mic2,
+  PanelsTopLeft,
+  Trophy,
+  Wrench,
+  X,
+} from "lucide-react";
 
 const highlights = [
   {
     title: "Keynote Sessions",
-    description:
-      "Inspiring talks from industry leaders and successful entrepreneurs who shared their journey.",
-    icon: "🎤",
+    description: "Clear leadership notes from founders, ecosystem builders, and IEDC alumni.",
+    Icon: Mic2,
   },
   {
     title: "Workshop Tracks",
-    description:
-      "Hands-on workshops covering product development, fundraising, team management, and more.",
-    icon: "🛠️",
+    description: "Hands-on rooms for execution planning, grants, community building, and team rituals.",
+    Icon: Wrench,
   },
   {
-    title: "Networking Gala",
-    description:
-      "An evening of meaningful connections, bringing together IEDC leads from across Kerala.",
-    icon: "🤝",
+    title: "Peer Network",
+    description: "District-level conversations that turned one event into a Kerala-wide working circle.",
+    Icon: Handshake,
   },
   {
     title: "Innovation Showcase",
-    description:
-      "Top IEDC projects displayed for peer review, feedback, and cross-college collaboration.",
-    icon: "💡",
+    description: "Student projects, chapter ideas, and early experiments opened up for feedback.",
+    Icon: Lightbulb,
   },
   {
-    title: "Panel Discussions",
-    description:
-      "Interactive panels on the future of student-led innovation in Kerala's tech ecosystem.",
-    icon: "💬",
+    title: "Panel Rooms",
+    description: "Honest discussions on running student innovation cells beyond poster events.",
+    Icon: MessageSquareText,
   },
   {
-    title: "Awards & Recognition",
-    description:
-      "Celebrating the best IEDC chapters and student innovators for their outstanding contributions.",
-    icon: "🏆",
+    title: "Recognition",
+    description: "Moments that celebrated the teams building consistently inside their colleges.",
+    Icon: Trophy,
   },
 ];
 
 const galleryImages = [
   {
     src: "/highlights/gallery-1.jpeg",
-    title: "Leadership Summit",
-    caption: "IEDC Team Leads gathered for the opening address.",
-    aspect: "aspect-video",
-  },
-  {
-    src: "/highlights/gallery-2.jpeg",
-    title: "Interactive Sessions",
-    caption: "Engaging discussions on building local startup ecosystems.",
-    aspect: "aspect-square",
-  },
-  {
-    src: "/highlights/gallery-3.jpeg",
-    title: "Mentorship Circle",
-    caption: "Collaborating on product prototypes with industry mentors.",
-    aspect: "aspect-video",
-  },
-  {
-    src: "/highlights/gallery-4.jpeg",
-    title: "Workshop Lab",
-    caption: "Deep dive workshops on design thinking methodologies.",
-    aspect: "aspect-square",
-  },
-  {
-    src: "/highlights/gallery-5.jpeg",
-    title: "Networking Dinner",
-    caption: "Fostering friendships and cross-college collaborations.",
-    aspect: "aspect-video",
-  },
-  {
-    src: "/highlights/gallery-6.jpeg",
-    title: "Idea Pitching",
-    caption: "Teams presenting their unique startup ideas to judges.",
-    aspect: "aspect-square",
-  },
-  {
-    src: "/highlights/gallery-7.jpeg",
-    title: "Panel Discussion",
-    caption: "Fireside chat with prominent Kerala tech ecosystem drivers.",
-    aspect: "aspect-video",
+    title: "Opening Circle",
+    caption: "The first room-wide alignment before the two-day trajectory began.",
+    className: "lg:col-span-7",
   },
   {
     src: "/highlights/gallery-8.jpeg",
-    title: "Innovation Exhibition",
-    caption: "Showcasing student-built projects and hardware hacks.",
-    aspect: "aspect-square",
+    title: "Delegate Poster",
+    caption: "A vertical frame from the visual system built around motion and direction.",
+    className: "lg:col-span-5 lg:row-span-2",
+  },
+  {
+    src: "/highlights/gallery-6.jpeg",
+    title: "Stage Energy",
+    caption: "Key moments from the main floor and speaker sessions.",
+    className: "lg:col-span-4",
+  },
+  {
+    src: "/highlights/gallery-7.jpeg",
+    title: "Working Room",
+    caption: "Teams building plans, comparing notes, and refining their chapter roadmap.",
+    className: "lg:col-span-3",
   },
   {
     src: "/highlights/gallery-9.jpeg",
-    title: "Closing Ceremony",
-    caption: "Awarding the top performing chapters and organizers.",
-    aspect: "aspect-video",
+    title: "Team Frame",
+    caption: "The closing archive: people, context, and one shared direction.",
+    className: "lg:col-span-8",
   },
+  {
+    src: "/highlights/gallery-2.jpeg",
+    title: "Mentor Exchange",
+    caption: "Smaller discussions that made the program practical.",
+    className: "lg:col-span-4",
+  },
+  {
+    src: "/highlights/gallery-3.jpeg",
+    title: "Chapter Notes",
+    caption: "Delegates documenting ideas for the year ahead.",
+    className: "lg:col-span-4",
+  },
+  {
+    src: "/highlights/gallery-4.jpeg",
+    title: "Workshop Flow",
+    caption: "Activity-led learning with facilitators and chapter leads.",
+    className: "lg:col-span-4",
+  },
+  {
+    src: "/highlights/gallery-5.jpeg",
+    title: "Campus Network",
+    caption: "Connections that continued after the sessions ended.",
+    className: "lg:col-span-4",
+  },
+];
+
+const stats = [
+  { value: "09", label: "Archive Frames" },
+  { value: "02", label: "Program Days" },
+  { value: "100+", label: "IEDC Leads" },
 ];
 
 export default function HighlightsSection() {
   const [activeImageIndex, setActiveImageIndex] = useState<number | null>(null);
+  const [featuredIndex, setFeaturedIndex] = useState(0);
+
+  const featuredImage = galleryImages[featuredIndex];
 
   const handlePrev = useCallback(() => {
     setActiveImageIndex((prev) =>
-      prev === null ? null : prev === 0 ? galleryImages.length - 1 : prev - 1
+      prev === null ? null : prev === 0 ? galleryImages.length - 1 : prev - 1,
     );
   }, []);
 
   const handleNext = useCallback(() => {
     setActiveImageIndex((prev) =>
-      prev === null ? null : prev === galleryImages.length - 1 ? 0 : prev + 1
+      prev === null ? null : prev === galleryImages.length - 1 ? 0 : prev + 1,
     );
   }, []);
 
@@ -115,205 +134,242 @@ export default function HighlightsSection() {
     setActiveImageIndex(null);
   }, []);
 
-  // Keyboard navigation for Lightbox
+  const activeImage = useMemo(
+    () => (activeImageIndex === null ? null : galleryImages[activeImageIndex]),
+    [activeImageIndex],
+  );
+
   useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
+    const handleKeyDown = (event: KeyboardEvent) => {
       if (activeImageIndex === null) return;
-      if (e.key === "ArrowLeft") handlePrev();
-      if (e.key === "ArrowRight") handleNext();
-      if (e.key === "Escape") handleClose();
+      if (event.key === "ArrowLeft") handlePrev();
+      if (event.key === "ArrowRight") handleNext();
+      if (event.key === "Escape") handleClose();
     };
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [activeImageIndex, handlePrev, handleNext, handleClose]);
+  }, [activeImageIndex, handleClose, handleNext, handlePrev]);
 
-  // Lock scroll when lightbox is open
   useEffect(() => {
-    if (activeImageIndex !== null) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
+    document.body.style.overflow = activeImageIndex === null ? "" : "hidden";
     return () => {
       document.body.style.overflow = "";
     };
   }, [activeImageIndex]);
 
   return (
-    <section id="highlights" className="relative py-24 md:py-32 overflow-hidden">
-      {/* ── Background Elements ── */}
-      {/* Circuit-board grid pattern */}
-      <div className="absolute inset-0 pointer-events-none opacity-[0.04]">
-        <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <pattern id="high-grid-new" width="60" height="60" patternUnits="userSpaceOnUse">
-              <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#a855f7" strokeWidth="0.5" />
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#high-grid-new)" />
-        </svg>
+    <section
+      id="highlights"
+      className="relative overflow-hidden bg-[#10071d] py-20 sm:py-24 md:py-32"
+    >
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.035)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.035)_1px,transparent_1px)] bg-[size:72px_72px]" />
+        <div className="absolute inset-x-0 top-0 h-64 bg-gradient-to-b from-[#2a1242] to-transparent" />
+        <div className="absolute left-[-12%] top-24 h-[520px] w-[520px] rounded-full bg-[#f0b5ff]/10 blur-[120px]" />
+        <div className="absolute right-[-16%] bottom-10 h-[620px] w-[620px] rounded-full bg-[#f43f72]/10 blur-[150px]" />
       </div>
 
-      {/* Dynamic ambient glows */}
-      <div className="absolute left-1/2 top-[10%] -translate-x-1/2 w-[800px] h-[800px] bg-purple-600/[0.06] rounded-full blur-[180px] pointer-events-none" />
-      <div className="absolute right-[5%] bottom-[20%] w-[500px] h-[500px] bg-[#f43f72]/[0.04] rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute left-[-10%] bottom-[5%] w-[600px] h-[600px] bg-indigo-700/[0.05] rounded-full blur-[160px] pointer-events-none" />
-
-      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="text-center mb-20">
-          <p className="text-purple-400 text-xs sm:text-sm font-semibold tracking-[0.25em] uppercase mb-4 animate-pulse">
-            Looking Back
-          </p>
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold font-heading mb-6 tracking-tight">
-            <span className="bg-gradient-to-r from-white via-purple-100 to-purple-300 bg-clip-text text-transparent">
-              TPT 3.0 Highlights
-            </span>
-          </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-[#f43f72] to-[#a855f7] mx-auto rounded-full mb-6 shadow-[0_0_10px_rgba(244,63,114,0.5)]" />
-          <p className="text-purple-200/50 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
-            Here's a glimpse of the features and unforgettable memories that made the previous edition an outstanding success.
-          </p>
-        </div>
-
-        {/* Highlight Features Cards */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-24">
-          {highlights.map((item, index) => (
-            <div
-              key={item.title}
-              className="group relative p-8 rounded-2xl border border-purple-500/10 bg-[#0c0414]/40 backdrop-blur-md hover:border-purple-500/30 hover:bg-purple-950/10 transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_12px_30px_rgba(168,85,247,0.06)]"
-              style={{ animationDelay: `${index * 80}ms` }}
-            >
-              {/* Card glowing backdrop */}
-              <div className="absolute inset-0 -z-10 rounded-2xl bg-gradient-to-br from-purple-500/0 to-[#f43f72]/0 opacity-0 group-hover:opacity-100 group-hover:from-purple-500/5 group-hover:to-[#f43f72]/5 transition-opacity duration-500" />
-              
-              {/* Corner tech marks */}
-              <div className="absolute top-4 left-4 w-2.5 h-2.5 border-t border-l border-purple-500/20 group-hover:border-purple-400 transition-colors" />
-              <div className="absolute bottom-4 right-4 w-2.5 h-2.5 border-b border-r border-purple-500/20 group-hover:border-purple-400 transition-colors" />
-
-              <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-purple-500/10 text-3xl mb-6 group-hover:scale-110 group-hover:bg-purple-500/20 transition-all duration-300">
-                {item.icon}
-              </div>
-              <h3 className="text-xl font-bold text-white mb-3 group-hover:text-purple-300 transition-colors font-heading">
-                {item.title}
-              </h3>
-              <p className="text-sm text-purple-200/50 leading-relaxed group-hover:text-purple-200/70 transition-colors">
-                {item.description}
-              </p>
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-end">
+          <div>
+            <div className="mb-5 inline-flex items-center gap-3 border border-white/10 bg-white/[0.035] px-4 py-2 text-[10px] font-bold uppercase tracking-[0.28em] text-[#d9c1ff]">
+              <span className="h-1.5 w-1.5 rounded-full bg-[#f43f72]" />
+              Previous Edition Archive
             </div>
-          ))}
-        </div>
-
-        {/* Staggered Event Gallery */}
-        <div className="mt-16">
-          <div className="flex flex-col items-center mb-12">
-            <h3 className="text-2xl sm:text-3xl font-bold font-heading text-white mb-3">
-              Event Gallery
-            </h3>
-            <p className="text-sm text-purple-300/40 font-mono tracking-wider uppercase">
-              Moments Frozen In Time
+            <h2 className="font-display text-4xl uppercase leading-[0.95] tracking-wide text-white sm:text-5xl md:text-6xl">
+              TPT 3.0
+              <span className="block text-[#c7a8ff]">Highlights</span>
+            </h2>
+            <p className="mt-6 max-w-xl text-sm leading-7 text-purple-100/62 sm:text-base">
+              A sharper look back at the sessions, rooms, faces, and campaign frames that shaped the last edition. The gallery is treated like an event archive, not filler below the fold.
             </p>
           </div>
 
-          <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
-            {galleryImages.map((img, idx) => (
-              <div
-                key={idx}
-                onClick={() => setActiveImageIndex(idx)}
-                className="group relative overflow-hidden rounded-2xl border border-purple-500/10 bg-purple-950/5 backdrop-blur-sm cursor-pointer hover:border-purple-400/30 transition-all duration-300 break-inside-avoid"
-              >
-                {/* Image tag overlay */}
-                <div className="absolute top-4 left-4 z-20 px-3 py-1 text-[10px] font-mono tracking-widest uppercase rounded-full bg-black/60 border border-white/10 text-purple-300 backdrop-blur-sm">
-                  {img.title}
-                </div>
-
-                <div className="relative overflow-hidden w-full h-full">
-                  <img
-                    src={img.src}
-                    alt={img.title}
-                    loading="lazy"
-                    className="w-full h-auto object-cover transform duration-700 ease-out group-hover:scale-105 group-hover:rotate-[0.5deg]"
-                  />
-                  {/* Dark hover layer */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6" />
-                </div>
-
-                {/* Info Overlay (Hover only) */}
-                <div className="absolute bottom-0 inset-x-0 p-6 z-10 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
-                  <p className="text-white font-bold font-heading text-lg mb-1">{img.title}</p>
-                  <p className="text-xs text-purple-200/70">{img.caption}</p>
-                  <div className="mt-3 inline-flex items-center gap-1.5 text-xs font-semibold text-purple-400">
-                    <span>Expand Photo</span>
-                    <svg className="w-3.5 h-3.5 transform group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-                    </svg>
-                  </div>
-                </div>
+          <div className="grid grid-cols-3 overflow-hidden border border-white/10 bg-[#0b0414]/70">
+            {stats.map((stat) => (
+              <div key={stat.label} className="border-r border-white/10 p-4 last:border-r-0 sm:p-6">
+                <p className="font-display text-3xl text-white sm:text-4xl">{stat.value}</p>
+                <p className="mt-2 text-[10px] font-bold uppercase tracking-[0.2em] text-purple-200/45">
+                  {stat.label}
+                </p>
               </div>
             ))}
           </div>
         </div>
+
+        <div className="mt-12 grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
+          <div className="relative min-h-[440px] overflow-hidden border border-white/10 bg-[#0b0414] sm:min-h-[520px]">
+            <img
+              src={featuredImage.src}
+              alt={featuredImage.title}
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0b0414] via-[#0b0414]/30 to-transparent" />
+            <div className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-[#0b0414]/80 to-transparent" />
+            <div className="absolute left-0 top-8 h-px w-full bg-[#f43f72]/70" />
+            <div className="absolute left-8 top-0 h-full w-px bg-white/10" />
+            <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-8">
+              <p className="mb-3 text-[10px] font-bold uppercase tracking-[0.28em] text-[#f4c7ff]">
+                Featured Frame {String(featuredIndex + 1).padStart(2, "0")}
+              </p>
+              <h3 className="font-heading text-3xl font-bold text-white sm:text-4xl">
+                {featuredImage.title}
+              </h3>
+              <p className="mt-3 max-w-xl text-sm leading-6 text-purple-100/68">
+                {featuredImage.caption}
+              </p>
+              <button
+                type="button"
+                onClick={() => setActiveImageIndex(featuredIndex)}
+                className="mt-6 inline-flex items-center gap-3 border border-white/15 bg-white/10 px-4 py-3 text-xs font-bold uppercase tracking-[0.18em] text-white transition hover:border-[#f43f72]/60 hover:bg-[#f43f72]/15"
+              >
+                <Maximize2 className="h-4 w-4" />
+                Open Frame
+              </button>
+            </div>
+          </div>
+
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
+            {highlights.map(({ title, description, Icon }, index) => (
+              <article
+                key={title}
+                className="group relative overflow-hidden border border-white/10 bg-white/[0.035] p-5 transition hover:border-[#f43f72]/45 hover:bg-white/[0.055]"
+              >
+                <div className="absolute right-0 top-0 h-full w-1 bg-gradient-to-b from-[#f43f72] via-[#b46cff] to-transparent opacity-0 transition group-hover:opacity-100" />
+                <div className="flex gap-4">
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center border border-purple-300/20 bg-[#190a29] text-[#e2c8ff]">
+                    <Icon className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <p className="text-[10px] font-bold uppercase tracking-[0.24em] text-purple-200/35">
+                      Module {String(index + 1).padStart(2, "0")}
+                    </p>
+                    <h3 className="mt-1 font-heading text-lg font-bold text-white">
+                      {title}
+                    </h3>
+                    <p className="mt-2 text-sm leading-6 text-purple-100/55">
+                      {description}
+                    </p>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-6 grid gap-3 lg:grid-cols-12">
+          {galleryImages.map((image, index) => (
+            <button
+              key={image.src}
+              type="button"
+              onMouseEnter={() => setFeaturedIndex(index)}
+              onFocus={() => setFeaturedIndex(index)}
+              onClick={() => setActiveImageIndex(index)}
+              className={`group relative min-h-[220px] overflow-hidden border text-left transition hover:border-[#f43f72]/60 ${
+                featuredIndex === index
+                  ? "border-[#f43f72]/70"
+                  : "border-white/10"
+              } ${image.className}`}
+            >
+              <img
+                src={image.src}
+                alt={image.title}
+                loading="lazy"
+                className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0b0414]/95 via-[#0b0414]/15 to-transparent" />
+              <div className="absolute left-4 top-4 flex h-9 w-9 items-center justify-center border border-white/15 bg-black/35 text-white backdrop-blur">
+                <Expand className="h-4 w-4" />
+              </div>
+              <div className="absolute bottom-0 left-0 right-0 p-4">
+                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#f4c7ff]">
+                  {String(index + 1).padStart(2, "0")}
+                </p>
+                <h4 className="mt-1 font-heading text-xl font-bold text-white">
+                  {image.title}
+                </h4>
+                <p className="mt-1 line-clamp-2 text-xs leading-5 text-purple-100/60">
+                  {image.caption}
+                </p>
+              </div>
+            </button>
+          ))}
+        </div>
       </div>
 
-      {/* ── Immersive Lightbox Modal ── */}
-      {activeImageIndex !== null && (
-        <div className="fixed inset-0 z-[99999] flex items-center justify-center bg-black/95 backdrop-blur-xl transition-all duration-300 animate-fade-in">
-          {/* Close Area */}
-          <div className="absolute inset-0 cursor-zoom-out" onClick={handleClose} />
-
-          {/* Close button */}
+      {activeImage && activeImageIndex !== null && (
+        <div className="fixed inset-0 z-[99999] flex items-center justify-center bg-[#07030d]/95 p-4 backdrop-blur-xl">
           <button
+            type="button"
+            aria-label="Close lightbox"
+            onClick={handleClose}
+            className="absolute inset-0 cursor-zoom-out"
+          />
+
+          <button
+            type="button"
             onClick={handleClose}
             aria-label="Close lightbox"
-            className="absolute top-6 right-6 z-50 p-3 rounded-full border border-white/10 bg-white/5 hover:bg-white/15 text-white/80 hover:text-white transition-all cursor-pointer shadow-lg backdrop-blur-md"
+            className="absolute right-4 top-4 z-20 flex h-11 w-11 items-center justify-center border border-white/15 bg-white/10 text-white transition hover:bg-white/20 sm:right-8 sm:top-8"
           >
-            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-            </svg>
+            <X className="h-5 w-5" />
           </button>
 
-          {/* Prev button */}
           <button
+            type="button"
             onClick={handlePrev}
             aria-label="Previous image"
-            className="absolute left-4 sm:left-8 z-50 p-3.5 rounded-full border border-white/10 bg-white/5 hover:bg-white/15 text-white/80 hover:text-white transition-all cursor-pointer shadow-lg backdrop-blur-md"
+            className="absolute left-4 top-1/2 z-20 hidden h-12 w-12 -translate-y-1/2 items-center justify-center border border-white/15 bg-white/10 text-white transition hover:bg-white/20 sm:flex"
           >
-            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-            </svg>
+            <ChevronLeft className="h-6 w-6" />
           </button>
 
-          {/* Next button */}
           <button
+            type="button"
             onClick={handleNext}
             aria-label="Next image"
-            className="absolute right-4 sm:right-8 z-50 p-3.5 rounded-full border border-white/10 bg-white/5 hover:bg-white/15 text-white/80 hover:text-white transition-all cursor-pointer shadow-lg backdrop-blur-md"
+            className="absolute right-4 top-1/2 z-20 hidden h-12 w-12 -translate-y-1/2 items-center justify-center border border-white/15 bg-white/10 text-white transition hover:bg-white/20 sm:flex"
           >
-            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-            </svg>
+            <ChevronRight className="h-6 w-6" />
           </button>
 
-          {/* Main Content Area */}
-          <div className="relative z-10 max-w-[90vw] max-h-[80vh] flex flex-col items-center justify-center">
-            <img
-              src={galleryImages[activeImageIndex].src}
-              alt={galleryImages[activeImageIndex].title}
-              className="max-w-full max-h-[72vh] object-contain rounded-lg shadow-2xl border border-white/5 select-none animate-scale-up"
-            />
-            
-            {/* Meta overlay at the bottom of the photo */}
-            <div className="mt-4 text-center max-w-lg px-4">
-              <span className="text-[10px] font-mono tracking-widest text-purple-400 uppercase">
-                {activeImageIndex + 1} / {galleryImages.length}
-              </span>
-              <h4 className="text-xl font-bold font-heading text-white mt-1">
-                {galleryImages[activeImageIndex].title}
-              </h4>
-              <p className="text-sm text-purple-200/60 mt-1">
-                {galleryImages[activeImageIndex].caption}
-              </p>
+          <div className="relative z-10 w-full max-w-6xl">
+            <div className="overflow-hidden border border-white/10 bg-black">
+              <img
+                src={activeImage.src}
+                alt={activeImage.title}
+                className="max-h-[74vh] w-full object-contain"
+              />
+            </div>
+            <div className="mt-4 flex flex-col justify-between gap-4 border border-white/10 bg-white/[0.04] p-4 sm:flex-row sm:items-center">
+              <div>
+                <p className="text-[10px] font-bold uppercase tracking-[0.24em] text-[#d8b4fe]">
+                  Frame {activeImageIndex + 1} / {galleryImages.length}
+                </p>
+                <h4 className="mt-1 font-heading text-2xl font-bold text-white">
+                  {activeImage.title}
+                </h4>
+                <p className="mt-1 text-sm text-purple-100/58">{activeImage.caption}</p>
+              </div>
+              <div className="flex gap-2 sm:hidden">
+                <button
+                  type="button"
+                  onClick={handlePrev}
+                  className="flex h-10 w-10 items-center justify-center border border-white/15 bg-white/10 text-white"
+                  aria-label="Previous image"
+                >
+                  <ArrowLeft className="h-4 w-4" />
+                </button>
+                <button
+                  type="button"
+                  onClick={handleNext}
+                  className="flex h-10 w-10 items-center justify-center border border-white/15 bg-white/10 text-white"
+                  aria-label="Next image"
+                >
+                  <ArrowRight className="h-4 w-4" />
+                </button>
+              </div>
             </div>
           </div>
         </div>

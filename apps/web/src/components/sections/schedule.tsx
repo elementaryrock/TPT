@@ -1,425 +1,458 @@
-import { useState, useMemo } from "react";
+import { useMemo, useState } from "react";
+import {
+  CalendarDays,
+  ChevronDown,
+  Clock3,
+  Coffee,
+  MapPin,
+  MessageSquareText,
+  Mic2,
+  Sparkles,
+  UsersRound,
+  Wrench,
+} from "lucide-react";
+
+type EventType = "keynote" | "session" | "workshop" | "break" | "general";
 
 interface ScheduleEvent {
   time: string;
   title: string;
   description: string;
-  type: "keynote" | "session" | "workshop" | "break" | "general";
+  type: EventType;
   tag: string;
   details: string;
   speaker: string;
   location: string;
 }
 
-const schedule = {
+const schedule: Record<
+  "day1" | "day2",
+  { date: string; eyebrow: string; label: string; theme: string; events: ScheduleEvent[] }
+> = {
   day1: {
     date: "July 17, 2026",
+    eyebrow: "Arrival / Alignment",
     label: "Day 1",
+    theme: "Set the direction, meet the network, and build the operating base.",
     events: [
       {
         time: "09:00 AM",
         title: "Registration & Welcome Kit Distribution",
-        description: "Pick up your custom welcome kit, tech badges, and event trajectory map at the main lobby.",
-        type: "general" as const,
+        description: "Pick up your welcome kit, delegate badge, and event trajectory map.",
+        type: "general",
         tag: "Check-in",
-        details: "Make sure to bring your registration QR code (received via email or MakeMyPass) for quick check-in. The kit includes custom stickers, notebook, T-shirt, and your NFC-enabled identity card.",
+        details:
+          "Carry your registration QR code for quick check-in. The welcome desk handles badges, kit pickup, and delegate routing for the opening venue.",
         speaker: "Organizing Team",
-        location: "Main Lobby"
+        location: "Main Lobby",
       },
       {
         time: "10:00 AM",
         title: "Inaugural Ceremony & Spark",
-        description: "Official kickoff of TPT 4.0 with representatives from KSUM, IEDC legacy members, and leadership hosts.",
-        type: "keynote" as const,
+        description: "Official kickoff with Marian, KSUM, IEDC, and legacy representatives.",
+        type: "keynote",
         tag: "Inauguration",
-        details: "Welcome address by Marian Engineering College Principal, followed by lighting the digital lamp. An inspiring opening note by Chief Guest from Kerala Startup Mission (KSUM) charting the perfect trajectory for student entrepreneurship in Kerala.",
-        speaker: "Ecosystem Leaders & Chief Guest",
-        location: "Auditorium"
+        details:
+          "Opening remarks, context setting, and a clear orientation on why newly elected IEDC leads matter for the next year of Kerala's innovation ecosystem.",
+        speaker: "Ecosystem Leaders",
+        location: "Auditorium",
       },
       {
         time: "11:30 AM",
         title: "Keynote: Steering the Trajectory",
-        description: "A visionary session on what it means to lead an IEDC and building self-sustaining innovation hubs in colleges.",
-        type: "keynote" as const,
+        description: "A leadership session on building self-sustaining innovation hubs.",
+        type: "keynote",
         tag: "Leadership",
-        details: "How student leads can foster a culture of active innovation. Strategies for community engagement, cross-disciplinary collaboration, and transitioning from academic projects to viable startup products.",
-        speaker: "Renowned Tech Entrepreneur",
-        location: "Auditorium"
+        details:
+          "A practical keynote on community building, interdisciplinary collaboration, and moving student projects toward viable products.",
+        speaker: "Tech Entrepreneur",
+        location: "Auditorium",
       },
       {
         time: "01:00 PM",
-        title: "Lunch & Peer Networking Gala",
-        description: "A curated buffet lunch paired with structured peer networking activities to break the ice.",
-        type: "break" as const,
-        tag: "Networking",
-        details: "An opportunity to meet fellow IEDC leads from other districts. Table-based brainstorming games will help you discover common challenges and potential inter-college collaboration opportunities.",
+        title: "Lunch & Peer Network",
+        description: "A structured lunch designed to connect chapter leads across districts.",
+        type: "break",
+        tag: "Network",
+        details:
+          "Table prompts and light networking activities help delegates discover common problems and possible inter-college collaborations.",
         speaker: "All Delegates",
-        location: "Food Court & Garden Lawn"
+        location: "Food Court",
       },
       {
         time: "02:00 PM",
         title: "Workshop: Core Execution Playbook",
-        description: "Hands-on session on drafting your chapter's annual plan, executing budgets, and navigating startup support grants.",
-        type: "workshop" as const,
+        description: "Annual plans, budgets, grants, and the routines that keep chapters moving.",
+        type: "workshop",
         tag: "Hands-on",
-        details: "Practical guide to KSUM policies, filing grants, planning workshops, and managing student activity points. Bring your laptops, as we will be using collaborative canvas boards to layout next year's milestone timeline.",
-        speaker: "IEDC State Coordinators",
-        location: "Seminar Hall A"
+        details:
+          "A working session for drafting chapter goals, planning events, understanding support programs, and mapping the first quarter of execution.",
+        speaker: "IEDC Coordinators",
+        location: "Seminar Hall A",
       },
       {
         time: "04:30 PM",
-        title: "Panel: Decoupling Student Innovation",
-        description: "Interactive session addressing real-world operational challenges of managing a student incubator.",
-        type: "session" as const,
+        title: "Panel: Running the Student Cell",
+        description: "A direct conversation on team motivation, management buy-in, and real constraints.",
+        type: "session",
         tag: "Panel Q&A",
-        details: "Panelists share their experiences on dealing with college management alignment, motivating passive members, and utilizing college lab infrastructure for rapid prototyping. Direct Q&A with the audience.",
-        speaker: "Ex-IEDC Leads & Incubator Managers",
-        location: "Auditorium"
-      }
-    ]
+        details:
+          "Panelists unpack everyday challenges: passive members, college alignment, lab access, sponsor conversations, and continuity after office-bearer changes.",
+        speaker: "Ex-IEDC Leads",
+        location: "Auditorium",
+      },
+    ],
   },
   day2: {
     date: "July 18, 2026",
+    eyebrow: "Build / Commit",
     label: "Day 2",
+    theme: "Translate the orientation into action plans, partnerships, and next moves.",
     events: [
       {
         time: "09:30 AM",
         title: "Day 2 Kickoff & Energy Check",
-        description: "A fast-paced recap of Day 1 followed by interactive ecosystem icebreakers.",
-        type: "general" as const,
-        tag: "Icebreaker",
-        details: "Fun team-building games and quick highlights of day 1. Setting clear learning objectives for the workshops and design sprint ahead in Day 2.",
-        speaker: "Facilitators Team",
-        location: "Auditorium"
+        description: "A fast recap of Day 1 before the design and planning blocks begin.",
+        type: "general",
+        tag: "Kickoff",
+        details:
+          "The facilitation team resets the room, captures Day 1 takeaways, and frames the work expected from delegates before closing.",
+        speaker: "Facilitators",
+        location: "Auditorium",
       },
       {
         time: "10:00 AM",
         title: "Session: Building a Funding Trajectory",
-        description: "De-mystifying government startup schemes, pre-seed grants, and angel investment pipelines.",
-        type: "session" as const,
+        description: "Government schemes, pre-seed grants, and early pitch preparation.",
+        type: "session",
         tag: "Funding",
-        details: "Learn about NIDHI-PRAYAS, KSUM Idea Grant, and other regional funding schemes. Tips on how to prepare pitch decks, pitch templates, and prepare financial reports.",
-        speaker: "Venture Partner & Program Manager",
-        location: "Auditorium"
+        details:
+          "A practical look at idea grants, application readiness, pitch structure, and how chapters can help students move from idea to support.",
+        speaker: "Program Manager",
+        location: "Auditorium",
       },
       {
         time: "11:30 AM",
         title: "Design Sprint: Ecosystem Blueprinting",
-        description: "Interactive collaborative sprint where teams design a flagship event for their region.",
-        type: "workshop" as const,
-        tag: "Design Sprint",
-        details: "Using Design Thinking principles, chapters will work together to plan an regional hackathon or summit. Mentor evaluation and feedback loops during the session.",
-        speaker: "Design Thinking Coach",
-        location: "Seminar Hall B"
+        description: "Teams design one flagship initiative for their region or institution.",
+        type: "workshop",
+        tag: "Sprint",
+        details:
+          "Delegates use guided canvases to define audience, partners, resources, timeline, risks, and measurable outcomes for a chapter-led initiative.",
+        speaker: "Design Coach",
+        location: "Seminar Hall B",
       },
       {
         time: "01:00 PM",
         title: "Lunch & District Chapters Align",
-        description: "District-level huddle over lunch to sync local event calendars and avoid regional overlaps.",
-        type: "break" as const,
-        tag: "Synergy Huddle",
-        details: "Align schedules with neighboring institutions to maximize resource sharing, student participation, and sponsor outreach.",
+        description: "District huddles to coordinate calendars and reduce event overlap.",
+        type: "break",
+        tag: "Huddle",
+        details:
+          "Nearby chapters compare calendars, find shared resources, and identify moments where collaboration can increase reach.",
         speaker: "Regional Leads",
-        location: "Food Court"
+        location: "Food Court",
       },
       {
         time: "02:00 PM",
         title: "Closing: Trajectory Action Plan",
-        description: "Locking the trajectory for 2026-27 with target goals, regional networks, and support resources.",
-        type: "keynote" as const,
+        description: "Lock the 2026-27 direction with targets, networks, and support channels.",
+        type: "keynote",
         tag: "Strategy",
-        details: "Filing your finalized annual action plan. Closing comments on the next-gen innovations expected from Kerala student ecosystem.",
+        details:
+          "Each chapter consolidates the action plan and leaves with next steps, follow-up channels, and accountability points.",
         speaker: "State Nodal Officers",
-        location: "Auditorium"
+        location: "Auditorium",
       },
       {
         time: "04:00 PM",
         title: "Valedictory & Certificate Distribution",
-        description: "Honoring participants, announcing awards, and distributing official training completion certificates.",
-        type: "general" as const,
-        tag: "Valedictory",
-        details: "Chapters receive official delegation badges and certificates of completion. Photo session and final farewells.",
-        speaker: "Guests & College Management",
-        location: "Auditorium"
-      }
-    ]
-  }
+        description: "Final address, certificates, recognition, and the closing photo.",
+        type: "general",
+        tag: "Close",
+        details:
+          "The event closes with certificate distribution, acknowledgements, and a collective archive frame with delegates and organisers.",
+        speaker: "Guests & Management",
+        location: "Auditorium",
+      },
+    ],
+  },
 };
 
-const filterTypes = [
-  { id: "all", label: "All Events" },
-  { id: "keynote", label: "🎤 Keynotes" },
-  { id: "workshop", label: "🛠️ Workshops" },
-  { id: "session", label: "💬 Sessions" },
-  { id: "break", label: "🤝 Breaks" }
+const filterTypes: Array<{ id: "all" | EventType; label: string }> = [
+  { id: "all", label: "All" },
+  { id: "keynote", label: "Keynotes" },
+  { id: "workshop", label: "Workshops" },
+  { id: "session", label: "Sessions" },
+  { id: "break", label: "Breaks" },
 ];
 
-const typeColors: Record<string, { border: string; bg: string; text: string; dot: string; glow: string }> = {
+const typeMeta: Record<
+  EventType,
+  { label: string; Icon: typeof Mic2; accent: string; soft: string; border: string }
+> = {
   keynote: {
-    border: "border-amber-500/30 hover:border-amber-400/40",
-    bg: "bg-amber-500/[0.04]",
-    text: "text-amber-400",
-    dot: "bg-amber-400 border-amber-300",
-    glow: "bg-amber-500/20"
+    label: "Keynote",
+    Icon: Mic2,
+    accent: "text-[#ffd38a]",
+    soft: "bg-[#ffd38a]/10",
+    border: "border-[#ffd38a]/35",
   },
   session: {
-    border: "border-purple-500/30 hover:border-purple-400/40",
-    bg: "bg-purple-500/[0.04]",
-    text: "text-purple-400",
-    dot: "bg-purple-400 border-purple-300",
-    glow: "bg-purple-500/20"
+    label: "Session",
+    Icon: MessageSquareText,
+    accent: "text-[#c7a8ff]",
+    soft: "bg-[#c7a8ff]/10",
+    border: "border-[#c7a8ff]/35",
   },
   workshop: {
-    border: "border-blue-500/30 hover:border-blue-400/40",
-    bg: "bg-blue-500/[0.04]",
-    text: "text-blue-400",
-    dot: "bg-blue-400 border-blue-300",
-    glow: "bg-blue-500/20"
+    label: "Workshop",
+    Icon: Wrench,
+    accent: "text-[#8bd3ff]",
+    soft: "bg-[#8bd3ff]/10",
+    border: "border-[#8bd3ff]/35",
   },
   break: {
-    border: "border-emerald-500/20 hover:border-emerald-400/30",
-    bg: "bg-emerald-500/[0.02]",
-    text: "text-emerald-400",
-    dot: "bg-emerald-500/60 border-emerald-400",
-    glow: "bg-emerald-500/10"
+    label: "Break",
+    Icon: Coffee,
+    accent: "text-[#90f5c1]",
+    soft: "bg-[#90f5c1]/10",
+    border: "border-[#90f5c1]/25",
   },
   general: {
-    border: "border-pink-500/30 hover:border-pink-400/40",
-    bg: "bg-pink-500/[0.04]",
-    text: "text-pink-400",
-    dot: "bg-pink-400 border-pink-300",
-    glow: "bg-pink-500/20"
-  }
+    label: "General",
+    Icon: Sparkles,
+    accent: "text-[#ff8eb3]",
+    soft: "bg-[#ff8eb3]/10",
+    border: "border-[#ff8eb3]/30",
+  },
 };
 
 export default function ScheduleSection() {
   const [activeDay, setActiveDay] = useState<"day1" | "day2">("day1");
-  const [filterType, setFilterType] = useState<string>("all");
-  const [expandedEventId, setExpandedEventId] = useState<string | null>(null);
+  const [filterType, setFilterType] = useState<"all" | EventType>("all");
+  const [expandedEventId, setExpandedEventId] = useState<string | null>("day1-0");
 
   const currentSchedule = schedule[activeDay];
 
-  const filteredEvents = useMemo(() => {
-    return currentSchedule.events.map((event, originalIdx) => ({
-      ...event,
-      originalIdx
-    })).filter(
-      (event) => filterType === "all" || event.type === filterType
-    );
-  }, [currentSchedule, filterType]);
+  const filteredEvents = useMemo(
+    () =>
+      currentSchedule.events
+        .map((event, originalIndex) => ({ ...event, originalIndex }))
+        .filter((event) => filterType === "all" || event.type === filterType),
+    [currentSchedule.events, filterType],
+  );
 
-  const handleToggleExpand = (id: string) => {
-    setExpandedEventId((prev) => (prev === id ? null : id));
-  };
+  const dayStats = useMemo(() => {
+    const venues = new Set(currentSchedule.events.map((event) => event.location)).size;
+    const workshops = currentSchedule.events.filter((event) => event.type === "workshop").length;
+    return [
+      { label: "Blocks", value: String(currentSchedule.events.length).padStart(2, "0") },
+      { label: "Venues", value: String(venues).padStart(2, "0") },
+      { label: "Labs", value: String(workshops).padStart(2, "0") },
+    ];
+  }, [currentSchedule.events]);
 
   return (
-    <section id="schedule" className="relative py-24 md:py-32 overflow-hidden">
-      {/* ── Background Patterns & Glowing Blobs ── */}
-      <div className="absolute inset-0 pointer-events-none opacity-[0.03]">
-        <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <pattern id="sched-grid" width="40" height="40" patternUnits="userSpaceOnUse">
-              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#a855f7" strokeWidth="0.5" />
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#sched-grid)" />
-        </svg>
+    <section
+      id="schedule"
+      className="relative overflow-hidden bg-[#090411] py-20 sm:py-24 md:py-32"
+    >
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(244,63,114,0.16),transparent_32%),radial-gradient(circle_at_85%_18%,rgba(168,85,247,0.18),transparent_28%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(120deg,transparent_0%,transparent_48%,rgba(255,255,255,0.05)_49%,transparent_50%,transparent_100%)] bg-[size:180px_180px]" />
       </div>
 
-      <div className="absolute left-[10%] top-[40%] w-[600px] h-[600px] bg-purple-700/[0.05] rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute right-[5%] top-[10%] w-[500px] h-[500px] bg-[#f43f72]/[0.03] rounded-full blur-[160px] pointer-events-none" />
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+          <div className="lg:sticky lg:top-24">
+            <p className="mb-4 inline-flex items-center gap-3 border border-white/10 bg-white/[0.04] px-4 py-2 text-[10px] font-bold uppercase tracking-[0.28em] text-purple-200/70">
+              <CalendarDays className="h-4 w-4 text-[#f43f72]" />
+              Plan Your Days
+            </p>
+            <h2 className="font-display text-4xl uppercase leading-[0.95] tracking-wide text-white sm:text-5xl md:text-6xl">
+              Event
+              <span className="block text-[#c7a8ff]">Schedule</span>
+            </h2>
+            <p className="mt-6 max-w-xl text-sm leading-7 text-purple-100/62 sm:text-base">
+              Two days built like a route map: arrive, align, build, and leave with a chapter action plan. Filter by track or open a block for the practical details.
+            </p>
 
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Section Header */}
-        <div className="text-center mb-16">
-          <p className="text-purple-400 text-xs sm:text-sm font-semibold tracking-[0.25em] uppercase mb-4">
-            Plan Your Days
-          </p>
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold font-heading mb-6 tracking-tight">
-            <span className="bg-gradient-to-r from-white via-purple-100 to-purple-300 bg-clip-text text-transparent">
-              Event Schedule
-            </span>
-          </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-[#f43f72] to-[#a855f7] mx-auto rounded-full mb-6 shadow-[0_0_10px_rgba(244,63,114,0.4)]" />
-          <p className="text-purple-200/50 text-base max-w-xl mx-auto leading-relaxed">
-            Follow the complete roadmap of TPT 4.0. Dive into specific tracks, filter modules, and select events to view location details.
-          </p>
-        </div>
+            <div className="mt-8 grid grid-cols-2 gap-3">
+              {(["day1", "day2"] as const).map((day) => (
+                <button
+                  key={day}
+                  type="button"
+                  onClick={() => {
+                    setActiveDay(day);
+                    setExpandedEventId(`${day}-0`);
+                  }}
+                  className={`relative overflow-hidden border p-4 text-left transition ${
+                    activeDay === day
+                      ? "border-[#f43f72]/70 bg-[#f43f72]/14"
+                      : "border-white/10 bg-white/[0.035] hover:border-purple-300/35"
+                  }`}
+                >
+                  <span className="text-[10px] font-bold uppercase tracking-[0.24em] text-purple-200/45">
+                    {schedule[day].eyebrow}
+                  </span>
+                  <span className="mt-3 block font-heading text-2xl font-bold text-white">
+                    {schedule[day].label}
+                  </span>
+                  <span className="mt-1 block text-xs font-semibold text-purple-100/55">
+                    {schedule[day].date}
+                  </span>
+                  {activeDay === day && (
+                    <span className="absolute bottom-0 left-0 h-1 w-full bg-gradient-to-r from-[#f43f72] to-[#b46cff]" />
+                  )}
+                </button>
+              ))}
+            </div>
 
-        {/* Day Tab Switcher */}
-        <div className="flex justify-center gap-4 mb-8">
-          {(["day1", "day2"] as const).map((day) => (
-            <button
-              key={day}
-              onClick={() => {
-                setActiveDay(day);
-                setExpandedEventId(null); // Reset open drawers on day switch
-              }}
-              className={`group px-6 py-3.5 rounded-2xl font-bold text-sm tracking-wide transition-all duration-500 cursor-pointer ${
-                activeDay === day
-                  ? "bg-gradient-to-r from-[#f43f72] to-[#a855f7] text-white shadow-[0_4px_25px_rgba(244,63,114,0.25)] border border-purple-500/10 scale-[1.02]"
-                  : "border border-purple-500/10 bg-[#0c0414]/50 text-purple-300 hover:border-purple-400/40 hover:bg-purple-950/20 hover:text-white"
-              }`}
-            >
-              <span className="block text-base font-heading tracking-normal font-extrabold">{schedule[day].label}</span>
-              <span className="block text-[10px] font-mono tracking-widest font-semibold opacity-70 mt-1">
-                {schedule[day].date}
-              </span>
-            </button>
-          ))}
-        </div>
+            <div className="mt-4 border border-white/10 bg-white/[0.035] p-5">
+              <p className="text-[10px] font-bold uppercase tracking-[0.24em] text-[#f4c7ff]">
+                {currentSchedule.eyebrow}
+              </p>
+              <p className="mt-2 text-sm leading-6 text-purple-100/65">{currentSchedule.theme}</p>
+              <div className="mt-5 grid grid-cols-3 border border-white/10">
+                {dayStats.map((stat) => (
+                  <div key={stat.label} className="border-r border-white/10 p-3 last:border-r-0">
+                    <p className="font-display text-2xl text-white">{stat.value}</p>
+                    <p className="mt-1 text-[9px] font-bold uppercase tracking-[0.18em] text-purple-200/38">
+                      {stat.label}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
 
-        {/* Category Filters */}
-        <div className="flex flex-wrap justify-center gap-2 mb-14 px-4">
-          {filterTypes.map((t) => (
-            <button
-              key={t.id}
-              onClick={() => {
-                setFilterType(t.id);
-                setExpandedEventId(null);
-              }}
-              className={`px-4 py-2 rounded-xl text-xs font-semibold border transition-all duration-300 cursor-pointer ${
-                filterType === t.id
-                  ? "border-purple-400 bg-purple-500/15 text-purple-200"
-                  : "border-purple-500/10 bg-[#0c0414]/30 text-purple-300/60 hover:border-purple-400/20 hover:text-purple-200"
-              }`}
-            >
-              {t.label}
-            </button>
-          ))}
-        </div>
+            <div className="mt-4 flex flex-wrap gap-2">
+              {filterTypes.map((type) => (
+                <button
+                  key={type.id}
+                  type="button"
+                  onClick={() => {
+                    setFilterType(type.id);
+                    setExpandedEventId(null);
+                  }}
+                  className={`border px-3.5 py-2 text-xs font-bold uppercase tracking-[0.14em] transition ${
+                    filterType === type.id
+                      ? "border-[#f43f72]/70 bg-[#f43f72]/14 text-white"
+                      : "border-white/10 bg-white/[0.035] text-purple-100/45 hover:border-purple-300/35 hover:text-purple-100"
+                  }`}
+                >
+                  {type.label}
+                </button>
+              ))}
+            </div>
+          </div>
 
-        {/* Timeline Grid */}
-        <div className="relative pl-6 sm:pl-10">
-          {/* Vertical Path Line */}
-          <div className="absolute left-[31px] sm:left-[35px] top-1 bottom-1 w-[2px] bg-gradient-to-b from-purple-500/40 via-purple-500/10 to-transparent" />
+          <div className="relative">
+            <div className="absolute left-5 top-0 hidden h-full w-px bg-gradient-to-b from-[#f43f72]/80 via-purple-300/25 to-transparent sm:block" />
 
-          {/* Render Timeline Cards */}
-          {filteredEvents.length > 0 ? (
-            <div className="space-y-8">
-              {filteredEvents.map((event) => {
-                const colors = typeColors[event.type] || typeColors.general;
-                const uniqueId = `${activeDay}-${event.originalIdx}`;
-                const isExpanded = expandedEventId === uniqueId;
+            {filteredEvents.length > 0 ? (
+              <div className="space-y-4">
+                {filteredEvents.map((event) => {
+                  const uniqueId = `${activeDay}-${event.originalIndex}`;
+                  const isExpanded = expandedEventId === uniqueId;
+                  const meta = typeMeta[event.type];
+                  const EventIcon = meta.Icon;
 
-                return (
-                  <div
-                    key={uniqueId}
-                    className="group relative flex gap-6 sm:gap-8 items-start"
-                  >
-                    {/* Pulsing Timeline Node */}
-                    <div className="relative z-10 flex-shrink-0 flex items-center justify-center w-[12px] h-[12px] mt-2.5">
-                      <div className={`absolute w-5 h-5 rounded-full blur-[4px] opacity-0 group-hover:opacity-100 ${colors.glow} transition-opacity duration-300`} />
-                      <div className={`w-[12px] h-[12px] rounded-full border-2 ${colors.dot} shadow-[0_0_8px_rgba(168,85,247,0.3)] group-hover:scale-125 transition-transform duration-300`} />
-                    </div>
-
-                    {/* Timeline Event Card */}
-                    <div
-                      onClick={() => handleToggleExpand(uniqueId)}
-                      className={`flex-1 p-6 rounded-2xl border bg-[#0c0414]/40 backdrop-blur-md transition-all duration-500 cursor-pointer select-none ${colors.border} ${colors.bg} ${
-                        isExpanded ? "shadow-[0_8px_30px_rgba(0,0,0,0.4)] border-purple-500/30" : "hover:scale-[1.005] hover:shadow-[0_4px_20px_rgba(0,0,0,0.15)]"
-                      }`}
-                    >
-                      {/* Top bar info */}
-                      <div className="flex flex-wrap items-center justify-between gap-3 mb-3">
-                        <div className="flex items-center gap-2.5">
-                          <span className="text-sm font-mono font-bold tracking-wider text-purple-300">
-                            {event.time}
-                          </span>
-                          <span className="text-[10px] font-mono tracking-widest uppercase px-2 py-0.5 rounded-md bg-purple-950/40 border border-purple-500/20 text-purple-200">
-                            {event.tag}
-                          </span>
-                        </div>
-                        <span className={`text-[10px] font-mono font-bold tracking-widest uppercase ${colors.text}`}>
-                          {event.type}
-                        </span>
-                      </div>
-
-                      {/* Title & short description */}
-                      <h3 className="text-lg sm:text-xl font-bold text-white mb-2 font-heading group-hover:text-purple-100 transition-colors">
-                        {event.title}
-                      </h3>
-                      <p className="text-sm text-purple-200/50 leading-relaxed">
-                        {event.description}
-                      </p>
-
-                      {/* Location & Speaker strip (mini info) */}
-                      <div className="flex flex-wrap gap-4 mt-4 text-xs font-medium text-purple-300/40">
-                        <span className="flex items-center gap-1.5">
-                          <svg className="w-3.5 h-3.5 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
-                          </svg>
-                          {event.speaker}
-                        </span>
-                        <span className="flex items-center gap-1.5">
-                          <svg className="w-3.5 h-3.5 text-pink-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
-                          </svg>
-                          {event.location}
-                        </span>
-                      </div>
-
-                      {/* Expand indicator chevron */}
-                      <div className="mt-4 pt-3 border-t border-purple-500/5 flex items-center justify-between text-xs font-semibold text-purple-400/80 group-hover:text-purple-300">
-                        <span>{isExpanded ? "Hide Details" : "View Details & Agenda"}</span>
-                        <svg
-                          className={`w-4 h-4 transform transition-transform duration-300 ${isExpanded ? "rotate-180" : "rotate-0"}`}
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                          strokeWidth={2.5}
-                        >
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-                        </svg>
-                      </div>
-
-                      {/* Expanded drawer details */}
-                      <div
-                        className={`overflow-hidden transition-all duration-500 ease-in-out ${
-                          isExpanded ? "max-h-[500px] opacity-100 mt-5 pt-4 border-t border-purple-500/10" : "max-h-0 opacity-0"
+                  return (
+                    <article key={uniqueId} className="relative sm:pl-14">
+                      <div className="absolute left-[13px] top-6 z-10 hidden h-4 w-4 border border-[#f43f72]/70 bg-[#090411] sm:block" />
+                      <button
+                        type="button"
+                        onClick={() => setExpandedEventId(isExpanded ? null : uniqueId)}
+                        className={`group w-full border bg-[#10071d]/92 text-left shadow-[0_18px_70px_rgba(0,0,0,0.22)] transition hover:border-purple-300/35 ${
+                          isExpanded ? "border-[#f43f72]/60" : "border-white/10"
                         }`}
                       >
-                        <h4 className="text-xs font-mono font-bold tracking-widest text-purple-400 uppercase mb-2">
-                          Session Overview & Instructions
-                        </h4>
-                        <p className="text-sm text-purple-200/70 leading-relaxed mb-4">
-                          {event.details}
-                        </p>
-
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 p-3.5 rounded-xl bg-purple-950/20 border border-purple-500/10">
-                          <div>
-                            <span className="block text-[10px] font-mono text-purple-300/40 uppercase">Speaker / Host</span>
-                            <span className="text-sm font-semibold text-white">{event.speaker}</span>
+                        <div className="grid gap-0 md:grid-cols-[132px_1fr]">
+                          <div className="border-b border-white/10 p-5 md:border-b-0 md:border-r">
+                            <div className="flex items-center gap-2 text-purple-100/45">
+                              <Clock3 className="h-4 w-4" />
+                              <span className="font-mono text-sm font-bold">{event.time}</span>
+                            </div>
+                            <div
+                              className={`mt-4 inline-flex items-center gap-2 border px-3 py-2 text-[10px] font-bold uppercase tracking-[0.18em] ${meta.border} ${meta.soft} ${meta.accent}`}
+                            >
+                              <EventIcon className="h-3.5 w-3.5" />
+                              {meta.label}
+                            </div>
                           </div>
-                          <div>
-                            <span className="block text-[10px] font-mono text-purple-300/40 uppercase">Venue / Room</span>
-                            <span className="text-sm font-semibold text-white">{event.location}</span>
+
+                          <div className="p-5 sm:p-6">
+                            <div className="flex items-start justify-between gap-4">
+                              <div>
+                                <p className="text-[10px] font-bold uppercase tracking-[0.24em] text-[#f4c7ff]/70">
+                                  {event.tag}
+                                </p>
+                                <h3 className="mt-2 font-heading text-xl font-bold text-white sm:text-2xl">
+                                  {event.title}
+                                </h3>
+                              </div>
+                              <ChevronDown
+                                className={`mt-1 h-5 w-5 shrink-0 text-purple-100/45 transition ${
+                                  isExpanded ? "rotate-180 text-white" : ""
+                                }`}
+                              />
+                            </div>
+
+                            <p className="mt-3 text-sm leading-6 text-purple-100/58">
+                              {event.description}
+                            </p>
+
+                            <div className="mt-5 flex flex-wrap gap-3 text-xs font-semibold text-purple-100/45">
+                              <span className="inline-flex items-center gap-2">
+                                <UsersRound className="h-4 w-4 text-[#c7a8ff]" />
+                                {event.speaker}
+                              </span>
+                              <span className="inline-flex items-center gap-2">
+                                <MapPin className="h-4 w-4 text-[#f43f72]" />
+                                {event.location}
+                              </span>
+                            </div>
+
+                            <div
+                              className={`grid transition-all duration-300 ${
+                                isExpanded
+                                  ? "grid-rows-[1fr] opacity-100"
+                                  : "grid-rows-[0fr] opacity-0"
+                              }`}
+                            >
+                              <div className="overflow-hidden">
+                                <div className="mt-6 border-t border-white/10 pt-5">
+                                  <p className="text-[10px] font-bold uppercase tracking-[0.24em] text-purple-200/38">
+                                    Block Brief
+                                  </p>
+                                  <p className="mt-2 text-sm leading-7 text-purple-100/70">
+                                    {event.details}
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          ) : (
-            <div className="text-center py-16 border border-dashed border-purple-500/20 rounded-2xl bg-[#0c0414]/20">
-              <p className="text-purple-300/50 font-medium">No events found matching this filter.</p>
-              <button
-                onClick={() => setFilterType("all")}
-                className="mt-3 text-xs font-semibold text-purple-400 hover:text-purple-300 underline cursor-pointer"
-              >
-                Clear Filters
-              </button>
-            </div>
-          )}
-        </div>
+                      </button>
+                    </article>
+                  );
+                })}
+              </div>
+            ) : (
+              <div className="border border-dashed border-purple-300/25 bg-white/[0.03] px-6 py-14 text-center">
+                <p className="font-heading text-xl font-bold text-white">No blocks in this filter</p>
+                <p className="mt-2 text-sm text-purple-100/45">
+                  Try another track or return to the full two-day route.
+                </p>
+              </div>
+            )}
 
-        {/* Sticky footer info */}
-        <p className="text-center text-purple-400/20 text-xs font-mono tracking-wider mt-16 uppercase">
-          ※ Schedule timings are tentative and subject to local ecosystem alignments.
-        </p>
+            <p className="mt-10 border-l border-[#f43f72]/50 pl-4 text-xs font-semibold uppercase tracking-[0.18em] text-purple-100/30">
+              Schedule timings are tentative and subject to final coordination.
+            </p>
+          </div>
+        </div>
       </div>
     </section>
   );
