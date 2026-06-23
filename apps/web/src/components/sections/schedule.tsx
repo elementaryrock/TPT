@@ -256,29 +256,29 @@ export default function ScheduleSection() {
   return (
     <section
       id="schedule"
-      className="relative overflow-hidden bg-[#090411] py-20 sm:py-24 md:py-32"
+      className="relative overflow-hidden bg-[#090411] py-20 sm:py-24 lg:h-screen lg:min-h-[760px] lg:py-0"
     >
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(244,63,114,0.16),transparent_32%),radial-gradient(circle_at_85%_18%,rgba(168,85,247,0.18),transparent_28%)]" />
         <div className="absolute inset-0 bg-[linear-gradient(120deg,transparent_0%,transparent_48%,rgba(255,255,255,0.05)_49%,transparent_50%,transparent_100%)] bg-[size:180px_180px]" />
       </div>
 
-      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
-          <div className="lg:sticky lg:top-24">
-            <p className="mb-4 inline-flex items-center gap-3 border border-white/10 bg-white/[0.04] px-4 py-2 text-[10px] font-bold uppercase tracking-[0.28em] text-purple-200/70">
+      <div className="relative z-10 mx-auto h-full max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="grid h-full gap-10 lg:grid-cols-[0.86fr_1.14fr] lg:items-center lg:pt-24 lg:pb-10">
+          <div>
+            <p className="mb-4 inline-flex items-center gap-3 border border-white/15 bg-[#1a0d2a]/90 px-4 py-2 text-xs font-bold uppercase tracking-[0.2em] text-purple-50/85">
               <CalendarDays className="h-4 w-4 text-[#f43f72]" />
               Plan Your Days
             </p>
-            <h2 className="font-display text-4xl uppercase leading-[0.95] tracking-wide text-white sm:text-5xl md:text-6xl">
+            <h2 className="font-display text-4xl uppercase leading-[0.95] tracking-wide text-white sm:text-5xl xl:text-6xl">
               Event
               <span className="block text-[#c7a8ff]">Schedule</span>
             </h2>
-            <p className="mt-6 max-w-xl text-sm leading-7 text-purple-100/62 sm:text-base">
+            <p className="mt-5 max-w-xl text-base leading-8 text-purple-50/82">
               Two days built like a route map: arrive, align, build, and leave with a chapter action plan. Filter by track or open a block for the practical details.
             </p>
 
-            <div className="mt-8 grid grid-cols-2 gap-3">
+            <div className="mt-7 grid grid-cols-2 gap-3">
               {(["day1", "day2"] as const).map((day) => (
                 <button
                   key={day}
@@ -287,19 +287,19 @@ export default function ScheduleSection() {
                     setActiveDay(day);
                     setExpandedEventId(`${day}-0`);
                   }}
-                  className={`relative overflow-hidden border p-4 text-left transition ${
+                  className={`relative overflow-hidden border p-4 text-left transition xl:p-5 ${
                     activeDay === day
                       ? "border-[#f43f72]/70 bg-[#f43f72]/14"
-                      : "border-white/10 bg-white/[0.035] hover:border-purple-300/35"
+                      : "border-white/15 bg-[#150a22]/88 hover:border-purple-300/45"
                   }`}
                 >
-                  <span className="text-[10px] font-bold uppercase tracking-[0.24em] text-purple-200/45">
+                  <span className="text-xs font-bold uppercase tracking-[0.16em] text-purple-100/70">
                     {schedule[day].eyebrow}
                   </span>
                   <span className="mt-3 block font-heading text-2xl font-bold text-white">
                     {schedule[day].label}
                   </span>
-                  <span className="mt-1 block text-xs font-semibold text-purple-100/55">
+                  <span className="mt-1 block text-sm font-semibold text-purple-50/78">
                     {schedule[day].date}
                   </span>
                   {activeDay === day && (
@@ -309,16 +309,16 @@ export default function ScheduleSection() {
               ))}
             </div>
 
-            <div className="mt-4 border border-white/10 bg-white/[0.035] p-5">
-              <p className="text-[10px] font-bold uppercase tracking-[0.24em] text-[#f4c7ff]">
+            <div className="mt-4 border border-white/15 bg-[#150a22]/90 p-4 xl:p-5">
+              <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#f4c7ff]">
                 {currentSchedule.eyebrow}
               </p>
-              <p className="mt-2 text-sm leading-6 text-purple-100/65">{currentSchedule.theme}</p>
-              <div className="mt-5 grid grid-cols-3 border border-white/10">
+              <p className="mt-2 text-sm leading-7 text-purple-50/82">{currentSchedule.theme}</p>
+              <div className="mt-4 grid grid-cols-3 border border-white/15">
                 {dayStats.map((stat) => (
-                  <div key={stat.label} className="border-r border-white/10 p-3 last:border-r-0">
+                  <div key={stat.label} className="border-r border-white/15 p-3 last:border-r-0">
                     <p className="font-display text-2xl text-white">{stat.value}</p>
-                    <p className="mt-1 text-[9px] font-bold uppercase tracking-[0.18em] text-purple-200/38">
+                    <p className="mt-1 text-[10px] font-bold uppercase tracking-[0.14em] text-purple-100/68">
                       {stat.label}
                     </p>
                   </div>
@@ -338,7 +338,7 @@ export default function ScheduleSection() {
                   className={`border px-3.5 py-2 text-xs font-bold uppercase tracking-[0.14em] transition ${
                     filterType === type.id
                       ? "border-[#f43f72]/70 bg-[#f43f72]/14 text-white"
-                      : "border-white/10 bg-white/[0.035] text-purple-100/45 hover:border-purple-300/35 hover:text-purple-100"
+                      : "border-white/15 bg-[#150a22]/88 text-purple-50/72 hover:border-purple-300/45 hover:text-white"
                   }`}
                 >
                   {type.label}
@@ -347,11 +347,11 @@ export default function ScheduleSection() {
             </div>
           </div>
 
-          <div className="relative">
+          <div className="relative lg:h-[calc(100vh-8.5rem)] lg:min-h-[610px]">
             <div className="absolute left-5 top-0 hidden h-full w-px bg-gradient-to-b from-[#f43f72]/80 via-purple-300/25 to-transparent sm:block" />
 
             {filteredEvents.length > 0 ? (
-              <div className="space-y-4">
+              <div className="space-y-4 lg:h-full lg:overflow-y-auto lg:pr-4 lg:[scrollbar-color:#f43f72_#160b24] lg:[scrollbar-width:thin]">
                 {filteredEvents.map((event) => {
                   const uniqueId = `${activeDay}-${event.originalIndex}`;
                   const isExpanded = expandedEventId === uniqueId;
@@ -365,12 +365,12 @@ export default function ScheduleSection() {
                         type="button"
                         onClick={() => setExpandedEventId(isExpanded ? null : uniqueId)}
                         className={`group w-full border bg-[#10071d]/92 text-left shadow-[0_18px_70px_rgba(0,0,0,0.22)] transition hover:border-purple-300/35 ${
-                          isExpanded ? "border-[#f43f72]/60" : "border-white/10"
+                          isExpanded ? "border-[#f43f72]/70" : "border-white/15"
                         }`}
                       >
                         <div className="grid gap-0 md:grid-cols-[132px_1fr]">
-                          <div className="border-b border-white/10 p-5 md:border-b-0 md:border-r">
-                            <div className="flex items-center gap-2 text-purple-100/45">
+                          <div className="border-b border-white/15 p-5 md:border-b-0 md:border-r">
+                            <div className="flex items-center gap-2 text-purple-50/78">
                               <Clock3 className="h-4 w-4" />
                               <span className="font-mono text-sm font-bold">{event.time}</span>
                             </div>
@@ -385,7 +385,7 @@ export default function ScheduleSection() {
                           <div className="p-5 sm:p-6">
                             <div className="flex items-start justify-between gap-4">
                               <div>
-                                <p className="text-[10px] font-bold uppercase tracking-[0.24em] text-[#f4c7ff]/70">
+                                <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#f7d6ff]">
                                   {event.tag}
                                 </p>
                                 <h3 className="mt-2 font-heading text-xl font-bold text-white sm:text-2xl">
@@ -393,17 +393,17 @@ export default function ScheduleSection() {
                                 </h3>
                               </div>
                               <ChevronDown
-                                className={`mt-1 h-5 w-5 shrink-0 text-purple-100/45 transition ${
+                                className={`mt-1 h-5 w-5 shrink-0 text-purple-50/70 transition ${
                                   isExpanded ? "rotate-180 text-white" : ""
                                 }`}
                               />
                             </div>
 
-                            <p className="mt-3 text-sm leading-6 text-purple-100/58">
+                            <p className="mt-3 text-base leading-7 text-purple-50/82">
                               {event.description}
                             </p>
 
-                            <div className="mt-5 flex flex-wrap gap-3 text-xs font-semibold text-purple-100/45">
+                            <div className="mt-5 flex flex-wrap gap-3 text-sm font-semibold text-purple-50/72">
                               <span className="inline-flex items-center gap-2">
                                 <UsersRound className="h-4 w-4 text-[#c7a8ff]" />
                                 {event.speaker}
@@ -422,11 +422,11 @@ export default function ScheduleSection() {
                               }`}
                             >
                               <div className="overflow-hidden">
-                                <div className="mt-6 border-t border-white/10 pt-5">
-                                  <p className="text-[10px] font-bold uppercase tracking-[0.24em] text-purple-200/38">
+                                <div className="mt-6 border-t border-white/15 pt-5">
+                                  <p className="text-xs font-bold uppercase tracking-[0.16em] text-purple-100/68">
                                     Block Brief
                                   </p>
-                                  <p className="mt-2 text-sm leading-7 text-purple-100/70">
+                                  <p className="mt-2 text-sm leading-7 text-purple-50/85">
                                     {event.details}
                                   </p>
                                 </div>
@@ -438,19 +438,19 @@ export default function ScheduleSection() {
                     </article>
                   );
                 })}
+                <p className="border-l border-[#f43f72]/60 pl-4 text-xs font-semibold uppercase tracking-[0.16em] text-purple-100/62">
+                  Schedule timings are tentative and subject to final coordination.
+                </p>
               </div>
             ) : (
-              <div className="border border-dashed border-purple-300/25 bg-white/[0.03] px-6 py-14 text-center">
+              <div className="border border-dashed border-purple-300/35 bg-[#150a22]/90 px-6 py-14 text-center">
                 <p className="font-heading text-xl font-bold text-white">No blocks in this filter</p>
-                <p className="mt-2 text-sm text-purple-100/45">
+                <p className="mt-2 text-sm text-purple-50/75">
                   Try another track or return to the full two-day route.
                 </p>
               </div>
             )}
 
-            <p className="mt-10 border-l border-[#f43f72]/50 pl-4 text-xs font-semibold uppercase tracking-[0.18em] text-purple-100/30">
-              Schedule timings are tentative and subject to final coordination.
-            </p>
           </div>
         </div>
       </div>

@@ -7,10 +7,8 @@ import {
   Expand,
   Handshake,
   Lightbulb,
-  Maximize2,
   MessageSquareText,
   Mic2,
-  PanelsTopLeft,
   Trophy,
   Wrench,
   X,
@@ -114,9 +112,6 @@ const stats = [
 
 export default function HighlightsSection() {
   const [activeImageIndex, setActiveImageIndex] = useState<number | null>(null);
-  const [featuredIndex, setFeaturedIndex] = useState(0);
-
-  const featuredImage = galleryImages[featuredIndex];
 
   const handlePrev = useCallback(() => {
     setActiveImageIndex((prev) =>
@@ -171,9 +166,9 @@ export default function HighlightsSection() {
       </div>
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-end">
+        <div className="grid gap-8 lg:grid-cols-[1fr_0.82fr] lg:items-end">
           <div>
-            <div className="mb-5 inline-flex items-center gap-3 border border-white/10 bg-white/[0.035] px-4 py-2 text-[10px] font-bold uppercase tracking-[0.28em] text-[#d9c1ff]">
+            <div className="mb-5 inline-flex items-center gap-3 border border-white/15 bg-[#1a0d2a]/90 px-4 py-2 text-xs font-bold uppercase tracking-[0.22em] text-[#eadcff]">
               <span className="h-1.5 w-1.5 rounded-full bg-[#f43f72]" />
               Previous Edition Archive
             </div>
@@ -181,16 +176,16 @@ export default function HighlightsSection() {
               TPT 3.0
               <span className="block text-[#c7a8ff]">Highlights</span>
             </h2>
-            <p className="mt-6 max-w-xl text-sm leading-7 text-purple-100/62 sm:text-base">
+            <p className="mt-6 max-w-xl text-base leading-8 text-purple-50/82">
               A sharper look back at the sessions, rooms, faces, and campaign frames that shaped the last edition. The gallery is treated like an event archive, not filler below the fold.
             </p>
           </div>
 
-          <div className="grid grid-cols-3 overflow-hidden border border-white/10 bg-[#0b0414]/70">
+          <div className="grid grid-cols-3 overflow-hidden border border-white/15 bg-[#0b0414]/88">
             {stats.map((stat) => (
               <div key={stat.label} className="border-r border-white/10 p-4 last:border-r-0 sm:p-6">
                 <p className="font-display text-3xl text-white sm:text-4xl">{stat.value}</p>
-                <p className="mt-2 text-[10px] font-bold uppercase tracking-[0.2em] text-purple-200/45">
+                <p className="mt-2 text-xs font-bold uppercase tracking-[0.16em] text-purple-100/72">
                   {stat.label}
                 </p>
               </div>
@@ -198,43 +193,11 @@ export default function HighlightsSection() {
           </div>
         </div>
 
-        <div className="mt-12 grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
-          <div className="relative min-h-[440px] overflow-hidden border border-white/10 bg-[#0b0414] sm:min-h-[520px]">
-            <img
-              src={featuredImage.src}
-              alt={featuredImage.title}
-              className="absolute inset-0 h-full w-full object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0b0414] via-[#0b0414]/30 to-transparent" />
-            <div className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-[#0b0414]/80 to-transparent" />
-            <div className="absolute left-0 top-8 h-px w-full bg-[#f43f72]/70" />
-            <div className="absolute left-8 top-0 h-full w-px bg-white/10" />
-            <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-8">
-              <p className="mb-3 text-[10px] font-bold uppercase tracking-[0.28em] text-[#f4c7ff]">
-                Featured Frame {String(featuredIndex + 1).padStart(2, "0")}
-              </p>
-              <h3 className="font-heading text-3xl font-bold text-white sm:text-4xl">
-                {featuredImage.title}
-              </h3>
-              <p className="mt-3 max-w-xl text-sm leading-6 text-purple-100/68">
-                {featuredImage.caption}
-              </p>
-              <button
-                type="button"
-                onClick={() => setActiveImageIndex(featuredIndex)}
-                className="mt-6 inline-flex items-center gap-3 border border-white/15 bg-white/10 px-4 py-3 text-xs font-bold uppercase tracking-[0.18em] text-white transition hover:border-[#f43f72]/60 hover:bg-[#f43f72]/15"
-              >
-                <Maximize2 className="h-4 w-4" />
-                Open Frame
-              </button>
-            </div>
-          </div>
-
-          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
+        <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {highlights.map(({ title, description, Icon }, index) => (
               <article
                 key={title}
-                className="group relative overflow-hidden border border-white/10 bg-white/[0.035] p-5 transition hover:border-[#f43f72]/45 hover:bg-white/[0.055]"
+                className="group relative overflow-hidden border border-white/15 bg-[#160b24]/78 p-5 transition hover:border-[#f43f72]/55 hover:bg-[#1d0f30]"
               >
                 <div className="absolute right-0 top-0 h-full w-1 bg-gradient-to-b from-[#f43f72] via-[#b46cff] to-transparent opacity-0 transition group-hover:opacity-100" />
                 <div className="flex gap-4">
@@ -242,35 +205,28 @@ export default function HighlightsSection() {
                     <Icon className="h-5 w-5" />
                   </div>
                   <div>
-                    <p className="text-[10px] font-bold uppercase tracking-[0.24em] text-purple-200/35">
+                    <p className="text-xs font-bold uppercase tracking-[0.18em] text-purple-100/65">
                       Module {String(index + 1).padStart(2, "0")}
                     </p>
                     <h3 className="mt-1 font-heading text-lg font-bold text-white">
                       {title}
                     </h3>
-                    <p className="mt-2 text-sm leading-6 text-purple-100/55">
+                    <p className="mt-2 text-sm leading-6 text-purple-50/78">
                       {description}
                     </p>
                   </div>
                 </div>
               </article>
             ))}
-          </div>
         </div>
 
-        <div className="mt-6 grid gap-3 lg:grid-cols-12">
+        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-12">
           {galleryImages.map((image, index) => (
             <button
               key={image.src}
               type="button"
-              onMouseEnter={() => setFeaturedIndex(index)}
-              onFocus={() => setFeaturedIndex(index)}
               onClick={() => setActiveImageIndex(index)}
-              className={`group relative min-h-[220px] overflow-hidden border text-left transition hover:border-[#f43f72]/60 ${
-                featuredIndex === index
-                  ? "border-[#f43f72]/70"
-                  : "border-white/10"
-              } ${image.className}`}
+              className={`group relative min-h-[240px] overflow-hidden border border-white/15 text-left transition hover:border-[#f43f72]/60 ${image.className}`}
             >
               <img
                 src={image.src}
@@ -283,13 +239,13 @@ export default function HighlightsSection() {
                 <Expand className="h-4 w-4" />
               </div>
               <div className="absolute bottom-0 left-0 right-0 p-4">
-                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#f4c7ff]">
+                <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#f7d6ff]">
                   {String(index + 1).padStart(2, "0")}
                 </p>
                 <h4 className="mt-1 font-heading text-xl font-bold text-white">
                   {image.title}
                 </h4>
-                <p className="mt-1 line-clamp-2 text-xs leading-5 text-purple-100/60">
+                <p className="mt-1 line-clamp-2 text-sm leading-5 text-purple-50/80">
                   {image.caption}
                 </p>
               </div>
@@ -342,15 +298,15 @@ export default function HighlightsSection() {
                 className="max-h-[74vh] w-full object-contain"
               />
             </div>
-            <div className="mt-4 flex flex-col justify-between gap-4 border border-white/10 bg-white/[0.04] p-4 sm:flex-row sm:items-center">
+            <div className="mt-4 flex flex-col justify-between gap-4 border border-white/15 bg-[#160b24]/95 p-4 sm:flex-row sm:items-center">
               <div>
-                <p className="text-[10px] font-bold uppercase tracking-[0.24em] text-[#d8b4fe]">
+                <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#e9d5ff]">
                   Frame {activeImageIndex + 1} / {galleryImages.length}
                 </p>
                 <h4 className="mt-1 font-heading text-2xl font-bold text-white">
                   {activeImage.title}
                 </h4>
-                <p className="mt-1 text-sm text-purple-100/58">{activeImage.caption}</p>
+                <p className="mt-1 text-sm text-purple-50/80">{activeImage.caption}</p>
               </div>
               <div className="flex gap-2 sm:hidden">
                 <button
