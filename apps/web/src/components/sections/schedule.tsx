@@ -89,10 +89,10 @@ const schedule = {
 
 const typeColors: Record<string, string> = {
   keynote: "border-amber-500/40 bg-amber-500/10 text-amber-300",
-  session: "border-purple-500/40 bg-purple-500/10 text-purple-300",
+  session: "border-[#8b6aae]/40 bg-[#6b4d8a]/15 text-[#d8c8e8]",
   workshop: "border-blue-500/40 bg-blue-500/10 text-blue-300",
   break: "border-green-500/40 bg-green-500/10 text-green-300",
-  general: "border-purple-500/20 bg-purple-500/5 text-purple-400",
+  general: "border-[#6b4d8a]/25 bg-[#6b4d8a]/10 text-[#c9b5d9]",
 };
 
 export default function ScheduleSection() {
@@ -100,19 +100,19 @@ export default function ScheduleSection() {
   const currentSchedule = schedule[activeDay];
 
   return (
-    <section id="schedule" className="relative py-24 md:py-32">
+    <section id="schedule" className="relative py-16 md:py-24">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section header */}
         <div className="text-center mb-16">
-          <p className="text-purple-400 text-sm font-semibold tracking-[0.2em] uppercase mb-3">
+          <p className="text-[#c9b5d9] text-sm font-semibold tracking-[0.2em] uppercase mb-3">
             Plan Your Days
           </p>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold font-heading mb-6">
-            <span className="bg-gradient-to-r from-white to-purple-200 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-white to-[#d8c8e8] bg-clip-text text-transparent">
               Schedule
             </span>
           </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-purple-500 to-violet-500 mx-auto rounded-full" />
+          <div className="w-20 h-1 bg-gradient-to-r from-[#6b4d8a] to-[#8b6aae] mx-auto rounded-full" />
         </div>
 
         {/* Day tabs */}
@@ -123,8 +123,8 @@ export default function ScheduleSection() {
               onClick={() => setActiveDay(day)}
               className={`px-6 py-3 rounded-xl font-semibold text-sm transition-all duration-300 cursor-pointer ${
                 activeDay === day
-                  ? "bg-gradient-to-r from-purple-600 to-violet-600 text-white shadow-lg shadow-purple-900/40"
-                  : "border border-purple-500/20 bg-purple-950/30 text-purple-300 hover:border-purple-400/40 hover:bg-purple-900/20"
+                  ? "bg-gradient-to-r from-[#6b4d8a] to-[#8b6aae] text-white shadow-lg shadow-[#1e0f2e]/50"
+                  : "border border-[#6b4d8a]/25 bg-[#2a1b3d]/40 text-[#d8c8e8] hover:border-[#c9b5d9]/40 hover:bg-[#4a3060]/25"
               }`}
             >
               {schedule[day].label}
@@ -138,7 +138,7 @@ export default function ScheduleSection() {
         {/* Timeline */}
         <div className="relative">
           {/* Vertical line */}
-          <div className="absolute left-[27px] top-0 bottom-0 w-px bg-gradient-to-b from-purple-500/40 via-purple-500/20 to-transparent" />
+          <div className="absolute left-[27px] top-0 bottom-0 w-px bg-gradient-to-b from-[#8b6aae]/40 via-[#6b4d8a]/25 to-transparent" />
 
           <div className="space-y-6">
             {currentSchedule.events.map((event, index) => (
@@ -148,13 +148,13 @@ export default function ScheduleSection() {
               >
                 {/* Timeline dot */}
                 <div className="relative z-10 flex-shrink-0">
-                  <div className="w-[14px] h-[14px] rounded-full border-2 border-purple-400/60 bg-purple-950 mt-1.5 group-hover:border-purple-300 group-hover:bg-purple-800 transition-colors" />
+                  <div className="w-[14px] h-[14px] rounded-full border-2 border-[#c9b5d9]/60 bg-[#2a1b3d] mt-1.5 group-hover:border-[#d8c8e8] group-hover:bg-[#4a3060] transition-colors" />
                 </div>
 
                 {/* Event card */}
-                <div className="flex-1 p-5 rounded-xl border border-purple-500/15 bg-purple-950/20 backdrop-blur-sm hover:border-purple-400/30 hover:bg-purple-900/15 transition-all duration-300 group-hover:-translate-y-0.5">
+                <div className="flex-1 p-5 rounded-xl border border-[#6b4d8a]/20 bg-[#2a1b3d]/25 backdrop-blur-sm hover:border-[#c9b5d9]/30 hover:bg-[#4a3060]/20 transition-all duration-300 group-hover:-translate-y-0.5">
                   <div className="flex flex-wrap items-center gap-3 mb-2">
-                    <span className="text-sm font-mono font-semibold text-purple-300/80">
+                    <span className="text-sm font-mono font-semibold text-[#d8c8e8]/80">
                       {event.time}
                     </span>
                     <span
@@ -167,7 +167,7 @@ export default function ScheduleSection() {
                   <h3 className="text-white font-semibold mb-1">
                     {event.title}
                   </h3>
-                  <p className="text-sm text-purple-200/40">
+                  <p className="text-sm text-[#c9b5d9]/50">
                     {event.description}
                   </p>
                 </div>
@@ -177,7 +177,7 @@ export default function ScheduleSection() {
         </div>
 
         {/* Note */}
-        <p className="text-center text-purple-400/30 text-sm mt-12">
+        <p className="text-center text-[#c9b5d9]/30 text-sm mt-12">
           {/* TODO: Team member — finalize schedule and remove this note */}
           Schedule is tentative and subject to change
         </p>

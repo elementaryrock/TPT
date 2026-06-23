@@ -1,22 +1,22 @@
 export default function ContactSection() {
   return (
-    <section id="contact" className="relative py-24 md:py-32">
+    <section id="contact" className="relative py-16 md:py-24">
       {/* Background accent */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-purple-950/20 to-transparent pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#2a1b3d]/25 to-transparent pointer-events-none" />
 
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section header */}
         <div className="text-center mb-16">
-          <p className="text-purple-400 text-sm font-semibold tracking-[0.2em] uppercase mb-3">
+          <p className="text-[#c9b5d9] text-sm font-semibold tracking-[0.2em] uppercase mb-3">
             Get in Touch
           </p>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold font-heading mb-6">
-            <span className="bg-gradient-to-r from-white to-purple-200 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-white to-[#d8c8e8] bg-clip-text text-transparent">
               Contact Us
             </span>
           </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-purple-500 to-violet-500 mx-auto rounded-full mb-6" />
-          <p className="text-purple-200/50 text-lg max-w-2xl mx-auto">
+          <div className="w-20 h-1 bg-gradient-to-r from-[#6b4d8a] to-[#8b6aae] mx-auto rounded-full mb-6" />
+          <p className="text-[#c9b5d9]/60 text-lg max-w-2xl mx-auto">
             Have questions about TPT 4.0? Reach out to our team — we're happy to
             help.
           </p>
@@ -47,12 +47,12 @@ export default function ContactSection() {
           ].map((contact) => (
             <div
               key={contact.role}
-              className="group relative p-6 rounded-2xl border border-purple-500/20 bg-purple-950/30 backdrop-blur-sm hover:border-purple-400/40 hover:bg-purple-900/20 transition-all duration-300 hover:-translate-y-1"
+              className="group relative p-6 rounded-2xl border border-[#6b4d8a]/25 bg-[#2a1b3d]/40 backdrop-blur-sm hover:border-[#c9b5d9]/40 hover:bg-[#4a3060]/25 transition-all duration-300 hover:-translate-y-1"
             >
               {/* Avatar placeholder */}
-              <div className="w-14 h-14 rounded-full bg-gradient-to-br from-purple-600/30 to-violet-600/30 border border-purple-500/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+              <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[#6b4d8a]/30 to-[#8b6aae]/30 border border-[#6b4d8a]/25 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
                 <svg
-                  className="w-6 h-6 text-purple-300"
+                  className="w-6 h-6 text-[#d8c8e8]"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -66,17 +66,17 @@ export default function ContactSection() {
                 </svg>
               </div>
 
-              <h3 className="text-lg font-semibold text-white mb-1 group-hover:text-purple-100 transition-colors">
+              <h3 className="text-lg font-semibold text-white mb-1 group-hover:text-[#e8d8ef] transition-colors">
                 {contact.name}
               </h3>
-              <p className="text-xs font-semibold tracking-[0.15em] uppercase text-purple-400/60 mb-4">
+              <p className="text-xs font-semibold tracking-[0.15em] uppercase text-[#c9b5d9]/60 mb-4">
                 {contact.role}
               </p>
 
               <div className="space-y-2">
                 <a
                   href={`tel:${contact.phone.replace(/\s/g, "")}`}
-                  className="flex items-center gap-2 text-sm text-purple-200/50 hover:text-purple-200 transition-colors"
+                  className="flex items-center gap-2 text-sm text-[#c9b5d9]/60 hover:text-[#d8c8e8] transition-colors"
                 >
                   <svg
                     className="w-4 h-4 flex-shrink-0"
@@ -95,7 +95,7 @@ export default function ContactSection() {
                 </a>
                 <a
                   href={`mailto:${contact.email}`}
-                  className="flex items-center gap-2 text-sm text-purple-200/50 hover:text-purple-200 transition-colors"
+                  className="flex items-center gap-2 text-sm text-[#c9b5d9]/60 hover:text-[#d8c8e8] transition-colors"
                 >
                   <svg
                     className="w-4 h-4 flex-shrink-0"
@@ -119,9 +119,9 @@ export default function ContactSection() {
 
         {/* Social / general contact row */}
         <div className="relative max-w-2xl mx-auto">
-          <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-violet-600 rounded-2xl opacity-10 blur-xl" />
-          <div className="relative p-6 md:p-8 rounded-2xl border border-purple-500/20 bg-purple-950/30 backdrop-blur-sm text-center">
-            <p className="text-purple-200/60 text-sm mb-4">
+          <div className="absolute -inset-1 bg-gradient-to-r from-[#6b4d8a] to-[#8b6aae] rounded-2xl opacity-10 blur-xl" />
+          <div className="relative p-6 md:p-8 rounded-2xl border border-[#6b4d8a]/25 bg-[#2a1b3d]/40 backdrop-blur-sm text-center">
+            <p className="text-[#c9b5d9]/70 text-sm mb-4">
               Or reach us on social media
             </p>
             <div className="flex flex-wrap justify-center gap-3">
@@ -137,7 +137,7 @@ export default function ContactSection() {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-5 py-2 rounded-xl border border-purple-500/20 bg-purple-500/5 text-sm font-medium text-purple-300/70 hover:border-purple-400/40 hover:text-white hover:bg-purple-500/15 transition-all duration-300"
+                  className="px-5 py-2 rounded-xl border border-[#6b4d8a]/25 bg-[#6b4d8a]/10 text-sm font-medium text-[#d8c8e8]/70 hover:border-[#c9b5d9]/40 hover:text-white hover:bg-[#6b4d8a]/20 transition-all duration-300"
                 >
                   {social.label}
                 </a>

@@ -39,23 +39,23 @@ const highlights = [
 
 export default function HighlightsSection() {
   return (
-    <section id="highlights" className="relative py-24 md:py-32">
+    <section id="highlights" className="relative py-16 md:py-24">
       {/* Background accent */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-purple-950/20 to-transparent pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#2a1b3d]/25 to-transparent pointer-events-none" />
 
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section header */}
         <div className="text-center mb-16">
-          <p className="text-purple-400 text-sm font-semibold tracking-[0.2em] uppercase mb-3">
+          <p className="text-[#c9b5d9] text-sm font-semibold tracking-[0.2em] uppercase mb-3">
             Looking Back
           </p>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold font-heading mb-6">
-            <span className="bg-gradient-to-r from-white to-purple-200 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-white to-[#d8c8e8] bg-clip-text text-transparent">
               TPT 3.0 Highlights
             </span>
           </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-purple-500 to-violet-500 mx-auto rounded-full mb-6" />
-          <p className="text-purple-200/50 text-lg max-w-2xl mx-auto">
+          <div className="w-20 h-1 bg-gradient-to-r from-[#6b4d8a] to-[#8b6aae] mx-auto rounded-full mb-6" />
+          <p className="text-[#c9b5d9]/60 text-lg max-w-2xl mx-auto">
             {/* TODO: Team member — update with actual TPT 3.0 stats and summary */}
             Here's a glimpse of what made the previous edition unforgettable.
           </p>
@@ -66,14 +66,14 @@ export default function HighlightsSection() {
           {highlights.map((item, index) => (
             <div
               key={item.title}
-              className="group relative p-6 rounded-2xl border border-purple-500/20 bg-purple-950/30 backdrop-blur-sm hover:border-purple-400/40 hover:bg-purple-900/20 transition-all duration-300 hover:-translate-y-1"
+              className="group relative p-6 rounded-2xl border border-[#6b4d8a]/25 bg-[#2a1b3d]/40 backdrop-blur-sm hover:border-[#c9b5d9]/40 hover:bg-[#4a3060]/25 transition-all duration-300 hover:-translate-y-1"
               style={{ animationDelay: `${index * 100}ms` }}
             >
               <div className="text-4xl mb-4">{item.icon}</div>
-              <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-purple-100 transition-colors">
+              <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-[#e8d8ef] transition-colors">
                 {item.title}
               </h3>
-              <p className="text-sm text-purple-200/50 leading-relaxed">
+              <p className="text-sm text-[#c9b5d9]/60 leading-relaxed">
                 {item.description}
               </p>
             </div>
@@ -81,8 +81,8 @@ export default function HighlightsSection() {
         </div>
 
         {/* Photo gallery placeholder */}
-        <div className="mt-16 p-8 rounded-2xl border border-dashed border-purple-500/20 bg-purple-950/10 text-center">
-          <p className="text-purple-400/40 text-sm font-medium">
+        <div className="mt-16 p-8 rounded-2xl border border-dashed border-[#6b4d8a]/25 bg-[#2a1b3d]/15 text-center">
+          <p className="text-[#c9b5d9]/40 text-sm font-medium">
             📸 Photo Gallery — Team member: Add TPT 3.0 photos here
           </p>
         </div>

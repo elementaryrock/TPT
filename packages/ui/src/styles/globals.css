@@ -130,16 +130,17 @@
   }
 }
 
-/* ===== TPT Custom Styles ===== */
+/* ===== TPT Poster-Inspired Styles ===== */
 
-/* Deep purple gradient background */
+/* Deep purple gradient background — poster palette */
 .tpt-bg {
   background: linear-gradient(
     180deg,
-    #0d0518 0%,
-    #1a0a2e 15%,
-    #150826 50%,
-    #0d0518 100%
+    #1e0f2e 0%,
+    #2a1b3d 10%,
+    #231233 40%,
+    #1e0f2e 70%,
+    #170b26 100%
   );
 }
 
@@ -187,10 +188,42 @@
   100% { opacity: 0; transform: translateY(8px); }
 }
 
+/* Wave animations — organic flowing movement */
 @keyframes wave-drift {
-  0% { transform: translateX(0); }
-  50% { transform: translateX(-20px); }
-  100% { transform: translateX(0); }
+  0% { transform: translateX(0) translateY(0); }
+  25% { transform: translateX(-15px) translateY(5px); }
+  50% { transform: translateX(-25px) translateY(0); }
+  75% { transform: translateX(-10px) translateY(-5px); }
+  100% { transform: translateX(0) translateY(0); }
+}
+
+@keyframes wave-drift-reverse {
+  0% { transform: translateX(0) translateY(0); }
+  25% { transform: translateX(10px) translateY(-3px); }
+  50% { transform: translateX(20px) translateY(0); }
+  75% { transform: translateX(8px) translateY(3px); }
+  100% { transform: translateX(0) translateY(0); }
+}
+
+@keyframes silhouette-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes fade-in-scale {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
 }
 
 .animate-float {
@@ -209,20 +242,41 @@
   animation: fade-in-down 0.6s ease-out both;
 }
 
+.animate-fade-in-scale {
+  animation: fade-in-scale 0.8s ease-out both;
+}
+
 .animate-scroll-dot {
   animation: scroll-dot 1.5s ease-in-out infinite;
 }
 
 .animate-wave-slow {
-  animation: wave-drift 12s ease-in-out infinite;
+  animation: wave-drift 14s ease-in-out infinite;
 }
 
 .animate-wave-mid {
-  animation: wave-drift 8s ease-in-out 1s infinite;
+  animation: wave-drift-reverse 10s ease-in-out 1s infinite;
 }
 
 .animate-wave-fast {
-  animation: wave-drift 6s ease-in-out 0.5s infinite;
+  animation: wave-drift 8s ease-in-out 0.5s infinite;
+}
+
+.animate-wave-slower {
+  animation: wave-drift-reverse 18s ease-in-out 2s infinite;
+}
+
+.animate-wave-fastest {
+  animation: wave-drift 6s ease-in-out infinite;
+}
+
+.animate-silhouette {
+  animation: silhouette-float 4s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  background-size: 200% auto;
+  animation: shimmer 3s linear infinite;
 }
 
 /* Staggered animation delays */
@@ -232,3 +286,22 @@
 .animation-delay-400 { animation-delay: 400ms; }
 .animation-delay-500 { animation-delay: 500ms; }
 .animation-delay-600 { animation-delay: 600ms; }
+.animation-delay-700 { animation-delay: 700ms; }
+.animation-delay-800 { animation-delay: 800ms; }
+
+/* Section wave divider */
+.wave-divider {
+  position: relative;
+  overflow: hidden;
+}
+
+.wave-divider::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(to bottom, transparent, #1e0f2e);
+  pointer-events: none;
+}

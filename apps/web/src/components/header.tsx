@@ -24,7 +24,7 @@ export default function Header() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "bg-[#0d0518]/80 backdrop-blur-xl border-b border-purple-500/10 shadow-lg shadow-purple-950/20"
+          ? "bg-[#1e0f2e]/85 backdrop-blur-xl border-b border-[#6b4d8a]/15 shadow-lg shadow-[#1e0f2e]/25"
           : "bg-transparent"
       }`}
     >
@@ -32,7 +32,7 @@ export default function Header() {
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2 group">
-            <span className="text-xl font-bold font-heading bg-gradient-to-r from-purple-300 to-violet-400 bg-clip-text text-transparent group-hover:from-white group-hover:to-purple-200 transition-all duration-300">
+            <span className="text-xl font-bold font-heading bg-gradient-to-r from-[#d8c8e8] to-[#c9b5d9] bg-clip-text text-transparent group-hover:from-white group-hover:to-[#e8d8ef] transition-all duration-300">
               TPT 4.0
             </span>
           </Link>
@@ -43,7 +43,7 @@ export default function Header() {
               <a
                 key={href}
                 href={href}
-                className="px-4 py-2 text-sm font-medium text-purple-200/60 hover:text-white rounded-lg hover:bg-purple-500/10 transition-all duration-300"
+                className="px-4 py-2 text-sm font-medium text-[#c9b5d9]/60 hover:text-white rounded-lg hover:bg-[#6b4d8a]/15 transition-all duration-300"
               >
                 {label}
               </a>
@@ -52,7 +52,7 @@ export default function Header() {
               href="https://makemypass.com/event/the-perfect-trajectory-4-0"
               target="_blank"
               rel="noopener noreferrer"
-              className="ml-3 px-5 py-2 text-sm font-semibold text-white bg-gradient-to-r from-purple-600 to-violet-600 rounded-lg hover:shadow-lg hover:shadow-purple-900/40 hover:scale-105 transition-all duration-300"
+              className="ml-3 px-5 py-2 text-sm font-semibold text-white bg-gradient-to-r from-[#6b4d8a] to-[#8b6aae] rounded-lg hover:shadow-lg hover:shadow-[#1e0f2e]/50 hover:scale-105 transition-all duration-300"
             >
               Register
             </a>
@@ -61,7 +61,7 @@ export default function Header() {
           {/* Mobile hamburger */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="md:hidden w-10 h-10 flex items-center justify-center rounded-lg text-purple-300 hover:bg-purple-500/10 transition-colors cursor-pointer"
+            className="md:hidden w-10 h-10 flex items-center justify-center rounded-lg text-[#d8c8e8] hover:bg-[#6b4d8a]/15 transition-colors cursor-pointer"
             aria-label="Toggle menu"
           >
             <svg
@@ -91,14 +91,14 @@ export default function Header() {
 
       {/* Mobile nav */}
       {mobileOpen && (
-        <div className="md:hidden border-t border-purple-500/10 bg-[#0d0518]/95 backdrop-blur-xl">
+        <div className="md:hidden border-t border-[#6b4d8a]/15 bg-[#1e0f2e]/95 backdrop-blur-xl">
           <nav className="px-4 py-4 space-y-1">
             {navLinks.map(({ href, label }) => (
               <a
                 key={href}
                 href={href}
                 onClick={() => setMobileOpen(false)}
-                className="block px-4 py-3 text-sm font-medium text-purple-200/60 hover:text-white rounded-lg hover:bg-purple-500/10 transition-all duration-300"
+                className="block px-4 py-3 text-sm font-medium text-[#c9b5d9]/60 hover:text-white rounded-lg hover:bg-[#6b4d8a]/15 transition-all duration-300"
               >
                 {label}
               </a>
@@ -107,7 +107,7 @@ export default function Header() {
               href="https://makemypass.com/event/the-perfect-trajectory-4-0"
               target="_blank"
               rel="noopener noreferrer"
-              className="block px-4 py-3 text-sm font-semibold text-white text-center bg-gradient-to-r from-purple-600 to-violet-600 rounded-lg mt-2"
+              className="block px-4 py-3 text-sm font-semibold text-white text-center bg-gradient-to-r from-[#6b4d8a] to-[#8b6aae] rounded-lg mt-2"
             >
               Register Now
             </a>

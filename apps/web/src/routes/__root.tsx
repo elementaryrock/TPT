@@ -3,6 +3,7 @@ import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
 import { Toaster } from "@Tpt-website/ui/components/sonner";
 
 import Header from "@/components/header";
+import WaveBackground from "@/components/wave-background";
 import { ThemeProvider } from "@/components/theme-provider";
 
 import "../index.css";
@@ -42,6 +43,7 @@ function RootComponent() {
         storageKey="vite-ui-theme"
       >
         <div className="min-h-svh tpt-bg">
+          <WaveBackground />
           <Header />
           <Outlet />
         </div>
