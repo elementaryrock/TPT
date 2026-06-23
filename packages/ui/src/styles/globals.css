@@ -187,3 +187,70 @@
 .btn-cyber {
   clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px);
 }
+
+/* ===== Organisers Section Effects ===== */
+
+@keyframes scanline {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+@keyframes holo-shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+@keyframes float-up {
+  0% { transform: translateY(8px) scale(0.97); opacity: 0; }
+  100% { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+@keyframes border-trace {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes data-flicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+.org-scanline::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 0%, rgba(244, 63, 114, 0.06) 40%, rgba(168, 85, 247, 0.08) 60%, transparent 100%);
+  animation: scanline 4s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.org-card {
+  animation: float-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.org-card-border {
+  background: linear-gradient(135deg, #f43f72, #a855f7, #6366f1, #a855f7, #f43f72);
+  background-size: 300% 300%;
+  animation: border-trace 6s ease-in-out infinite;
+}
+
+.org-holo-badge {
+  background: linear-gradient(90deg, transparent, rgba(244,63,114,0.15), rgba(168,85,247,0.15), transparent);
+  background-size: 200% 100%;
+  animation: holo-shimmer 3s ease-in-out infinite;
+}
+
+.org-pulse {
+  animation: pulse-glow 2.5s ease-in-out infinite;
+}
+
+.org-flicker {
+  animation: data-flicker 3s step-end infinite;
+}
