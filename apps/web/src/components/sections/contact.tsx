@@ -39,34 +39,33 @@ function LinkedinIcon(props: React.SVGProps<SVGSVGElement>) {
 export default function ContactSection() {
   return (
     <section id="contact" className="relative py-24 md:py-32 overflow-hidden">
-      {/* ── existing background accent (untouched) ── */}
+      {/* Background accent — untouched */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-purple-950/20 to-transparent pointer-events-none" />
 
       {/* ── Wave foreground layer ─────────────────────────────────────────── */}
-      {/* Bottom-anchored decorative waves inspired by the layered purple reference */}
-      <div className="absolute inset-x-0 bottom-0 h-[420px] pointer-events-none select-none" aria-hidden="true">
-        {/* Wave 1 — darkest, back */}
+      <div className="absolute inset-x-0 bottom-0 pointer-events-none select-none" style={{ height: "65%" }}>
+        {/* Wave 1 — deepest / back */}
         <svg
           className="absolute inset-x-0 bottom-0 w-full"
-          viewBox="0 0 1440 260"
+          viewBox="0 0 1440 320"
           preserveAspectRatio="none"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
-            d="M0,80 C240,160 480,0 720,80 C960,160 1200,40 1440,100 L1440,260 L0,260 Z"
+            d="M0,160 C320,260 480,80 720,180 C960,280 1200,100 1440,200 L1440,320 L0,320 Z"
             fill="rgba(88,28,135,0.28)"
           />
         </svg>
 
-        {/* Wave 2 — mid-dark */}
+        {/* Wave 2 — mid-purple */}
         <svg
           className="absolute inset-x-0 bottom-0 w-full"
-          viewBox="0 0 1440 220"
+          viewBox="0 0 1440 280"
           preserveAspectRatio="none"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
-            d="M0,100 C180,40 420,160 660,80 C900,0 1200,120 1440,60 L1440,220 L0,220 Z"
+            d="M0,100 C180,40 420,200 660,120 C900,40 1200,180 1440,100 L1440,280 L0,280 Z"
             fill="rgba(109,40,217,0.22)"
           />
         </svg>
@@ -74,26 +73,26 @@ export default function ContactSection() {
         {/* Wave 3 — lighter lavender */}
         <svg
           className="absolute inset-x-0 bottom-0 w-full"
-          viewBox="0 0 1440 180"
+          viewBox="0 0 1440 220"
           preserveAspectRatio="none"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
-            d="M0,60 C360,140 720,20 1080,80 C1260,110 1380,40 1440,70 L1440,180 L0,180 Z"
-            fill="rgba(167,139,250,0.13)"
+            d="M0,80 C360,160 720,40 1080,110 C1260,145 1380,60 1440,90 L1440,220 L0,220 Z"
+            fill="rgba(167,139,250,0.14)"
           />
         </svg>
 
         {/* Wave 4 — faint blush highlight at the very bottom */}
         <svg
           className="absolute inset-x-0 bottom-0 w-full"
-          viewBox="0 0 1440 120"
+          viewBox="0 0 1440 140"
           preserveAspectRatio="none"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
-            d="M0,40 C320,100 640,0 960,50 C1120,75 1300,20 1440,45 L1440,120 L0,120 Z"
-            fill="rgba(196,181,253,0.08)"
+            d="M0,50 C320,110 640,10 960,60 C1120,85 1300,30 1440,55 L1440,140 L0,140 Z"
+            fill="rgba(196,181,253,0.09)"
           />
         </svg>
       </div>
