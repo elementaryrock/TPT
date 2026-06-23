@@ -48,7 +48,7 @@ export default function ContactSection() {
           <p className="text-purple-400 text-sm font-semibold tracking-[0.2em] uppercase mb-3">
             Get in Touch
           </p>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold font-heading mb-6">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold font-display mb-6">
             <span className="bg-gradient-to-r from-white to-purple-200 bg-clip-text text-transparent">
               Contact Us
             </span>
@@ -101,7 +101,7 @@ export default function ContactSection() {
                 </svg>
               </div>
 
-              <h3 className="text-lg font-semibold text-white mb-4 group-hover:text-purple-100 transition-colors">
+              <h3 className="text-lg font-semibold font-display text-white mb-4 group-hover:text-purple-100 transition-colors">
                 {contact.name}
               </h3>
 
