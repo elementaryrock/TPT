@@ -6,6 +6,15 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* ===== Custom Font ===== */
+@font-face {
+  font-family: "Cindie Mono";
+  src: url("../../../apps/web/src/fonts/Cindie MonoD.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
@@ -78,6 +87,7 @@
 @theme inline {
   --font-sans: "Outfit", sans-serif;
   --font-heading: "Space Grotesk", sans-serif;
+  --font-display: "Cindie Mono", monospace;
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -132,7 +142,6 @@
 
 /* ===== TPT Custom Styles ===== */
 
-/* Deep purple gradient background */
 .tpt-bg {
   background: linear-gradient(
     180deg,
@@ -143,89 +152,25 @@
   );
 }
 
-/* Font utility */
 .font-heading {
   font-family: "Space Grotesk", sans-serif;
 }
 
+.font-display {
+  font-family: "Cindie Mono", monospace;
+}
+
 /* ===== Animations ===== */
 
-@keyframes float {
-  0%, 100% { transform: translateY(0) scale(1); }
-  50% { transform: translateY(-20px) scale(1.05); }
-}
-
-@keyframes float-delayed {
-  0%, 100% { transform: translateY(0) scale(1); }
-  50% { transform: translateY(-15px) scale(1.02); }
-}
-
 @keyframes fade-in-up {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fade-in-down {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes scroll-dot {
-  0% { opacity: 1; transform: translateY(0); }
-  100% { opacity: 0; transform: translateY(8px); }
-}
-
-@keyframes wave-drift {
-  0% { transform: translateX(0); }
-  50% { transform: translateX(-20px); }
-  100% { transform: translateX(0); }
-}
-
-.animate-float {
-  animation: float 6s ease-in-out infinite;
-}
-
-.animate-float-delayed {
-  animation: float-delayed 8s ease-in-out 2s infinite;
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .animate-fade-in-up {
-  animation: fade-in-up 0.8s ease-out both;
+  animation: fade-in-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
-.animate-fade-in-down {
-  animation: fade-in-down 0.6s ease-out both;
-}
-
-.animate-scroll-dot {
-  animation: scroll-dot 1.5s ease-in-out infinite;
-}
-
-.animate-wave-slow {
-  animation: wave-drift 12s ease-in-out infinite;
-}
-
-.animate-wave-mid {
-  animation: wave-drift 8s ease-in-out 1s infinite;
-}
-
-.animate-wave-fast {
-  animation: wave-drift 6s ease-in-out 0.5s infinite;
-}
-
-/* Staggered animation delays */
 .animation-delay-100 { animation-delay: 100ms; }
 .animation-delay-200 { animation-delay: 200ms; }
 .animation-delay-300 { animation-delay: 300ms; }

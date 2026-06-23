@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 const navLinks = [
   { href: "#what-is-tpt", label: "About" },
   { href: "#organisers", label: "Organisers" },
-  { href: "#registration", label: "Register" },
   { href: "#highlights", label: "Highlights" },
   { href: "#schedule", label: "Schedule" },
   { href: "#contact", label: "Contact" },
@@ -13,107 +12,115 @@ const navLinks = [
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
+    const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled
-          ? "bg-[#0d0518]/80 backdrop-blur-xl border-b border-purple-500/10 shadow-lg shadow-purple-950/20"
-          : "bg-transparent"
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 md:h-20">
-          {/* Logo */}
-          <Link to="/" className="flex items-center gap-2 group">
-            <span className="text-xl font-bold font-heading bg-gradient-to-r from-purple-300 to-violet-400 bg-clip-text text-transparent group-hover:from-white group-hover:to-purple-200 transition-all duration-300">
-              TPT 4.0
-            </span>
-          </Link>
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        }
+      },
+      { rootMargin: "-40% 0px -55% 0px" },
+    );
 
-          {/* Desktop nav */}
-          <nav className="hidden md:flex items-center gap-1">
-            {navLinks.map(({ href, label }) => (
+    for (const { href } of navLinks) {
+      const el = document.querySelector(href);
+      if (el) observer.observe(el);
+    }
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <header className="fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 pt-3">
+      <nav
+        className={`max-w-4xl mx-auto flex items-center justify-between h-12 px-5 rounded-full transition-all duration-500 ${
+          scrolled
+            ? "bg-[#0d0518]/80 backdrop-blur-xl border border-white/[0.06] shadow-[0_4px_24px_rgba(0,0,0,0.3)]"
+            : "bg-white/[0.03] backdrop-blur-sm border border-white/[0.05]"
+        }`}
+      >
+        <Link to="/" className="text-sm font-bold text-white/90 font-heading tracking-wide">
+          TPT 4.0
+        </Link>
+
+        {/* Desktop */}
+        <div className="hidden md:flex items-center gap-0.5">
+          {navLinks.map(({ href, label }) => {
+            const isActive = activeSection === href.slice(1);
+            return (
               <a
                 key={href}
                 href={href}
-                className="px-4 py-2 text-sm font-medium text-purple-200/60 hover:text-white rounded-lg hover:bg-purple-500/10 transition-all duration-300"
+                className={`px-3 py-1 text-[13px] rounded-full transition-colors duration-200 ${
+                  isActive
+                    ? "text-white bg-white/[0.08]"
+                    : "text-white/40 hover:text-white/80"
+                }`}
               >
                 {label}
               </a>
-            ))}
-            <a
-              href="https://makemypass.com/event/the-perfect-trajectory-4-0"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="ml-3 px-5 py-2 text-sm font-semibold text-white bg-gradient-to-r from-purple-600 to-violet-600 rounded-lg hover:shadow-lg hover:shadow-purple-900/40 hover:scale-105 transition-all duration-300"
-            >
-              Register
-            </a>
-          </nav>
+            );
+          })}
+        </div>
 
-          {/* Mobile hamburger */}
-          <button
-            onClick={() => setMobileOpen(!mobileOpen)}
-            className="md:hidden w-10 h-10 flex items-center justify-center rounded-lg text-purple-300 hover:bg-purple-500/10 transition-colors cursor-pointer"
-            aria-label="Toggle menu"
-          >
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth={2}
+        <a
+          href="https://makemypass.com/event/the-perfect-trajectory-4-0"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hidden md:block text-[13px] font-medium text-white bg-purple-600 px-4 py-1 rounded-full hover:bg-purple-500 transition-colors duration-200"
+        >
+          Register
+        </a>
+
+        {/* Mobile toggle */}
+        <button
+          onClick={() => setMobileOpen(!mobileOpen)}
+          className="md:hidden w-8 h-8 flex items-center justify-center text-white/60 cursor-pointer"
+          aria-label="Toggle menu"
+        >
+          <div className="flex flex-col gap-[5px]">
+            <span className={`block w-4 h-px bg-current transition-all duration-300 origin-center ${mobileOpen ? "rotate-45 translate-y-[3px]" : ""}`} />
+            <span className={`block w-4 h-px bg-current transition-all duration-300 origin-center ${mobileOpen ? "-rotate-45 -translate-y-[3px]" : ""}`} />
+          </div>
+        </button>
+      </nav>
+
+      {/* Mobile menu */}
+      <div
+        className={`md:hidden max-w-4xl mx-auto mt-2 rounded-2xl bg-[#0d0518]/90 backdrop-blur-xl border border-white/[0.06] overflow-hidden transition-all duration-300 ${
+          mobileOpen ? "max-h-80 opacity-100" : "max-h-0 opacity-0 pointer-events-none"
+        }`}
+      >
+        <div className="px-4 py-3 space-y-0.5">
+          {navLinks.map(({ href, label }) => (
+            <a
+              key={href}
+              href={href}
+              onClick={() => setMobileOpen(false)}
+              className="block px-3 py-2.5 text-sm text-white/50 hover:text-white rounded-lg transition-colors"
             >
-              {mobileOpen ? (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              ) : (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              )}
-            </svg>
-          </button>
+              {label}
+            </a>
+          ))}
+          <a
+            href="https://makemypass.com/event/the-perfect-trajectory-4-0"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block px-3 py-2.5 text-sm font-medium text-white text-center bg-purple-600 rounded-lg mt-1"
+          >
+            Register Now
+          </a>
         </div>
       </div>
-
-      {/* Mobile nav */}
-      {mobileOpen && (
-        <div className="md:hidden border-t border-purple-500/10 bg-[#0d0518]/95 backdrop-blur-xl">
-          <nav className="px-4 py-4 space-y-1">
-            {navLinks.map(({ href, label }) => (
-              <a
-                key={href}
-                href={href}
-                onClick={() => setMobileOpen(false)}
-                className="block px-4 py-3 text-sm font-medium text-purple-200/60 hover:text-white rounded-lg hover:bg-purple-500/10 transition-all duration-300"
-              >
-                {label}
-              </a>
-            ))}
-            <a
-              href="https://makemypass.com/event/the-perfect-trajectory-4-0"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block px-4 py-3 text-sm font-semibold text-white text-center bg-gradient-to-r from-purple-600 to-violet-600 rounded-lg mt-2"
-            >
-              Register Now
-            </a>
-          </nav>
-        </div>
-      )}
     </header>
   );
 }
