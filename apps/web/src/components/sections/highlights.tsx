@@ -166,26 +166,26 @@ export default function HighlightsSection() {
       </div>
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid gap-8 lg:grid-cols-[1fr_0.82fr] lg:items-end">
-          <div>
+        <div>
+          <div className="max-w-4xl">
             <div className="mb-5 inline-flex items-center gap-3 border border-white/15 bg-[#1a0d2a]/90 px-4 py-2 text-xs font-bold uppercase tracking-[0.22em] text-[#eadcff]">
               <span className="h-1.5 w-1.5 rounded-full bg-[#f43f72]" />
               Previous Edition Archive
             </div>
-            <h2 className="font-display text-4xl uppercase leading-[0.95] tracking-wide text-white sm:text-5xl md:text-6xl">
-              TPT 3.0
-              <span className="block text-[#c7a8ff]">Highlights</span>
+            <h2 className="font-display text-4xl uppercase leading-none tracking-wide text-white sm:text-5xl md:text-6xl lg:text-7xl">
+              <span className="block">TPT 3.0</span>
+              <span className="mt-3 block text-[#c7a8ff] sm:mt-4">Highlights</span>
             </h2>
             <p className="mt-6 max-w-xl text-base leading-8 text-purple-50/82">
               A sharper look back at the sessions, rooms, faces, and campaign frames that shaped the last edition. The gallery is treated like an event archive, not filler below the fold.
             </p>
           </div>
 
-          <div className="grid grid-cols-3 overflow-hidden border border-white/15 bg-[#0b0414]/88">
+          <div className="mt-8 grid gap-3 sm:grid-cols-3 lg:max-w-3xl">
             {stats.map((stat) => (
-              <div key={stat.label} className="border-r border-white/10 p-4 last:border-r-0 sm:p-6">
-                <p className="font-display text-3xl text-white sm:text-4xl">{stat.value}</p>
-                <p className="mt-2 text-xs font-bold uppercase tracking-[0.16em] text-purple-100/72">
+              <div key={stat.label} className="border border-white/15 bg-[#0b0414]/88 p-4 sm:p-5">
+                <p className="font-display text-3xl leading-none text-white sm:text-4xl">{stat.value}</p>
+                <p className="mt-3 max-w-[9rem] text-xs font-bold uppercase leading-5 tracking-[0.16em] text-purple-100/72">
                   {stat.label}
                 </p>
               </div>

@@ -270,9 +270,9 @@ export default function ScheduleSection() {
               <CalendarDays className="h-4 w-4 text-[#f43f72]" />
               Plan Your Days
             </p>
-            <h2 className="font-display text-4xl uppercase leading-[0.95] tracking-wide text-white sm:text-5xl xl:text-6xl">
-              Event
-              <span className="block text-[#c7a8ff]">Schedule</span>
+            <h2 className="font-display text-4xl uppercase leading-none tracking-wide text-white sm:text-5xl xl:text-6xl">
+              <span className="block">Event</span>
+              <span className="mt-3 block text-[#c7a8ff] sm:mt-4">Schedule</span>
             </h2>
             <p className="mt-5 max-w-xl text-base leading-8 text-purple-50/82">
               Two days built like a route map: arrive, align, build, and leave with a chapter action plan. Filter by track or open a block for the practical details.
@@ -309,23 +309,6 @@ export default function ScheduleSection() {
               ))}
             </div>
 
-            <div className="mt-4 border border-white/15 bg-[#150a22]/90 p-4 xl:p-5">
-              <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#f4c7ff]">
-                {currentSchedule.eyebrow}
-              </p>
-              <p className="mt-2 text-sm leading-7 text-purple-50/82">{currentSchedule.theme}</p>
-              <div className="mt-4 grid grid-cols-3 border border-white/15">
-                {dayStats.map((stat) => (
-                  <div key={stat.label} className="border-r border-white/15 p-3 last:border-r-0">
-                    <p className="font-display text-2xl text-white">{stat.value}</p>
-                    <p className="mt-1 text-[10px] font-bold uppercase tracking-[0.14em] text-purple-100/68">
-                      {stat.label}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
             <div className="mt-4 flex flex-wrap gap-2">
               {filterTypes.map((type) => (
                 <button
@@ -344,6 +327,23 @@ export default function ScheduleSection() {
                   {type.label}
                 </button>
               ))}
+            </div>
+
+            <div className="mt-5 border border-white/15 bg-[#150a22]/90 p-4 xl:p-5">
+              <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#f4c7ff]">
+                {currentSchedule.eyebrow}
+              </p>
+              <p className="mt-2 text-sm leading-7 text-purple-50/82">{currentSchedule.theme}</p>
+              <div className="mt-4 grid grid-cols-3 border border-white/15">
+                {dayStats.map((stat) => (
+                  <div key={stat.label} className="border-r border-white/15 p-3 last:border-r-0">
+                    <p className="font-display text-2xl leading-none text-white">{stat.value}</p>
+                    <p className="mt-2 text-[10px] font-bold uppercase tracking-[0.14em] text-purple-100/68">
+                      {stat.label}
+                    </p>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
 
