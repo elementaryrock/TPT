@@ -61,10 +61,10 @@ export default function HeroSection() {
             href="https://makemypass.com/event/the-perfect-trajectory-4-0"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-between sm:justify-center gap-6 pl-8 pr-6 py-3.5 text-sm font-bold tracking-wider uppercase text-[#1a0a2e] bg-[#f43f72] rounded-full hover:bg-[#ff5a8a] transition-colors duration-200 w-full sm:w-auto"
+            className="inline-flex items-center justify-between sm:justify-center gap-6 pl-8 pr-6 py-3.5 text-sm font-bold tracking-wider uppercase text-white bg-gradient-to-r from-[#f43f72] to-[#a855f7] btn-cyber hover:from-[#ff5a8a] hover:to-[#c084fc] transition-all duration-200 w-full sm:w-auto shadow-[0_0_20px_rgba(244,63,114,0.25)]"
           >
             <span>Join Us</span>
-            <span className="flex items-center justify-center w-8 h-8 rounded-full bg-[#1a0a2e]/15">
+            <span className="flex items-center justify-center w-8 h-8 rounded-full bg-white/15">
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
               </svg>
@@ -72,9 +72,11 @@ export default function HeroSection() {
           </a>
           <a
             href="#what-is-tpt"
-            className="px-8 py-3 text-sm font-semibold tracking-wide uppercase text-white/70 border border-white/15 rounded-full hover:text-white hover:border-white/30 transition-colors duration-200 text-center w-full sm:w-auto"
+            className="relative p-[1px] btn-cyber w-full sm:w-auto bg-white/15 hover:bg-white/30 transition-all duration-200"
           >
-            Learn More
+            <span className="btn-cyber bg-[#0d0518] hover:bg-white/[0.03] transition-colors duration-200 py-3.5 px-8 text-sm font-semibold tracking-wide uppercase text-white/70 hover:text-white flex items-center justify-center">
+              Learn More
+            </span>
           </a>
         </div>
       </div>

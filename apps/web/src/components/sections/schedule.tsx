@@ -123,7 +123,7 @@ export default function ScheduleSection() {
               onClick={() => setActiveDay(day)}
               className={`px-6 py-3 rounded-xl font-semibold text-sm transition-all duration-300 cursor-pointer ${
                 activeDay === day
-                  ? "bg-gradient-to-r from-purple-600 to-violet-600 text-white shadow-lg shadow-purple-900/40"
+                  ? "bg-gradient-to-r from-[#f43f72] to-[#a855f7] text-white shadow-lg shadow-[#f43f72]/20"
                   : "border border-purple-500/20 bg-purple-950/30 text-purple-300 hover:border-purple-400/40 hover:bg-purple-900/20"
               }`}
             >
