@@ -26,6 +26,7 @@ export default function HeroSection() {
           loop
           muted
           playsInline
+          onLoadedData={() => window.dispatchEvent(new CustomEvent("tpt-video-ready"))}
           className="w-full h-full object-cover scale-[1.08]"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[#0d0518]/70 via-[#0d0518]/30 to-[#0d0518]" />
