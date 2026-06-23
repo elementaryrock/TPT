@@ -17,7 +17,7 @@ const logos = [
 
 export default function HeroSection() {
   return (
-    <section id="hero" className="relative min-h-screen flex flex-col justify-between pt-20 pb-8 sm:py-0">
+    <section id="hero" className="relative min-h-svh flex flex-col justify-between pt-16 pb-6 sm:py-0">
       {/* Background */}
       <div className="absolute inset-0 w-full h-full overflow-hidden">
         <video
@@ -47,29 +47,29 @@ export default function HeroSection() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 flex-1 flex flex-col items-center justify-center px-4 py-6 sm:py-12 text-center w-full max-w-4xl mx-auto">
+      <div className="relative z-10 flex-1 flex flex-col items-center justify-center px-5 py-4 sm:py-12 text-center w-full max-w-4xl mx-auto mt-[-5vh] sm:mt-0">
         <img
           src={tptLogo}
           alt="The Perfect Trajectory"
-          className="w-[70%] max-w-[240px] sm:w-[85%] sm:max-w-lg md:max-w-2xl lg:max-w-3xl mb-4 sm:mb-8 md:mb-10 animate-fade-in-up animation-delay-100"
+          className="w-[85%] max-w-[280px] sm:max-w-lg md:max-w-2xl lg:max-w-3xl mb-4 sm:mb-8 md:mb-10 animate-fade-in-up animation-delay-100 drop-shadow-[0_0_15px_rgba(255,255,255,0.1)]"
         />
 
-        <p className="text-white/50 text-xs sm:text-base max-w-lg leading-relaxed mb-4 sm:mb-8 md:mb-10 animate-fade-in-up animation-delay-300 px-2">
+        <p className="text-white/60 text-xs sm:text-base max-w-[280px] sm:max-w-lg leading-relaxed mb-6 sm:mb-8 md:mb-10 animate-fade-in-up animation-delay-300">
           A <span className="text-white/90 font-medium">two-day orientation program</span> for
           newly-elected IEDC Team leads across Kerala, ensuring every team is aligned
-          and ready to achieve common goals effectively.
+          and ready to achieve common goals.
         </p>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 w-full max-w-[240px] sm:max-w-none animate-fade-in-up animation-delay-400">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 w-full max-w-[260px] sm:max-w-none animate-fade-in-up animation-delay-400">
           <a
             href="https://makemypass.com/event/the-perfect-trajectory-4-0"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-between sm:justify-center gap-4 pl-6 pr-4 py-2.5 sm:pl-8 sm:pr-6 sm:py-3.5 text-xs sm:text-sm font-bold tracking-wider uppercase text-white bg-gradient-to-r from-[#f43f72] to-[#a855f7] btn-cyber hover:from-[#ff5a8a] hover:to-[#c084fc] transition-all duration-200 w-full sm:w-auto shadow-[0_0_20px_rgba(244,63,114,0.25)]"
+            className="group inline-flex items-center justify-between sm:justify-center gap-4 pl-6 pr-4 py-2.5 sm:pl-8 sm:pr-6 sm:py-3.5 text-xs sm:text-sm font-bold tracking-wider uppercase text-white bg-gradient-to-r from-[#f43f72] to-[#a855f7] btn-cyber hover:from-[#ff5a8a] hover:to-[#c084fc] transition-all duration-300 w-full sm:w-auto shadow-[0_0_20px_rgba(244,63,114,0.3)] hover:shadow-[0_0_30px_rgba(244,63,114,0.5)]"
           >
             <span>Join Us</span>
             <span className="flex items-center justify-center w-7 h-7 rounded-full bg-white/15">
-              <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+              <svg className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
               </svg>
             </span>
@@ -78,7 +78,7 @@ export default function HeroSection() {
             href="#what-is-tpt"
             className="relative p-[1px] btn-cyber w-full sm:w-auto bg-white/15 hover:bg-white/30 transition-all duration-200"
           >
-            <span className="btn-cyber bg-[#0d0518] hover:bg-white/[0.03] transition-colors duration-200 py-2.5 px-6 sm:py-3.5 sm:px-8 text-xs sm:text-sm font-semibold tracking-wide uppercase text-white/70 hover:text-white flex items-center justify-center">
+            <span className="btn-cyber bg-[#0c0414] hover:bg-[#150826] transition-colors duration-300 py-2.5 px-6 sm:py-3.5 sm:px-8 text-xs sm:text-sm font-semibold tracking-wide uppercase text-purple-200 hover:text-white flex items-center justify-center">
               Learn More
             </span>
           </a>
@@ -86,25 +86,29 @@ export default function HeroSection() {
       </div>
 
       {/* Bottom info */}
-      <div className="relative z-10 px-4 pb-6 sm:pb-10 w-full max-w-2xl mx-auto animate-fade-in-up animation-delay-500">
-        <div className="grid grid-cols-2 gap-3 sm:gap-4">
-          <div className="flex items-center gap-2.5 sm:gap-4 px-3 py-2.5 sm:px-6 sm:py-4 rounded-xl border border-white/[0.08] bg-white/[0.04] backdrop-blur-md">
-            <svg className="w-4 h-4 sm:w-5 sm:h-5 text-purple-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" />
-            </svg>
+      <div className="relative z-10 px-4 pb-6 sm:pb-10 w-full max-w-3xl mx-auto animate-fade-in-up animation-delay-500">
+        <div className="grid grid-cols-2 gap-3 sm:gap-6">
+          <div className="group flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4 px-4 py-3.5 sm:px-6 sm:py-4 rounded-xl sm:rounded-2xl border border-purple-500/10 bg-[#0c0414]/80 backdrop-blur-xl shadow-[0_4px_20px_rgba(0,0,0,0.2)] hover:border-purple-500/20 transition-colors">
+            <div className="w-7 h-7 sm:w-10 sm:h-10 rounded-lg bg-purple-500/10 flex items-center justify-center flex-shrink-0 group-hover:bg-purple-500/20 transition-colors">
+              <svg className="w-4 h-4 sm:w-5 sm:h-5 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" />
+              </svg>
+            </div>
             <div>
-              <p className="text-[8px] sm:text-[10px] font-medium tracking-[0.15em] uppercase text-white/30">Date</p>
-              <p className="text-[11px] sm:text-base font-semibold text-white font-heading leading-tight">17, 18 July 2026</p>
+              <p className="text-[9px] sm:text-[10px] font-semibold tracking-[0.2em] uppercase text-purple-300/50 mb-0.5">Date</p>
+              <p className="text-xs sm:text-base font-bold text-white font-heading leading-tight">17, 18 July 2026</p>
             </div>
           </div>
-          <div className="flex items-center gap-2.5 sm:gap-4 px-3 py-2.5 sm:px-6 sm:py-4 rounded-xl border border-white/[0.08] bg-white/[0.04] backdrop-blur-md">
-            <svg className="w-4 h-4 sm:w-5 sm:h-5 text-purple-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-              <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
-            </svg>
+          <div className="group flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4 px-4 py-3.5 sm:px-6 sm:py-4 rounded-xl sm:rounded-2xl border border-purple-500/10 bg-[#0c0414]/80 backdrop-blur-xl shadow-[0_4px_20px_rgba(0,0,0,0.2)] hover:border-purple-500/20 transition-colors">
+            <div className="w-7 h-7 sm:w-10 sm:h-10 rounded-lg bg-[#f43f72]/10 flex items-center justify-center flex-shrink-0 group-hover:bg-[#f43f72]/20 transition-colors">
+              <svg className="w-4 h-4 sm:w-5 sm:h-5 text-[#f43f72]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
+              </svg>
+            </div>
             <div>
-              <p className="text-[8px] sm:text-[10px] font-medium tracking-[0.15em] uppercase text-white/30">Venue</p>
-              <p className="text-[11px] sm:text-base font-semibold text-white font-heading leading-tight">Marian Engg. College, Trivandrum</p>
+              <p className="text-[9px] sm:text-[10px] font-semibold tracking-[0.2em] uppercase text-purple-300/50 mb-0.5">Venue</p>
+              <p className="text-xs sm:text-base font-bold text-white font-heading leading-tight">Marian Engg. College</p>
             </div>
           </div>
         </div>
