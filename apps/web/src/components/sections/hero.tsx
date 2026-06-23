@@ -17,9 +17,9 @@ const logos = [
 
 export default function HeroSection() {
   return (
-    <section id="hero" className="relative h-screen flex flex-col">
+    <section id="hero" className="relative min-h-screen flex flex-col justify-between pt-6 pb-10 sm:py-0">
       {/* Background */}
-      <div className="absolute inset-0">
+      <div className="absolute inset-0 w-full h-full">
         <img
           src={heroBg}
           alt=""
@@ -29,45 +29,50 @@ export default function HeroSection() {
       </div>
 
       {/* Logo strip */}
-      <div className="relative z-10 flex justify-center pt-24 px-4">
-        <div className="inline-flex items-center gap-6 sm:gap-10 md:gap-14 px-8 sm:px-12 md:px-16 py-3 rounded-2xl border border-white/[0.08] bg-white/[0.04] backdrop-blur-md">
+      <div className="relative z-10 flex justify-center pt-20 sm:pt-24 px-4">
+        <div className="inline-flex flex-wrap justify-center items-center gap-4 sm:gap-10 md:gap-14 px-6 sm:px-12 md:px-16 py-2.5 sm:py-3 rounded-2xl border border-white/[0.08] bg-white/[0.04] backdrop-blur-md max-w-full">
           {logos.map((logo) => (
             <img
               key={logo.alt}
               src={logo.src}
               alt={logo.alt}
-              className="h-6 sm:h-7 md:h-8 w-auto object-contain opacity-70"
+              className="h-5 sm:h-7 md:h-8 w-auto object-contain opacity-70"
             />
           ))}
         </div>
       </div>
 
       {/* Content */}
-      <div className="relative z-10 flex-1 flex flex-col items-center justify-center px-4 text-center">
+      <div className="relative z-10 flex-1 flex flex-col items-center justify-center px-4 py-8 sm:py-12 text-center w-full max-w-4xl mx-auto">
         <img
           src={tptLogo}
           alt="The Perfect Trajectory"
-          className="w-full max-w-md sm:max-w-lg md:max-w-2xl lg:max-w-3xl mb-10 animate-fade-in-up animation-delay-100"
+          className="w-[85%] max-w-md sm:max-w-lg md:max-w-2xl lg:max-w-3xl mb-6 sm:mb-8 md:mb-10 animate-fade-in-up animation-delay-100"
         />
 
-        <p className="text-white/50 text-sm sm:text-base max-w-lg leading-relaxed mb-10 animate-fade-in-up animation-delay-300">
+        <p className="text-white/50 text-sm sm:text-base max-w-lg leading-relaxed mb-6 sm:mb-8 md:mb-10 animate-fade-in-up animation-delay-300">
           A <span className="text-white/90 font-medium">two-day orientation program</span> for
           newly-elected IEDC Team leads across Kerala, ensuring every team is aligned
           and ready to achieve common goals effectively.
         </p>
 
-        <div className="flex items-center gap-4 animate-fade-in-up animation-delay-400">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-4 w-full max-w-[280px] sm:max-w-none animate-fade-in-up animation-delay-400">
           <a
             href="https://makemypass.com/event/the-perfect-trajectory-4-0"
             target="_blank"
             rel="noopener noreferrer"
-            className="px-8 py-3 text-sm font-semibold tracking-wide uppercase text-white bg-purple-600 rounded-lg hover:bg-purple-500 transition-colors duration-200"
+            className="inline-flex items-center justify-between sm:justify-center gap-6 pl-8 pr-6 py-3.5 text-sm font-bold tracking-wider uppercase text-[#1a0a2e] bg-[#f43f72] rounded-full hover:bg-[#ff5a8a] transition-colors duration-200 w-full sm:w-auto"
           >
-            Register Now
+            <span>Join Us</span>
+            <span className="flex items-center justify-center w-8 h-8 rounded-full bg-[#1a0a2e]/15">
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
+            </span>
           </a>
           <a
             href="#what-is-tpt"
-            className="px-8 py-3 text-sm font-semibold tracking-wide uppercase text-white/70 border border-white/15 rounded-lg hover:text-white hover:border-white/30 transition-colors duration-200"
+            className="px-8 py-3 text-sm font-semibold tracking-wide uppercase text-white/70 border border-white/15 rounded-full hover:text-white hover:border-white/30 transition-colors duration-200 text-center w-full sm:w-auto"
           >
             Learn More
           </a>
@@ -75,8 +80,8 @@ export default function HeroSection() {
       </div>
 
       {/* Bottom info */}
-      <div className="relative z-10 px-4 pb-10 animate-fade-in-up animation-delay-500">
-        <div className="max-w-2xl mx-auto grid grid-cols-2 gap-4">
+      <div className="relative z-10 px-4 pb-8 sm:pb-10 w-full max-w-2xl mx-auto animate-fade-in-up animation-delay-500">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div className="flex items-center gap-4 px-6 py-4 rounded-xl border border-white/[0.08] bg-white/[0.04] backdrop-blur-md">
             <svg className="w-5 h-5 text-purple-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" />
