@@ -2,7 +2,7 @@ import aboutGraphic from "@/images/about-graphic.png";
 
 export default function WhatIsTptSection() {
   return (
-    <section id="what-is-tpt" className="relative py-24 md:py-32 overflow-hidden bg-gradient-to-b from-[#0d0518] to-[#150826]">
+    <section id="what-is-tpt" className="relative py-16 sm:py-24 md:py-32 overflow-hidden bg-gradient-to-b from-[#0d0518] to-[#150826]">
       {/* Background decoration */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-20">
         <svg className="absolute w-full h-full text-purple-500/10" xmlns="http://www.w3.org/2000/svg">
@@ -30,24 +30,24 @@ export default function WhatIsTptSection() {
       </div>
 
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 items-center">
           
           {/* Left Column: Description & CTAs */}
-          <div className="lg:col-span-7 space-y-8 text-left">
+          <div className="lg:col-span-7 space-y-5 sm:space-y-8 text-left">
             <div>
-              <p className="text-purple-400 text-sm font-semibold tracking-[0.25em] uppercase mb-4">
+              <p className="text-purple-400 text-[10px] sm:text-sm font-semibold tracking-[0.25em] uppercase mb-3 sm:mb-4">
                 About The Event
               </p>
-              <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold font-display mb-6 tracking-wide leading-tight uppercase">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-200 to-purple-400">
+              <h2 className="text-3xl sm:text-5xl md:text-6xl font-bold font-display mb-4 sm:mb-6 tracking-wide leading-tight uppercase">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-200 to-purple-400 py-2 -my-2 inline-block">
                   What is TPT?
                 </span>
               </h2>
               <div className="w-20 h-1 bg-gradient-to-r from-purple-400 to-purple-600 rounded-full" />
             </div>
 
-            <div className="space-y-6">
-              <p className="text-lg text-purple-100/90 leading-relaxed font-sans">
+            <div className="space-y-4 sm:space-y-6">
+              <p className="text-sm sm:text-lg text-purple-100/90 leading-relaxed font-sans">
                 <span className="text-white font-semibold border-b border-[#f43f72]/40 pb-0.5">
                   The Perfect Trajectory (TPT)
                 </span>{" "}
@@ -55,7 +55,7 @@ export default function WhatIsTptSection() {
                 newly-elected IEDC (Innovation and Entrepreneurship Development
                 Centre) team leads across Kerala.
               </p>
-              <p className="text-base sm:text-lg text-purple-100/60 leading-relaxed font-sans">
+              <p className="text-[13px] sm:text-lg text-purple-100/60 leading-relaxed font-sans">
                 The program ensures every team is aligned, equipped with the right
                 knowledge, and ready to achieve common goals effectively. It
                 brings together student innovators and leaders to chart the
@@ -64,16 +64,16 @@ export default function WhatIsTptSection() {
             </div>
 
             {/* CTA Buttons */}
-            <div className="flex flex-wrap items-center gap-4 pt-4">
+            <div className="flex flex-wrap items-center gap-3 sm:gap-4 pt-2 sm:pt-4">
               <a
                 href="#schedule"
-                className="px-8 py-3.5 text-sm font-semibold tracking-wider uppercase text-white bg-gradient-to-r from-[#f43f72] to-[#a855f7] btn-cyber transition-all duration-300 shadow-[0_0_20px_rgba(244,63,114,0.25)] hover:shadow-[0_0_35px_rgba(244,63,114,0.45)] hover:from-[#ff5a8a] hover:to-[#c084fc]"
+                className="px-6 py-2.5 sm:px-8 sm:py-3.5 text-xs sm:text-sm font-semibold tracking-wider uppercase text-white bg-gradient-to-r from-[#f43f72] to-[#a855f7] btn-cyber transition-all duration-300 shadow-[0_0_20px_rgba(244,63,114,0.25)] hover:shadow-[0_0_35px_rgba(244,63,114,0.45)] hover:from-[#ff5a8a] hover:to-[#c084fc]"
               >
                 Explore Schedule
               </a>
               <a
                 href="#registration"
-                className="group px-6 py-3 text-sm font-semibold tracking-wide text-purple-300 hover:text-white transition-colors duration-200 flex items-center gap-2"
+                className="group px-4 py-2 sm:px-6 sm:py-3 text-xs sm:text-sm font-semibold tracking-wide text-purple-300 hover:text-white transition-colors duration-200 flex items-center gap-2"
               >
                 Register Now
                 <span className="group-hover:translate-x-1 transition-transform">→</span>
@@ -86,7 +86,7 @@ export default function WhatIsTptSection() {
             {/* Soft pink glow behind card */}
             <div className="absolute -inset-4 bg-gradient-to-tr from-[#f43f72]/20 to-purple-600/20 rounded-3xl opacity-40 blur-2xl" />
 
-            <div className="relative w-full max-w-sm p-4 rounded-2xl border border-[#f43f72]/30 bg-[#0d0518]/70 backdrop-blur-md shadow-[0_0_40px_rgba(244,63,114,0.15)] group overflow-hidden">
+            <div className="relative w-full max-w-[280px] sm:max-w-sm p-3 sm:p-4 rounded-2xl border border-[#f43f72]/30 bg-[#0d0518]/70 backdrop-blur-md shadow-[0_0_40px_rgba(244,63,114,0.15)] group overflow-hidden">
               
               {/* Vertical side panel line */}
               <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-gradient-to-b from-[#f43f72] via-purple-600 to-transparent" />
@@ -130,16 +130,16 @@ export default function WhatIsTptSection() {
         </div>
 
         {/* Stats card at bottom - matching the box style of the reference */}
-        <div className="mt-16 md:mt-24 border border-[#f43f72]/30 rounded-2xl p-6 sm:p-8 bg-[#0d0518]/40 backdrop-blur-md max-w-4xl mx-auto shadow-[0_0_30px_rgba(244,63,114,0.08)]">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-y md:divide-y-0 md:divide-x divide-purple-500/10">
+        <div className="mt-10 sm:mt-16 md:mt-24 border border-[#f43f72]/30 rounded-2xl p-4 sm:p-6 md:p-8 bg-[#0d0518]/40 backdrop-blur-md max-w-4xl mx-auto shadow-[0_0_30px_rgba(244,63,114,0.08)]">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-8 text-center divide-y md:divide-y-0 md:divide-x divide-purple-500/10">
             {[
               { number: "4.0", label: "Edition", desc: "Flagship Event" },
               { number: "2", label: "Days", desc: "Orientation" },
               { number: "100+", label: "IEDC Leads", desc: "Across Kerala" },
               { number: "Statewide", label: "Reach", desc: "All Districts" },
             ].map((stat, i) => (
-              <div key={stat.label} className={`pt-6 md:pt-0 ${i > 0 ? "md:pl-6" : ""}`}>
-                <p className="text-3xl sm:text-4xl font-bold font-heading text-white mb-1">
+              <div key={stat.label} className={`pt-4 sm:pt-6 md:pt-0 ${i > 0 ? "md:pl-6" : ""}`}>
+                <p className="text-2xl sm:text-3xl md:text-4xl font-bold font-heading text-white mb-1">
                   {stat.number}
                 </p>
                 <p className="text-xs sm:text-sm font-semibold tracking-wider text-[#f43f72] uppercase mb-1">

@@ -11,7 +11,8 @@ const organisers = [
     description:
       "The premier engineering institution hosting TPT 4.0 in Trivandrum.",
     logo: marianLogo,
-    accent: "#f43f72",
+    accent: "#a855f7",
+    accentRgb: "168, 85, 247",
     featured: true,
   },
   {
@@ -20,7 +21,8 @@ const organisers = [
     description:
       "Fostering innovation and startup culture across educational institutions.",
     logo: iicLogo,
-    accent: "#a855f7",
+    accent: "#c084fc",
+    accentRgb: "192, 132, 252",
     featured: false,
   },
   {
@@ -29,7 +31,8 @@ const organisers = [
     description:
       "The IEDC chapter driving the legacy of innovation and entrepreneurship.",
     logo: legacyLogo,
-    accent: "#6366f1",
+    accent: "#a78bfa",
+    accentRgb: "167, 139, 250",
     featured: false,
   },
   {
@@ -39,6 +42,7 @@ const organisers = [
       "Empowering student-led innovation ecosystems across Kerala.",
     logo: iedcLogo,
     accent: "#f43f72",
+    accentRgb: "244, 63, 114",
     featured: false,
   },
   {
@@ -47,7 +51,8 @@ const organisers = [
     description:
       "The student community powering creative and technical excellence.",
     logo: inspiraLogo,
-    accent: "#a855f7",
+    accent: "#818cf8",
+    accentRgb: "129, 140, 248",
     featured: false,
   },
 ];
@@ -59,196 +64,230 @@ export default function OrganisersSection() {
   return (
     <section
       id="organisers"
-      className="relative py-24 md:py-36 overflow-hidden"
+      className="relative py-16 sm:py-24 md:py-36 overflow-hidden"
     >
       {/* ── Background Layers ── */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#150826] via-[#120620] to-[#0d0518] pointer-events-none" />
 
-      {/* Circuit-board grid pattern */}
+      {/* Circuit-board grid */}
       <div className="absolute inset-0 pointer-events-none opacity-[0.04]">
         <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
           <defs>
-            <pattern
-              id="org-grid"
-              width="60"
-              height="60"
-              patternUnits="userSpaceOnUse"
-            >
-              <path
-                d="M 60 0 L 0 0 0 60"
-                fill="none"
-                stroke="#a855f7"
-                strokeWidth="0.5"
-              />
+            <pattern id="org-grid" width="60" height="60" patternUnits="userSpaceOnUse">
+              <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#a855f7" strokeWidth="0.5" />
             </pattern>
           </defs>
           <rect width="100%" height="100%" fill="url(#org-grid)" />
         </svg>
       </div>
 
-      {/* Radial pink glow */}
-      <div className="absolute left-1/2 top-[30%] -translate-x-1/2 w-[600px] h-[600px] bg-[#f43f72]/[0.05] rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute left-1/2 bottom-0 -translate-x-1/2 w-[800px] h-[400px] bg-purple-600/[0.04] rounded-full blur-[100px] pointer-events-none" />
+      {/* Ambient glows */}
+      <div className="absolute left-1/2 top-[20%] -translate-x-1/2 w-[800px] h-[800px] bg-purple-600/[0.07] rounded-full blur-[160px] pointer-events-none" />
+      <div className="absolute left-1/2 bottom-[10%] -translate-x-1/2 w-[900px] h-[500px] bg-purple-800/[0.05] rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute right-[10%] top-[40%] w-[400px] h-[400px] bg-[#f43f72]/[0.03] rounded-full blur-[120px] pointer-events-none" />
 
       {/* ── Section Content ── */}
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-16 md:mb-24">
+        <div className="text-center mb-10 sm:mb-16 md:mb-24">
           <p className="text-purple-400/60 text-xs sm:text-sm font-medium tracking-[0.3em] uppercase mb-5">
             The Team Behind TPT
           </p>
-          <h2 className="font-bold font-display mb-6 tracking-wide uppercase text-center leading-none overflow-visible">
-            <span className="block text-xl sm:text-2xl md:text-3xl text-transparent bg-clip-text bg-gradient-to-r from-white to-purple-200 mb-2 sm:mb-3 py-2 -my-1">
+          <h2 className="font-bold font-display mb-6 tracking-wide uppercase flex flex-col items-center leading-none overflow-visible">
+            <span className="inline-block text-lg sm:text-2xl md:text-3xl text-transparent bg-clip-text bg-gradient-to-r from-white to-purple-200 mb-1.5 sm:mb-3 py-2 -my-1 px-4">
               The
             </span>
-            <span className="block text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-200 to-purple-400 py-3 -my-2">
-              Architects
+            <span className="inline-block text-2xl sm:text-5xl md:text-6xl lg:text-7xl text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-200 to-purple-400 py-3 -my-2 px-6">
+              Architects{"\u200A"}
             </span>
           </h2>
-          <div className="flex items-center justify-center gap-3 mb-6">
-            <div className="h-px w-12 sm:w-20 bg-gradient-to-r from-transparent to-purple-400/60" />
-            <div className="w-2 h-2 rotate-45 border border-purple-400/60" />
-            <div className="h-px w-20 sm:w-32 bg-gradient-to-r from-purple-400 to-purple-600" />
-            <div className="w-2 h-2 rotate-45 border border-purple-600/60" />
-            <div className="h-px w-12 sm:w-20 bg-gradient-to-l from-transparent to-purple-600/60" />
+          <div className="flex items-center justify-center gap-2 sm:gap-3 mb-4 sm:mb-6">
+            <div className="h-px w-8 sm:w-20 bg-gradient-to-r from-transparent to-purple-400/60" />
+            <div className="w-1.5 sm:w-2 h-1.5 sm:h-2 rotate-45 border border-purple-400/60" />
+            <div className="h-px w-12 sm:w-32 bg-gradient-to-r from-purple-400 to-purple-600" />
+            <div className="w-1.5 sm:w-2 h-1.5 sm:h-2 rotate-45 border border-purple-600/60" />
+            <div className="h-px w-8 sm:w-20 bg-gradient-to-l from-transparent to-purple-600/60" />
           </div>
-          <p className="text-purple-200/40 text-sm sm:text-base max-w-md mx-auto font-sans">
+          <p className="text-purple-200/40 text-xs sm:text-base max-w-md mx-auto font-sans">
             The visionaries and institutions powering The&nbsp;Perfect&nbsp;Trajectory
           </p>
         </div>
 
         {/* ── Featured Host Institution ── */}
         {featured && (
-          <div className="flex justify-center mb-16 md:mb-20">
-            <div className="relative group w-full max-w-2xl">
-              {/* Outer animated border */}
-              <div className="absolute -inset-px rounded-2xl org-card-border opacity-60 group-hover:opacity-100 transition-opacity duration-500 blur-[0.5px]" />
+          <div className="flex justify-center mb-10 sm:mb-16 md:mb-20">
+            <div className="relative group w-full max-w-3xl org-card-3d">
+              {/* Double gradient border — sharp + glow */}
+              <div className="absolute -inset-[2px] rounded-2xl org-card-border opacity-60 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="absolute -inset-[3px] rounded-2xl org-card-border opacity-15 group-hover:opacity-35 blur-md transition-opacity duration-500" />
 
-              {/* Card */}
-              <div className="relative rounded-2xl border border-[#f43f72]/30 bg-[#0d0518]/90 backdrop-blur-xl p-1 overflow-hidden org-scanline shadow-[0_0_40px_rgba(244,63,114,0.12)]">
-                <div className="rounded-xl bg-gradient-to-br from-[#0d0518] to-[#150826] p-6 sm:p-8 md:p-10">
-                  <div className="flex flex-col sm:flex-row items-center gap-6 sm:gap-8">
-                    {/* Logo container */}
+              {/* Ambient glow */}
+              <div className="absolute -inset-12 rounded-[32px] bg-purple-600/[0.06] blur-3xl group-hover:bg-purple-500/[0.14] transition-all duration-700 pointer-events-none" />
+
+              {/* Card shell */}
+              <div className="org-card-inner relative rounded-2xl bg-[#0a0312]/95 backdrop-blur-xl overflow-hidden org-scanline shadow-[0_8px_80px_rgba(168,85,247,0.12)] group-hover:shadow-[0_16px_100px_rgba(168,85,247,0.22)] transition-all duration-500">
+                {/* Top holo bar */}
+                <div className="h-[2px] w-full org-holo-badge" />
+                <div className="org-featured-beam" />
+
+                <div className="relative p-5 sm:p-9 md:p-12">
+                  {/* Inner gradients */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-purple-500/[0.05] via-transparent to-purple-900/[0.08] pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-tl from-[#f43f72]/[0.02] via-transparent to-transparent pointer-events-none" />
+                  <div className="absolute inset-0 bg-purple-500/[0.03] org-ambient-glow pointer-events-none" />
+
+                  {/* Corner marks */}
+                  <div className="org-corner-marks absolute inset-0 rounded-2xl" />
+
+                  <div className="relative z-10 flex flex-col sm:flex-row items-center gap-5 sm:gap-10">
+                    {/* Logo */}
                     <div className="relative flex-shrink-0">
-                      <div
-                        className="absolute -inset-3 rounded-2xl opacity-30 group-hover:opacity-60 transition-opacity duration-500 blur-lg"
-                        style={{
-                          background: `radial-gradient(circle, ${featured.accent}40, transparent 70%)`,
-                        }}
-                      />
-                      <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-xl border border-[#f43f72]/20 bg-white/[0.03] flex items-center justify-center p-3 group-hover:border-[#f43f72]/40 transition-colors duration-500">
+                      <div className="absolute -inset-8 rounded-full bg-purple-500/[0.05] blur-2xl group-hover:bg-purple-500/[0.18] transition-all duration-700" />
+                      <div className="absolute -inset-4 rounded-2xl border border-purple-500/[0.06] group-hover:border-purple-400/25 transition-all duration-500" />
+
+                      <div className="relative w-20 h-20 sm:w-28 sm:h-28 rounded-xl bg-gradient-to-br from-purple-500/[0.1] to-purple-900/[0.2] border border-purple-400/15 flex items-center justify-center p-3 sm:p-4 group-hover:border-purple-400/40 transition-all duration-500 shadow-[inset_0_0_20px_rgba(168,85,247,0.05)]">
                         <img
                           src={featured.logo}
                           alt={featured.name}
-                          className="w-full h-full object-contain"
+                          className="w-full h-full object-contain drop-shadow-[0_0_12px_rgba(168,85,247,0.4)] group-hover:drop-shadow-[0_0_24px_rgba(168,85,247,0.7)] transition-all duration-500"
                         />
                       </div>
-                      {/* Status indicator */}
-                      <div className="absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-[#0d0518] border-2 border-[#f43f72] flex items-center justify-center">
-                        <div className="w-1.5 h-1.5 rounded-full bg-[#f43f72] org-pulse" />
+
+                      <div className="absolute -bottom-2 -right-2 w-6 h-6 rounded-full bg-[#0a0312] border-2 border-emerald-400/60 flex items-center justify-center shadow-[0_0_12px_rgba(52,211,153,0.25)]">
+                        <div className="w-2.5 h-2.5 rounded-full bg-emerald-400 org-pulse" />
                       </div>
                     </div>
 
                     {/* Text */}
-                    <div className="text-center sm:text-left flex-1">
-                      <p className="text-[10px] sm:text-xs font-semibold tracking-[0.2em] uppercase text-[#f43f72]/70 mb-1.5">
-                        {featured.role}
-                      </p>
-                      <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-white font-heading mb-2 group-hover:text-[#f43f72]/90 transition-colors duration-300">
+                    <div className="text-center sm:text-left flex-1 space-y-3">
+                      <div className="flex flex-col sm:flex-row sm:items-center gap-1.5 sm:gap-3">
+                        <span className="inline-flex items-center gap-1.5 text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase text-purple-400 bg-purple-400/[0.08] px-3 py-1 rounded-md border border-purple-400/15 w-fit mx-auto sm:mx-0">
+                          <span className="w-1.5 h-1.5 rounded-full bg-purple-400 org-pulse" />
+                          {featured.role}
+                        </span>
+                      </div>
+                      <h3 className="text-xl sm:text-3xl md:text-4xl font-bold text-white font-heading group-hover:text-purple-50 transition-colors duration-500 leading-tight">
                         {featured.name}
                       </h3>
-                      <p className="text-sm text-purple-200/50 leading-relaxed max-w-md">
+                      <p className="text-sm sm:text-base text-purple-200/45 leading-relaxed max-w-lg group-hover:text-purple-200/65 transition-colors duration-500">
                         {featured.description}
                       </p>
                     </div>
                   </div>
 
-                  {/* Bottom data bar */}
-                  <div className="mt-6 pt-5 border-t border-[#f43f72]/10 flex flex-wrap items-center justify-between gap-3">
-                    <div className="flex items-center gap-4">
-                      <span className="text-[9px] font-mono tracking-wider text-white/15 uppercase">
-                        Status: Active
-                      </span>
-                      <span className="text-[9px] font-mono tracking-wider text-[#f43f72]/40 uppercase org-flicker">
-                        ■ Connected
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      {[...Array(5)].map((_, i) => (
+                  {/* Bottom data strip */}
+                  <div className="relative z-10 mt-6 sm:mt-8 pt-4 sm:pt-5 border-t border-purple-500/[0.1] flex items-center justify-end gap-3">
+                    <div className="flex items-center gap-1.5">
+                      {[...Array(7)].map((_, i) => (
                         <div
                           key={i}
-                          className="w-1 h-3 rounded-full transition-all duration-300"
+                          className="w-[3px] rounded-full"
                           style={{
-                            background:
-                              i < 4
-                                ? `linear-gradient(to top, ${featured.accent}, ${featured.accent}80)`
-                                : "rgba(255,255,255,0.05)",
-                            opacity: 0.4 + i * 0.15,
+                            height: `${6 + i * 3}px`,
+                            background: i < 6
+                              ? `rgba(168, 85, 247, ${0.15 + i * 0.12})`
+                              : "rgba(168,85,247,0.9)",
+                            boxShadow: i >= 5 ? "0 0 6px rgba(168,85,247,0.4)" : "none",
                           }}
                         />
                       ))}
                     </div>
                   </div>
                 </div>
+
+                <div className="h-px w-full bg-gradient-to-r from-transparent via-purple-500/20 to-transparent" />
               </div>
             </div>
           </div>
         )}
 
         {/* ── Organiser Grid ── */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5 md:gap-6">
           {rest.map((org, index) => (
             <div
               key={org.name}
-              className="org-card group relative"
-              style={{ animationDelay: `${150 + index * 120}ms` }}
+              className="org-card group relative org-card-3d"
+              style={{
+                animationDelay: `${150 + index * 120}ms`,
+                "--card-accent": org.accent,
+              } as React.CSSProperties}
             >
-              {/* Animated border glow on hover */}
+              {/* Hover glow behind card */}
               <div
-                className="absolute -inset-px rounded-2xl opacity-0 group-hover:opacity-60 transition-all duration-500 blur-[1px]"
+                className="absolute -inset-5 rounded-3xl opacity-0 group-hover:opacity-100 transition-all duration-700 blur-2xl pointer-events-none"
                 style={{
-                  background: `linear-gradient(135deg, ${org.accent}, transparent, ${org.accent})`,
+                  background: `radial-gradient(circle at 50% 30%, rgba(${org.accentRgb}, 0.12), transparent 60%)`,
                 }}
               />
 
-              {/* Card inner */}
-              <div className="relative h-full rounded-2xl border border-[#f43f72]/20 bg-[#0d0518]/80 backdrop-blur-md overflow-hidden group-hover:border-[#f43f72]/40 transition-all duration-500 shadow-[0_0_30px_rgba(244,63,114,0.06)]">
-                {/* Holographic shimmer top strip */}
-                <div className="h-px w-full org-holo-badge" />
+              {/* Animated gradient border — visible on hover */}
+              <div
+                className="org-grid-border"
+                style={{ "--card-accent": org.accent } as React.CSSProperties}
+              />
 
-                {/* Hover glow */}
-                <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                  <div
-                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                    style={{
-                      background: `radial-gradient(ellipse at 50% 0%, ${org.accent}08, transparent 70%)`,
-                    }}
-                  />
-                </div>
+              {/* Card body */}
+              <div className="org-card-inner relative h-full rounded-2xl border border-white/[0.06] bg-[#0a0312]/90 backdrop-blur-md overflow-hidden group-hover:border-white/[0.1] shadow-[0_4px_40px_rgba(0,0,0,0.3)] group-hover:shadow-[0_12px_60px_rgba(0,0,0,0.4),0_0_40px_rgba(168,85,247,0.08)]">
+                {/* Top accent gradient bar */}
+                <div
+                  className="h-[2px] w-full opacity-40 group-hover:opacity-100 transition-opacity duration-500"
+                  style={{
+                    background: `linear-gradient(90deg, transparent 5%, rgba(${org.accentRgb}, 0.3), rgba(${org.accentRgb}, 0.8), rgba(${org.accentRgb}, 0.3), transparent 95%)`,
+                  }}
+                />
 
-                <div className="relative z-10 p-5 sm:p-6 flex flex-col h-full">
-                  {/* Logo + Role */}
-                  <div className="flex items-start justify-between mb-5">
+                {/* Glow bleed from top bar */}
+                <div
+                  className="absolute top-0 left-[15%] right-[15%] h-12 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none blur-xl"
+                  style={{ background: `rgba(${org.accentRgb}, 0.06)` }}
+                />
+
+                {/* Radiant inner glow from top-center */}
+                <div
+                  className="absolute -top-[40%] left-[10%] right-[10%] h-[60%] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none blur-3xl"
+                  style={{ background: `rgba(${org.accentRgb}, 0.04)` }}
+                />
+
+                {/* Corner marks */}
+                <div className="org-corner-marks absolute inset-0 rounded-2xl" />
+
+                <div className="relative z-10 p-4 sm:p-6 flex flex-col h-full">
+                  {/* Logo + role row */}
+                  <div className="flex items-start justify-between mb-4 sm:mb-5">
+                    {/* Logo with glow treatment */}
                     <div className="relative">
+                      {/* Outer glow */}
                       <div
-                        className="absolute -inset-2 rounded-xl opacity-0 group-hover:opacity-40 transition-opacity duration-500 blur-md"
-                        style={{ background: org.accent }}
+                        className="absolute -inset-3 rounded-xl opacity-0 group-hover:opacity-50 transition-all duration-700 blur-xl"
+                        style={{ background: `rgba(${org.accentRgb}, 0.5)` }}
                       />
-                      <div className="relative w-12 h-12 sm:w-14 sm:h-14 rounded-xl border border-white/10 bg-white/[0.03] flex items-center justify-center p-2 group-hover:border-[#f43f72]/30 transition-all duration-500">
+                      {/* Border ring on hover */}
+                      <div
+                        className="absolute -inset-1 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none"
+                        style={{ border: `1px solid rgba(${org.accentRgb}, 0.15)` }}
+                      />
+                      <div
+                        className="relative w-12 h-12 sm:w-14 sm:h-14 rounded-xl flex items-center justify-center p-2.5 border transition-all duration-500 shadow-[inset_0_0_12px_rgba(168,85,247,0.03)] group-hover:shadow-[inset_0_0_20px_rgba(168,85,247,0.08)]"
+                        style={{
+                          borderColor: `rgba(${org.accentRgb}, 0.12)`,
+                          background: `linear-gradient(135deg, rgba(${org.accentRgb}, 0.06), rgba(${org.accentRgb}, 0.02))`,
+                        }}
+                      >
                         <img
                           src={org.logo}
                           alt={org.name}
-                          className="w-full h-full object-contain"
+                          className="w-full h-full object-contain opacity-60 group-hover:opacity-100 transition-all duration-500 group-hover:drop-shadow-[0_0_10px_rgba(168,85,247,0.35)]"
                         />
                       </div>
                     </div>
 
-                    {/* Role badge — clean sans-serif */}
+                    {/* Role badge — pill style */}
                     <span
-                      className="text-[9px] sm:text-[10px] font-semibold tracking-[0.12em] uppercase px-2.5 py-1 rounded-md"
+                      className="text-[7px] sm:text-[8px] font-bold tracking-[0.12em] sm:tracking-[0.15em] uppercase px-2 py-1 sm:px-2.5 sm:py-1 rounded-full mt-1.5 transition-all duration-500 border"
                       style={{
-                        color: `${org.accent}aa`,
-                        background: `${org.accent}0a`,
+                        color: org.accent,
+                        background: `rgba(${org.accentRgb}, 0.06)`,
+                        borderColor: `rgba(${org.accentRgb}, 0.15)`,
                       }}
                     >
                       {org.role}
@@ -256,30 +295,49 @@ export default function OrganisersSection() {
                   </div>
 
                   {/* Name */}
-                  <h3 className="text-base sm:text-lg font-bold text-white font-heading mb-2 group-hover:text-purple-100 transition-colors duration-300 leading-tight">
+                  <h3 className="text-[13px] sm:text-lg font-bold text-white/90 font-heading mb-1.5 sm:mb-2 group-hover:text-white transition-colors duration-300 leading-tight">
                     {org.name}
                   </h3>
 
                   {/* Description */}
-                  <p className="text-xs sm:text-sm text-purple-200/40 leading-relaxed flex-1">
+                  <p className="text-[10px] sm:text-[13px] text-purple-200/30 leading-relaxed flex-1 group-hover:text-purple-200/55 transition-colors duration-500">
                     {org.description}
                   </p>
 
-                  {/* Bottom connector line */}
-                  <div className="mt-5 pt-4 border-t border-[#f43f72]/10 flex items-center gap-2">
-                    <div
-                      className="w-1.5 h-1.5 rounded-full org-pulse"
-                      style={{ background: org.accent }}
-                    />
-                    <div
-                      className="flex-1 h-px"
-                      style={{
-                        background: `linear-gradient(to right, ${org.accent}30, transparent)`,
-                      }}
-                    />
-                    <span className="text-[8px] font-mono text-white/15 tracking-wider uppercase">
-                      Node {String(index + 1).padStart(2, "0")}
-                    </span>
+                  {/* Bottom data readout with segmented bar */}
+                  <div className="mt-3 sm:mt-5 pt-3 sm:pt-4 border-t border-white/[0.04] group-hover:border-white/[0.08] transition-colors duration-500">
+                    <div className="flex items-center gap-2">
+                      {/* Dot */}
+                      <div
+                        className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full org-pulse flex-shrink-0"
+                        style={{ color: org.accent, background: org.accent }}
+                      />
+
+                      {/* Segmented progress bar */}
+                      <div className="flex-1 flex gap-[2px]">
+                        {[...Array(5)].map((_, i) => (
+                          <div
+                            key={i}
+                            className="h-[3px] flex-1 rounded-full transition-all duration-700"
+                            style={{
+                              background:
+                                i <= 1 + index
+                                  ? `rgba(${org.accentRgb}, ${0.3 + i * 0.15})`
+                                  : "rgba(255,255,255,0.04)",
+                              boxShadow:
+                                i === 1 + index
+                                  ? `0 0 6px rgba(${org.accentRgb}, 0.3)`
+                                  : "none",
+                            }}
+                          />
+                        ))}
+                      </div>
+
+                      {/* Node ID */}
+                      <span className="text-[7px] sm:text-[8px] font-mono text-white/15 tracking-[0.12em] uppercase group-hover:text-white/25 transition-colors duration-500 flex-shrink-0">
+                        N{String(index + 1).padStart(2, "0")}
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -287,17 +345,40 @@ export default function OrganisersSection() {
           ))}
         </div>
 
-        {/* ── Bottom Connector Bar ── */}
-        <div className="mt-16 md:mt-20 flex flex-col items-center">
-          <div className="w-px h-12 bg-gradient-to-b from-transparent via-purple-500/30 to-purple-500/60" />
+        {/* ── Network Connector Lines ── */}
+        <div className="mt-10 sm:mt-16 md:mt-20 flex flex-col items-center">
+          {/* Vertical connector */}
+          <div className="w-px h-16 bg-gradient-to-b from-transparent via-purple-500/40 to-purple-500/70" />
+
+          {/* Center diamond */}
           <div className="relative">
-            <div className="w-3 h-3 rotate-45 border border-purple-500/40 bg-[#0d0518]" />
-            <div className="absolute inset-0 w-3 h-3 rotate-45 bg-purple-500/20 blur-md" />
+            <div className="w-3.5 h-3.5 rotate-45 border border-purple-500/50 bg-[#0d0518]" />
+            <div className="absolute inset-0 w-3.5 h-3.5 rotate-45 bg-purple-500/25 blur-lg" />
           </div>
-          <div className="mt-4 text-center">
-            <p className="text-[9px] sm:text-[10px] font-mono tracking-[0.3em] uppercase text-white/15">
-              All nodes synchronized • TPT 4.0 Network Active
+
+          {/* Network status */}
+          <div className="mt-5 flex items-center gap-2">
+            <div className="flex gap-1">
+              {[...Array(3)].map((_, i) => (
+                <div
+                  key={i}
+                  className="w-1 h-1 rounded-full bg-purple-400/40"
+                  style={{ animationDelay: `${i * 0.3}s` }}
+                />
+              ))}
+            </div>
+            <p className="text-[9px] sm:text-[10px] font-mono tracking-[0.25em] uppercase text-white/15">
+              All nodes synchronized
             </p>
+            <div className="flex gap-1">
+              {[...Array(3)].map((_, i) => (
+                <div
+                  key={i}
+                  className="w-1 h-1 rounded-full bg-purple-400/40"
+                  style={{ animationDelay: `${i * 0.3}s` }}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </div>

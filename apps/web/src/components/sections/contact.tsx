@@ -106,7 +106,7 @@ export default function ContactSection() {
             Get in Touch
           </p>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-normal font-display tracking-[0.3em] mb-6">
-            <span className="bg-gradient-to-r from-white via-purple-100 to-purple-300 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-white via-purple-100 to-purple-300 bg-clip-text text-transparent py-2 -my-2 inline-block">
               Contact Us
             </span>
           </h2>
