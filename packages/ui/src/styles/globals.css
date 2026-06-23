@@ -463,3 +463,42 @@
 .org-ambient-glow {
   animation: card-glow-pulse 4s ease-in-out infinite;
 }
+
+/* ===== Registration Section Effects ===== */
+
+/* CTA button base shadow */
+.reg-cta-btn {
+  box-shadow:
+    0 4px 20px rgba(244, 63, 114, 0.25),
+    0 8px 40px rgba(168, 85, 247, 0.15);
+}
+.reg-cta-btn:hover {
+  box-shadow:
+    0 8px 30px rgba(244, 63, 114, 0.4),
+    0 16px 60px rgba(168, 85, 247, 0.25),
+    0 0 60px rgba(244, 63, 114, 0.15);
+}
+
+/* CTA button shimmer sweep */
+@keyframes reg-shimmer {
+  0% { transform: translateX(-100%) skewX(-15deg); }
+  100% { transform: translateX(300%) skewX(-15deg); }
+}
+
+.reg-btn-shimmer::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.15),
+    rgba(255, 255, 255, 0.25),
+    rgba(255, 255, 255, 0.15),
+    transparent
+  );
+  animation: reg-shimmer 3s ease-in-out infinite;
+}
