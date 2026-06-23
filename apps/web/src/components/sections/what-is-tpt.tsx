@@ -2,7 +2,7 @@ import aboutGraphic from "@/images/about-graphic.png";
 
 export default function WhatIsTptSection() {
   return (
-    <section id="what-is-tpt" className="relative py-24 md:py-32 overflow-hidden bg-gradient-to-b from-[#0d0518] to-[#150826] border-b border-purple-500/10">
+    <section id="what-is-tpt" className="relative py-24 md:py-32 overflow-hidden bg-gradient-to-b from-[#0d0518] to-[#150826]">
       {/* Background decoration */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-20">
         <svg className="absolute w-full h-full text-purple-500/10" xmlns="http://www.w3.org/2000/svg">
@@ -35,15 +35,15 @@ export default function WhatIsTptSection() {
           {/* Left Column: Description & CTAs */}
           <div className="lg:col-span-7 space-y-8 text-left">
             <div>
-              <p className="text-[#f43f72] text-sm font-semibold tracking-[0.25em] uppercase mb-4">
+              <p className="text-purple-400 text-sm font-semibold tracking-[0.25em] uppercase mb-4">
                 About The Event
               </p>
-              <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold font-heading mb-6 tracking-tight leading-tight">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-200 to-[#f43f72]">
+              <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold font-display mb-6 tracking-wide leading-tight uppercase">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-200 to-purple-400">
                   What is TPT?
                 </span>
               </h2>
-              <div className="w-20 h-1 bg-gradient-to-r from-[#f43f72] to-purple-500 rounded-full" />
+              <div className="w-20 h-1 bg-gradient-to-r from-purple-400 to-purple-600 rounded-full" />
             </div>
 
             <div className="space-y-6">
