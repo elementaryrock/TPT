@@ -15,35 +15,37 @@ export default function RegistrationSection() {
         </div>
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center">
         
-        {/* Registration Ticket */}
+        {/* Registration Ticket with CTA */}
         <div className="relative w-full max-w-[380px] drop-shadow-2xl group transition-transform duration-500 hover:-translate-y-2">
           <img src="/ticket.svg" alt="The Perfect Trajectory Ticket" className="w-full h-auto" />
+          
+          <div className="absolute bottom-23 left-0 right-0 flex justify-center">
+            <a
+              href="https://makemypass.com/event/the-perfect-trajectory-4-0"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex items-center gap-2 px-8 py-3 rounded-full bg-gradient-to-r from-purple-600 to-violet-600 text-white font-bold text-sm shadow-lg shadow-purple-900/50 hover:shadow-purple-700/60 hover:scale-105 transition-all duration-300"
+            >
+              Register on MakeMyPass
+              <svg
+                className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2.5}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M13 7l5 5m0 0l-5 5m5-5H6"
+                />
+              </svg>
+            </a>
+          </div>
         </div>
 
-        {/* CTA Button below ticket */}
-        <div className="mt-8 text-center">
-          <a
-            href="https://makemypass.com/event/the-perfect-trajectory-4-0"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group inline-flex items-center gap-3 px-10 py-4 rounded-full bg-gradient-to-r from-purple-600 to-violet-600 text-white font-bold text-lg shadow-lg shadow-purple-900/50 hover:shadow-purple-700/60 hover:scale-105 transition-all duration-300"
-          >
-            Register on MakeMyPass
-            <svg
-              className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth={2.5}
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M13 7l5 5m0 0l-5 5m5-5H6"
-              />
-            </svg>
-          </a>
-          <p className="text-purple-400/60 text-sm mt-4 font-medium tracking-wide">
+        <div className="mt-6 text-center">
+          <p className="text-purple-400/60 text-sm font-medium tracking-wide">
             Limited spots available • Secure your perfect trajectory
           </p>
         </div>
