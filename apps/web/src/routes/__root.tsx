@@ -14,11 +14,11 @@ export const Route = createRootRouteWithContext<RouterAppContext>()({
   head: () => ({
     meta: [
       {
-        title: "Tpt-website",
+        title: "TPT 4.0 — The Perfect Trajectory",
       },
       {
         name: "description",
-        content: "Tpt-website is a web application",
+        content: "The Perfect Trajectory 4.0 — A two-day orientation program for newly-elected IEDC Team leads across Kerala. July 17-18, 2026 at Marian Engineering College, Trivandrum.",
       },
     ],
     links: [
@@ -37,10 +37,11 @@ function RootComponent() {
       <ThemeProvider
         attribute="class"
         defaultTheme="dark"
+        forcedTheme="dark"
         disableTransitionOnChange
         storageKey="vite-ui-theme"
       >
-        <div className="grid grid-rows-[auto_1fr] h-svh">
+        <div className="min-h-svh tpt-bg">
           <Header />
           <Outlet />
         </div>
