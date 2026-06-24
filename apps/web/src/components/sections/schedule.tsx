@@ -1,343 +1,458 @@
-import { useState } from "react";
-import { 
-  Sparkles, 
-  Presentation, 
-  Cpu, 
-  Coffee, 
-  CalendarClock
+import { useMemo, useState } from "react";
+import {
+  CalendarDays,
+  ChevronDown,
+  Clock3,
+  Coffee,
+  MapPin,
+  MessageSquareText,
+  Mic2,
+  Sparkles,
+  UsersRound,
+  Wrench,
 } from "lucide-react";
 
-const schedule = {
+type EventType = "keynote" | "session" | "workshop" | "break" | "general";
+
+interface ScheduleEvent {
+  time: string;
+  title: string;
+  description: string;
+  type: EventType;
+  tag: string;
+  details: string;
+  speaker: string;
+  location: string;
+}
+
+const schedule: Record<
+  "day1" | "day2",
+  { date: string; eyebrow: string; label: string; theme: string; events: ScheduleEvent[] }
+> = {
   day1: {
     date: "July 17, 2026",
+    eyebrow: "Arrival / Alignment",
     label: "Day 1",
+    theme: "Set the direction, meet the network, and build the operating base.",
     events: [
       {
         time: "09:00 AM",
-        title: "Registration & Check-in",
-        description: "Arrive, collect your kit, and get settled in.",
-        type: "general" as const,
+        title: "Registration & Welcome Kit Distribution",
+        description: "Pick up your welcome kit, delegate badge, and event trajectory map.",
+        type: "general",
+        tag: "Check-in",
+        details:
+          "Carry your registration QR code for quick check-in. The welcome desk handles badges, kit pickup, and delegate routing for the opening venue.",
+        speaker: "Organizing Team",
+        location: "Main Lobby",
       },
       {
         time: "10:00 AM",
-        title: "Inaugural Ceremony",
-        description: "Official opening with keynote address.",
-        type: "keynote" as const,
+        title: "Inaugural Ceremony & Spark",
+        description: "Official kickoff with Marian, KSUM, IEDC, and legacy representatives.",
+        type: "keynote",
+        tag: "Inauguration",
+        details:
+          "Opening remarks, context setting, and a clear orientation on why newly elected IEDC leads matter for the next year of Kerala's innovation ecosystem.",
+        speaker: "Ecosystem Leaders",
+        location: "Auditorium",
       },
       {
         time: "11:30 AM",
-        title: "Session 1",
-        description: "TBA — Team member: fill in session details",
-        type: "session" as const,
+        title: "Keynote: Steering the Trajectory",
+        description: "A leadership session on building self-sustaining innovation hubs.",
+        type: "keynote",
+        tag: "Leadership",
+        details:
+          "A practical keynote on community building, interdisciplinary collaboration, and moving student projects toward viable products.",
+        speaker: "Tech Entrepreneur",
+        location: "Auditorium",
       },
       {
         time: "01:00 PM",
-        title: "Lunch Break",
-        description: "Networking lunch with fellow IEDC leads.",
-        type: "break" as const,
+        title: "Lunch & Peer Network",
+        description: "A structured lunch designed to connect chapter leads across districts.",
+        type: "break",
+        tag: "Network",
+        details:
+          "Table prompts and light networking activities help delegates discover common problems and possible inter-college collaborations.",
+        speaker: "All Delegates",
+        location: "Food Court",
       },
       {
         time: "02:00 PM",
-        title: "Workshop Track",
-        description: "TBA — Team member: fill in workshop details",
-        type: "workshop" as const,
+        title: "Workshop: Core Execution Playbook",
+        description: "Annual plans, budgets, grants, and the routines that keep chapters moving.",
+        type: "workshop",
+        tag: "Hands-on",
+        details:
+          "A working session for drafting chapter goals, planning events, understanding support programs, and mapping the first quarter of execution.",
+        speaker: "IEDC Coordinators",
+        location: "Seminar Hall A",
       },
       {
         time: "04:30 PM",
-        title: "Panel Discussion",
-        description: "TBA — Team member: fill in panel details",
-        type: "session" as const,
+        title: "Panel: Running the Student Cell",
+        description: "A direct conversation on team motivation, management buy-in, and real constraints.",
+        type: "session",
+        tag: "Panel Q&A",
+        details:
+          "Panelists unpack everyday challenges: passive members, college alignment, lab access, sponsor conversations, and continuity after office-bearer changes.",
+        speaker: "Ex-IEDC Leads",
+        location: "Auditorium",
       },
     ],
   },
   day2: {
     date: "July 18, 2026",
+    eyebrow: "Build / Commit",
     label: "Day 2",
+    theme: "Translate the orientation into action plans, partnerships, and next moves.",
     events: [
       {
         time: "09:30 AM",
-        title: "Day 2 Kickoff",
-        description: "Recap and energizer session.",
-        type: "general" as const,
+        title: "Day 2 Kickoff & Energy Check",
+        description: "A fast recap of Day 1 before the design and planning blocks begin.",
+        type: "general",
+        tag: "Kickoff",
+        details:
+          "The facilitation team resets the room, captures Day 1 takeaways, and frames the work expected from delegates before closing.",
+        speaker: "Facilitators",
+        location: "Auditorium",
       },
       {
         time: "10:00 AM",
-        title: "Session 2",
-        description: "TBA — Team member: fill in session details",
-        type: "session" as const,
+        title: "Session: Building a Funding Trajectory",
+        description: "Government schemes, pre-seed grants, and early pitch preparation.",
+        type: "session",
+        tag: "Funding",
+        details:
+          "A practical look at idea grants, application readiness, pitch structure, and how chapters can help students move from idea to support.",
+        speaker: "Program Manager",
+        location: "Auditorium",
       },
       {
         time: "11:30 AM",
-        title: "Interactive Workshop",
-        description: "TBA — Team member: fill in workshop details",
-        type: "workshop" as const,
+        title: "Design Sprint: Ecosystem Blueprinting",
+        description: "Teams design one flagship initiative for their region or institution.",
+        type: "workshop",
+        tag: "Sprint",
+        details:
+          "Delegates use guided canvases to define audience, partners, resources, timeline, risks, and measurable outcomes for a chapter-led initiative.",
+        speaker: "Design Coach",
+        location: "Seminar Hall B",
       },
       {
         time: "01:00 PM",
-        title: "Lunch Break",
-        description: "Final networking opportunity.",
-        type: "break" as const,
+        title: "Lunch & District Chapters Align",
+        description: "District huddles to coordinate calendars and reduce event overlap.",
+        type: "break",
+        tag: "Huddle",
+        details:
+          "Nearby chapters compare calendars, find shared resources, and identify moments where collaboration can increase reach.",
+        speaker: "Regional Leads",
+        location: "Food Court",
       },
       {
         time: "02:00 PM",
-        title: "Closing Session",
-        description: "TBA — Team member: fill in closing details",
-        type: "keynote" as const,
+        title: "Closing: Trajectory Action Plan",
+        description: "Lock the 2026-27 direction with targets, networks, and support channels.",
+        type: "keynote",
+        tag: "Strategy",
+        details:
+          "Each chapter consolidates the action plan and leaves with next steps, follow-up channels, and accountability points.",
+        speaker: "State Nodal Officers",
+        location: "Auditorium",
       },
       {
         time: "04:00 PM",
-        title: "Valedictory & Certificates",
-        description: "Closing ceremony and certificate distribution.",
-        type: "general" as const,
+        title: "Valedictory & Certificate Distribution",
+        description: "Final address, certificates, recognition, and the closing photo.",
+        type: "general",
+        tag: "Close",
+        details:
+          "The event closes with certificate distribution, acknowledgements, and a collective archive frame with delegates and organisers.",
+        speaker: "Guests & Management",
+        location: "Auditorium",
       },
     ],
   },
 };
 
-const typeAccents = {
-  keynote: { color: "#f59e0b", rgb: "245, 158, 11", label: "Keynote", icon: Sparkles },
-  session: { color: "#a855f7", rgb: "168, 85, 247", label: "Session", icon: Presentation },
-  workshop: { color: "#3b82f6", rgb: "59, 130, 246", label: "Workshop", icon: Cpu },
-  break: { color: "#10b981", rgb: "16, 185, 129", label: "Break", icon: Coffee },
-  general: { color: "#c084fc", rgb: "192, 132, 252", label: "General", icon: CalendarClock },
+const filterTypes: Array<{ id: "all" | EventType; label: string }> = [
+  { id: "all", label: "All" },
+  { id: "keynote", label: "Keynotes" },
+  { id: "workshop", label: "Workshops" },
+  { id: "session", label: "Sessions" },
+  { id: "break", label: "Breaks" },
+];
+
+const typeMeta: Record<
+  EventType,
+  { label: string; Icon: typeof Mic2; accent: string; soft: string; border: string }
+> = {
+  keynote: {
+    label: "Keynote",
+    Icon: Mic2,
+    accent: "text-[#ffd38a]",
+    soft: "bg-[#ffd38a]/10",
+    border: "border-[#ffd38a]/35",
+  },
+  session: {
+    label: "Session",
+    Icon: MessageSquareText,
+    accent: "text-[#c7a8ff]",
+    soft: "bg-[#c7a8ff]/10",
+    border: "border-[#c7a8ff]/35",
+  },
+  workshop: {
+    label: "Workshop",
+    Icon: Wrench,
+    accent: "text-[#8bd3ff]",
+    soft: "bg-[#8bd3ff]/10",
+    border: "border-[#8bd3ff]/35",
+  },
+  break: {
+    label: "Break",
+    Icon: Coffee,
+    accent: "text-[#90f5c1]",
+    soft: "bg-[#90f5c1]/10",
+    border: "border-[#90f5c1]/25",
+  },
+  general: {
+    label: "General",
+    Icon: Sparkles,
+    accent: "text-[#ff8eb3]",
+    soft: "bg-[#ff8eb3]/10",
+    border: "border-[#ff8eb3]/30",
+  },
 };
 
 export default function ScheduleSection() {
   const [activeDay, setActiveDay] = useState<"day1" | "day2">("day1");
+  const [filterType, setFilterType] = useState<"all" | EventType>("all");
+  const [expandedEventId, setExpandedEventId] = useState<string | null>("day1-0");
+
   const currentSchedule = schedule[activeDay];
 
+  const filteredEvents = useMemo(
+    () =>
+      currentSchedule.events
+        .map((event, originalIndex) => ({ ...event, originalIndex }))
+        .filter((event) => filterType === "all" || event.type === filterType),
+    [currentSchedule.events, filterType],
+  );
+
+  const dayStats = useMemo(() => {
+    const venues = new Set(currentSchedule.events.map((event) => event.location)).size;
+    const workshops = currentSchedule.events.filter((event) => event.type === "workshop").length;
+    return [
+      { label: "Blocks", value: String(currentSchedule.events.length).padStart(2, "0") },
+      { label: "Venues", value: String(venues).padStart(2, "0") },
+      { label: "Labs", value: String(workshops).padStart(2, "0") },
+    ];
+  }, [currentSchedule.events]);
+
   return (
-    <section id="schedule" className="relative py-24 md:py-36 overflow-hidden">
-      {/* ── Background Layers ── */}
-      {/* Circuit-board grid */}
-      <div className="absolute inset-0 pointer-events-none opacity-[0.03]">
-        <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <pattern id="sch-grid" width="60" height="60" patternUnits="userSpaceOnUse">
-              <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#a855f7" strokeWidth="0.5" />
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#sch-grid)" />
-        </svg>
+    <section
+      id="schedule"
+      className="relative overflow-hidden bg-[#090411] py-20 sm:py-24 lg:h-screen lg:min-h-[760px] lg:py-0"
+    >
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(244,63,114,0.16),transparent_32%),radial-gradient(circle_at_85%_18%,rgba(168,85,247,0.18),transparent_28%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(120deg,transparent_0%,transparent_48%,rgba(255,255,255,0.05)_49%,transparent_50%,transparent_100%)] bg-[size:180px_180px]" />
       </div>
 
-      {/* Ambient glows */}
-      <div className="absolute left-[10%] top-[20%] w-[600px] h-[600px] bg-purple-600/[0.04] rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute right-[5%] bottom-[10%] w-[700px] h-[700px] bg-[#f43f72]/[0.025] rounded-full blur-[160px] pointer-events-none" />
+      <div className="relative z-10 mx-auto h-full max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="grid h-full gap-10 lg:grid-cols-[0.86fr_1.14fr] lg:items-center lg:pt-24 lg:pb-10">
+          <div>
+            <p className="mb-4 inline-flex items-center gap-3 border border-white/15 bg-[#1a0d2a]/90 px-4 py-2 text-xs font-bold uppercase tracking-[0.2em] text-purple-50/85">
+              <CalendarDays className="h-4 w-4 text-[#f43f72]" />
+              Plan Your Days
+            </p>
+            <h2 className="font-display text-4xl uppercase leading-none tracking-wide text-white sm:text-5xl xl:text-6xl">
+              <span className="block">Event</span>
+              <span className="mt-3 block text-[#c7a8ff] sm:mt-4">Schedule</span>
+            </h2>
+            <p className="mt-5 max-w-xl text-base leading-8 text-purple-50/82">
+              Two days built like a route map: arrive, align, build, and leave with a chapter action plan. Filter by track or open a block for the practical details.
+            </p>
 
-      {/* ── Section Content ── */}
-      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Section Header */}
-        <div className="text-center mb-16 sm:mb-20">
-          <p className="text-purple-400/60 text-xs sm:text-sm font-semibold tracking-[0.3em] uppercase mb-5">
-            Plan Your Days
-          </p>
-          <h2 className="font-bold font-display mb-6 tracking-wide uppercase flex flex-col items-center leading-none overflow-visible">
-            <span className="inline-block text-lg sm:text-2xl md:text-3xl text-transparent bg-clip-text bg-gradient-to-r from-white to-purple-200 mb-1.5 sm:mb-3 py-2 -my-1 px-4">
-              Timeline
-            </span>
-            <span className="inline-block text-2xl sm:text-5xl md:text-6xl lg:text-7xl text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-200 to-purple-400 py-3 -my-2 px-6">
-              Schedule
-            </span>
-          </h2>
-          <div className="flex items-center justify-center gap-2 sm:gap-3 mb-6">
-            <div className="h-px w-8 sm:w-20 bg-gradient-to-r from-transparent to-purple-400/60" />
-            <div className="w-1.5 sm:w-2 h-1.5 sm:h-2 rotate-45 border border-purple-400/60" />
-            <div className="h-px w-12 sm:w-32 bg-gradient-to-r from-purple-400 to-purple-600" />
-            <div className="w-1.5 sm:w-2 h-1.5 sm:h-2 rotate-45 border border-purple-600/60" />
-            <div className="h-px w-8 sm:w-20 bg-gradient-to-l from-transparent to-purple-600/60" />
-          </div>
-          <p className="text-purple-200/40 text-xs sm:text-base max-w-md mx-auto font-sans">
-            Navigate through the sessions, workshops, and ceremonies of TPT 4.0
-          </p>
-        </div>
-
-        {/* Day tabs */}
-        <div className="relative z-10 max-w-xs sm:max-w-sm mx-auto p-1.5 rounded-2xl bg-[#0a0312]/70 border border-purple-500/15 backdrop-blur-xl flex gap-2 mb-16 shadow-[0_4px_30px_rgba(0,0,0,0.3)]">
-          {(["day1", "day2"] as const).map((day) => {
-            const isActive = activeDay === day;
-            return (
-              <button
-                key={day}
-                onClick={() => setActiveDay(day)}
-                className={`relative flex-1 py-3 px-3 rounded-xl font-heading text-xs sm:text-sm font-semibold tracking-wider transition-all duration-500 cursor-pointer overflow-hidden ${
-                  isActive
-                    ? "text-white shadow-[0_0_20px_rgba(168,85,247,0.25)] font-bold"
-                    : "text-purple-300/60 hover:text-purple-200 hover:bg-purple-500/[0.05]"
-                }`}
-              >
-                {/* Active gradient background overlay */}
-                {isActive && (
-                  <div className="absolute inset-0 bg-gradient-to-r from-[#f43f72] via-[#a855f7] to-[#818cf8] opacity-90 animate-border-trace bg-[length:400%_400%]" />
-                )}
-                
-                {/* Active border shimmer */}
-                {isActive && (
-                  <div className="absolute inset-0 border border-white/20 rounded-xl" />
-                )}
-
-                <span className="relative z-10 block uppercase">
-                  {schedule[day].label}
-                </span>
-                <span className={`relative z-10 block text-[9px] sm:text-[10px] font-sans font-normal mt-0.5 ${isActive ? "text-white/80" : "text-purple-400/40"}`}>
-                  {schedule[day].date}
-                </span>
-              </button>
-            );
-          })}
-        </div>
-
-        {/* Timeline */}
-        <div className="relative">
-          {/* Glowing Vertical Line */}
-          <div className="absolute left-[19px] top-0 bottom-0 w-[2px] bg-gradient-to-b from-[#a855f7]/40 via-purple-500/10 to-transparent pointer-events-none" />
-          <div className="absolute left-[17px] top-0 bottom-0 w-[6px] bg-gradient-to-b from-[#a855f7]/15 via-purple-500/5 to-transparent blur-[2px] pointer-events-none" />
-
-          <div className="space-y-8 relative">
-            {currentSchedule.events.map((event, index) => {
-              const accent = typeAccents[event.type];
-              const IconComponent = accent.icon;
-              return (
-                <div
-                  key={`${activeDay}-${index}`}
-                  className="group relative pl-12 sm:pl-16 pb-2 last:pb-0"
+            <div className="mt-7 grid grid-cols-2 gap-3">
+              {(["day1", "day2"] as const).map((day) => (
+                <button
+                  key={day}
+                  type="button"
+                  onClick={() => {
+                    setActiveDay(day);
+                    setExpandedEventId(`${day}-0`);
+                  }}
+                  className={`relative overflow-hidden border p-4 text-left transition xl:p-5 ${
+                    activeDay === day
+                      ? "border-[#f43f72]/70 bg-[#f43f72]/14"
+                      : "border-white/15 bg-[#150a22]/88 hover:border-purple-300/45"
+                  }`}
                 >
-                  {/* Timeline Dot Indicator */}
-                  <div className="absolute left-0 top-1.5 flex items-center justify-center w-10 h-10">
-                    {/* Outer pulse glow */}
-                    <div
-                      className="absolute w-8 h-8 rounded-full opacity-0 group-hover:opacity-100 group-hover:scale-125 transition-all duration-500"
-                      style={{
-                        background: `rgba(${accent.rgb}, 0.05)`,
-                        border: `1px solid rgba(${accent.rgb}, 0.2)`,
-                      }}
-                    />
-                    {/* Glowing blur behind dot */}
-                    <div
-                      className="absolute w-3.5 h-3.5 rounded-full blur-[4px] opacity-40 group-hover:opacity-100 transition-opacity duration-300"
-                      style={{ background: accent.color }}
-                    />
-                    {/* Main center dot */}
-                    <div
-                      className="relative w-2.5 h-2.5 rounded-full border bg-[#0d0518] z-10 transition-all duration-300 group-hover:scale-110"
-                      style={{
-                        borderColor: accent.color,
-                        boxShadow: `0 0 8px rgba(${accent.rgb}, 0.5)`,
-                      }}
-                    />
+                  <span className="text-xs font-bold uppercase tracking-[0.16em] text-purple-100/70">
+                    {schedule[day].eyebrow}
+                  </span>
+                  <span className="mt-3 block font-heading text-2xl font-bold text-white">
+                    {schedule[day].label}
+                  </span>
+                  <span className="mt-1 block text-sm font-semibold text-purple-50/78">
+                    {schedule[day].date}
+                  </span>
+                  {activeDay === day && (
+                    <span className="absolute bottom-0 left-0 h-1 w-full bg-gradient-to-r from-[#f43f72] to-[#b46cff]" />
+                  )}
+                </button>
+              ))}
+            </div>
+
+            <div className="mt-4 flex flex-wrap gap-2">
+              {filterTypes.map((type) => (
+                <button
+                  key={type.id}
+                  type="button"
+                  onClick={() => {
+                    setFilterType(type.id);
+                    setExpandedEventId(null);
+                  }}
+                  className={`border px-3.5 py-2 text-xs font-bold uppercase tracking-[0.14em] transition ${
+                    filterType === type.id
+                      ? "border-[#f43f72]/70 bg-[#f43f72]/14 text-white"
+                      : "border-white/15 bg-[#150a22]/88 text-purple-50/72 hover:border-purple-300/45 hover:text-white"
+                  }`}
+                >
+                  {type.label}
+                </button>
+              ))}
+            </div>
+
+            <div className="mt-5 border border-white/15 bg-[#150a22]/90 p-4 xl:p-5">
+              <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#f4c7ff]">
+                {currentSchedule.eyebrow}
+              </p>
+              <p className="mt-2 text-sm leading-7 text-purple-50/82">{currentSchedule.theme}</p>
+              <div className="mt-4 grid grid-cols-3 border border-white/15">
+                {dayStats.map((stat) => (
+                  <div key={stat.label} className="border-r border-white/15 p-3 last:border-r-0">
+                    <p className="font-display text-2xl leading-none text-white">{stat.value}</p>
+                    <p className="mt-2 text-[10px] font-bold uppercase tracking-[0.14em] text-purple-100/68">
+                      {stat.label}
+                    </p>
                   </div>
+                ))}
+              </div>
+            </div>
+          </div>
 
-                  {/* Event Card */}
-                  <div className="flex-1 org-card-3d">
-                    <div className="relative">
-                      {/* Tracing border on hover */}
-                      <div
-                        className="org-grid-border"
-                        style={{ "--card-accent": accent.color } as React.CSSProperties}
-                      />
-                      
-                      {/* Outer glow on hover */}
-                      <div
-                        className="absolute -inset-4 rounded-3xl opacity-0 group-hover:opacity-100 transition-all duration-700 blur-xl pointer-events-none"
-                        style={{
-                          background: `radial-gradient(circle at 20% 50%, rgba(${accent.rgb}, 0.08), transparent 60%)`,
-                        }}
-                      />
+          <div className="relative lg:h-[calc(100vh-8.5rem)] lg:min-h-[610px]">
+            <div className="absolute left-5 top-0 hidden h-full w-px bg-gradient-to-b from-[#f43f72]/80 via-purple-300/25 to-transparent sm:block" />
 
-                      {/* Card Inner */}
-                      <div className="org-card-inner relative rounded-2xl border border-white/[0.05] bg-[#0a0312]/70 backdrop-blur-md overflow-hidden group-hover:border-white/[0.1] shadow-[0_4px_35px_rgba(0,0,0,0.4)] group-hover:shadow-[0_12px_50px_rgba(0,0,0,0.5),0_0_30px_rgba(168,85,247,0.06)] transition-all duration-500">
-                        {/* Top accent beam */}
-                        <div
-                          className="h-[2px] w-full opacity-30 group-hover:opacity-100 transition-opacity duration-500"
-                          style={{
-                            background: `linear-gradient(90deg, transparent 5%, rgba(${accent.rgb}, 0.2), ${accent.color}, rgba(${accent.rgb}, 0.2), transparent 95%)`,
-                          }}
-                        />
+            {filteredEvents.length > 0 ? (
+              <div className="space-y-4 lg:h-full lg:overflow-y-auto lg:pr-4 lg:[scrollbar-color:#f43f72_#160b24] lg:[scrollbar-width:thin]">
+                {filteredEvents.map((event) => {
+                  const uniqueId = `${activeDay}-${event.originalIndex}`;
+                  const isExpanded = expandedEventId === uniqueId;
+                  const meta = typeMeta[event.type];
+                  const EventIcon = meta.Icon;
 
-                        {/* Corner marks */}
-                        <div className="org-corner-marks absolute inset-0 rounded-2xl" />
+                  return (
+                    <article key={uniqueId} className="relative sm:pl-14">
+                      <div className="absolute left-[13px] top-6 z-10 hidden h-4 w-4 border border-[#f43f72]/70 bg-[#090411] sm:block" />
+                      <button
+                        type="button"
+                        onClick={() => setExpandedEventId(isExpanded ? null : uniqueId)}
+                        className={`group w-full border bg-[#10071d]/92 text-left shadow-[0_18px_70px_rgba(0,0,0,0.22)] transition hover:border-purple-300/35 ${
+                          isExpanded ? "border-[#f43f72]/70" : "border-white/15"
+                        }`}
+                      >
+                        <div className="grid gap-0 md:grid-cols-[132px_1fr]">
+                          <div className="border-b border-white/15 p-5 md:border-b-0 md:border-r">
+                            <div className="flex items-center gap-2 text-purple-50/78">
+                              <Clock3 className="h-4 w-4" />
+                              <span className="font-mono text-sm font-bold">{event.time}</span>
+                            </div>
+                            <div
+                              className={`mt-4 inline-flex items-center gap-2 border px-3 py-2 text-[10px] font-bold uppercase tracking-[0.18em] ${meta.border} ${meta.soft} ${meta.accent}`}
+                            >
+                              <EventIcon className="h-3.5 w-3.5" />
+                              {meta.label}
+                            </div>
+                          </div>
 
-                        {/* Holographic sweep overlay */}
-                        <div className="absolute inset-0 org-ambient-glow pointer-events-none bg-white/[0.01]" />
-
-                        <div className="relative z-10 p-5 pl-6 sm:p-6 sm:pl-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
-                          {/* Left Column: Time, Type, Title, Description */}
-                          <div className="flex-1 space-y-3">
-                            <div className="flex flex-wrap items-center gap-3">
-                              {/* Monospace Glowing Time */}
-                              <span
-                                className="text-xs sm:text-sm font-mono font-bold tracking-wider"
-                                style={{
-                                  color: accent.color,
-                                  textShadow: `0 0 10px rgba(${accent.rgb}, 0.3)`,
-                                }}
-                              >
-                                {event.time}
-                              </span>
-
-                              {/* Type Badge */}
-                              <span
-                                className="inline-flex items-center gap-1.5 text-[9px] font-bold tracking-widest uppercase px-2.5 py-0.5 rounded-full border font-heading"
-                                style={{
-                                  color: accent.color,
-                                  borderColor: `rgba(${accent.rgb}, 0.2)`,
-                                  background: `rgba(${accent.rgb}, 0.05)`,
-                                }}
-                              >
-                                <IconComponent className="w-3 h-3" />
-                                {accent.label}
-                              </span>
+                          <div className="p-5 sm:p-6">
+                            <div className="flex items-start justify-between gap-4">
+                              <div>
+                                <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#f7d6ff]">
+                                  {event.tag}
+                                </p>
+                                <h3 className="mt-2 font-heading text-xl font-bold text-white sm:text-2xl">
+                                  {event.title}
+                                </h3>
+                              </div>
+                              <ChevronDown
+                                className={`mt-1 h-5 w-5 shrink-0 text-purple-50/70 transition ${
+                                  isExpanded ? "rotate-180 text-white" : ""
+                                }`}
+                              />
                             </div>
 
-                            <h3 className="text-base sm:text-lg font-bold text-white group-hover:text-purple-100 transition-colors duration-300 font-heading">
-                              {event.title}
-                            </h3>
-
-                            <p className="text-xs sm:text-sm text-purple-200/40 group-hover:text-purple-200/60 transition-colors duration-500 leading-relaxed max-w-2xl font-sans">
+                            <p className="mt-3 text-base leading-7 text-purple-50/82">
                               {event.description}
                             </p>
-                          </div>
 
-                          {/* Right Column: Cyber readout */}
-                          <div className="flex items-center gap-3 md:self-center self-end">
-                            <div className="flex gap-[3px] items-center">
-                              {[...Array(4)].map((_, i) => (
-                                <div
-                                  key={i}
-                                  className="w-[3px] h-3 rounded-full transition-all duration-500"
-                                  style={{
-                                    background:
-                                      i === 0
-                                        ? accent.color
-                                        : i === 1
-                                        ? `rgba(${accent.rgb}, 0.7)`
-                                        : i === 2
-                                        ? `rgba(${accent.rgb}, 0.4)`
-                                        : "rgba(255,255,255,0.05)",
-                                    boxShadow: i === 0 ? `0 0 6px ${accent.color}` : "none",
-                                  }}
-                                />
-                              ))}
+                            <div className="mt-5 flex flex-wrap gap-3 text-sm font-semibold text-purple-50/72">
+                              <span className="inline-flex items-center gap-2">
+                                <UsersRound className="h-4 w-4 text-[#c7a8ff]" />
+                                {event.speaker}
+                              </span>
+                              <span className="inline-flex items-center gap-2">
+                                <MapPin className="h-4 w-4 text-[#f43f72]" />
+                                {event.location}
+                              </span>
                             </div>
-                            <span className="text-[10px] font-mono text-purple-400/20 group-hover:text-purple-400/40 transition-colors duration-300">
-                              SCH_{activeDay.toUpperCase()}_N{(index + 1).toString().padStart(2, "0")}
-                            </span>
+
+                            <div
+                              className={`grid transition-all duration-300 ${
+                                isExpanded
+                                  ? "grid-rows-[1fr] opacity-100"
+                                  : "grid-rows-[0fr] opacity-0"
+                              }`}
+                            >
+                              <div className="overflow-hidden">
+                                <div className="mt-6 border-t border-white/15 pt-5">
+                                  <p className="text-xs font-bold uppercase tracking-[0.16em] text-purple-100/68">
+                                    Block Brief
+                                  </p>
+                                  <p className="mt-2 text-sm leading-7 text-purple-50/85">
+                                    {event.details}
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
+                      </button>
+                    </article>
+                  );
+                })}
+                <p className="border-l border-[#f43f72]/60 pl-4 text-xs font-semibold uppercase tracking-[0.16em] text-purple-100/62">
+                  Schedule timings are tentative and subject to final coordination.
+                </p>
+              </div>
+            ) : (
+              <div className="border border-dashed border-purple-300/35 bg-[#150a22]/90 px-6 py-14 text-center">
+                <p className="font-heading text-xl font-bold text-white">No blocks in this filter</p>
+                <p className="mt-2 text-sm text-purple-50/75">
+                  Try another track or return to the full two-day route.
+                </p>
+              </div>
+            )}
+
           </div>
         </div>
-
-        {/* Note */}
-        <p className="text-center text-purple-400/30 text-xs sm:text-sm mt-16 font-sans">
-          Schedule is tentative and subject to change
-        </p>
       </div>
     </section>
   );
