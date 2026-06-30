@@ -124,10 +124,10 @@ export default function ContactSection() {
         {/* ── Contact cards ───────────────────────────────────────────────── */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-14">
           {[
-            { name: "Adithi",   role: "CEO — Chief Executive Officer", phone: "+91 79076 14412" },
-            { name: "Midhun",   role: "COO — Chief Operational Officer", phone: "+91 99952 93933" },
-            { name: "Amarjith", role: undefined, phone: "+91 90613 60241" },
-            { name: "Aswath",   role: undefined, phone: "+91 73566 90727" },
+            { name: "Adithi",   role: "CEO — Chief Executive Officer (MEC)", phone: "+91 79076 14412" },
+            { name: "Midhun",   role: "COO — Chief Operational Officer (MEC)", phone: "+91 99952 93933" },
+            { name: "Amarjith", role: "CEO — Chief Executive Officer 1 (UCEK)", phone: "+91 90613 60241" },
+            { name: "Aswath",   role: "CEO — Chief Executive Officer 2 (UCEK)", phone: "+91 73566 90727" },
           ].map((contact, i) => (
             <div
               key={contact.name}
