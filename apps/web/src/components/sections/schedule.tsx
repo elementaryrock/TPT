@@ -256,7 +256,7 @@ export default function ScheduleSection() {
   return (
     <section
       id="schedule"
-      className="relative overflow-hidden bg-[#090411] py-20 sm:py-24 lg:h-screen lg:min-h-[760px] lg:py-0"
+      className="relative overflow-hidden bg-[#090411] py-14 sm:py-20 md:py-24 lg:h-screen lg:min-h-[760px] lg:py-0"
     >
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(244,63,114,0.16),transparent_32%),radial-gradient(circle_at_85%_18%,rgba(168,85,247,0.18),transparent_28%)]" />
@@ -264,13 +264,13 @@ export default function ScheduleSection() {
       </div>
 
       <div className="relative z-10 mx-auto h-full max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid h-full gap-10 lg:grid-cols-[0.86fr_1.14fr] lg:items-center lg:pt-24 lg:pb-10">
-          <div>
+        <div className="grid h-full gap-8 sm:gap-10 lg:grid-cols-[0.86fr_1.14fr] lg:items-center lg:pt-24 lg:pb-10">
+          <div className="min-w-0">
             <p className="mb-4 inline-flex items-center gap-3 border border-white/15 bg-[#1a0d2a]/90 px-4 py-2 text-xs font-bold uppercase tracking-[0.2em] text-purple-50/85">
               <CalendarDays className="h-4 w-4 text-[#f43f72]" />
               Plan Your Days
             </p>
-            <h2 className="font-display text-4xl uppercase leading-none tracking-wide text-white sm:text-5xl xl:text-6xl">
+            <h2 className="font-display text-2xl uppercase leading-none tracking-normal text-white sm:text-4xl sm:tracking-wide md:text-5xl xl:text-6xl">
               <span className="block">Event</span>
               <span className="mt-3 block text-[#c7a8ff] sm:mt-4">Schedule</span>
             </h2>
@@ -278,7 +278,7 @@ export default function ScheduleSection() {
               Two days built like a route map: arrive, align, build, and leave with a chapter action plan. Filter by track or open a block for the practical details.
             </p>
 
-            <div className="mt-7 grid grid-cols-2 gap-3">
+            <div className="mt-7 grid grid-cols-2 gap-2 sm:gap-3">
               {(["day1", "day2"] as const).map((day) => (
                 <button
                   key={day}
@@ -293,13 +293,13 @@ export default function ScheduleSection() {
                       : "border-white/15 bg-[#150a22]/88 hover:border-purple-300/45"
                   }`}
                 >
-                  <span className="text-xs font-bold uppercase tracking-[0.16em] text-purple-100/70">
+                  <span className="text-[10px] font-bold uppercase tracking-[0.1em] text-purple-100/70 sm:text-xs sm:tracking-[0.16em]">
                     {schedule[day].eyebrow}
                   </span>
-                  <span className="mt-3 block font-heading text-2xl font-bold text-white">
+                  <span className="mt-2 block font-heading text-xl font-bold text-white sm:mt-3 sm:text-2xl">
                     {schedule[day].label}
                   </span>
-                  <span className="mt-1 block text-sm font-semibold text-purple-50/78">
+                  <span className="mt-1 block text-xs font-semibold text-purple-50/78 sm:text-sm">
                     {schedule[day].date}
                   </span>
                   {activeDay === day && (
@@ -309,7 +309,7 @@ export default function ScheduleSection() {
               ))}
             </div>
 
-            <div className="mt-4 flex flex-wrap gap-2">
+            <div className="mt-4 flex gap-2 overflow-x-auto sm:flex-wrap sm:overflow-x-visible [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
               {filterTypes.map((type) => (
                 <button
                   key={type.id}
@@ -318,7 +318,7 @@ export default function ScheduleSection() {
                     setFilterType(type.id);
                     setExpandedEventId(null);
                   }}
-                  className={`border px-3.5 py-2 text-xs font-bold uppercase tracking-[0.14em] transition ${
+                  className={`shrink-0 border px-3.5 py-2 text-xs font-bold uppercase tracking-[0.14em] transition ${
                     filterType === type.id
                       ? "border-[#f43f72]/70 bg-[#f43f72]/14 text-white"
                       : "border-white/15 bg-[#150a22]/88 text-purple-50/72 hover:border-purple-300/45 hover:text-white"
@@ -329,16 +329,16 @@ export default function ScheduleSection() {
               ))}
             </div>
 
-            <div className="mt-5 border border-white/15 bg-[#150a22]/90 p-4 xl:p-5">
+            <div className="mt-5 border border-white/15 bg-[#150a22]/90 p-3 sm:p-4 xl:p-5">
               <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#f4c7ff]">
                 {currentSchedule.eyebrow}
               </p>
               <p className="mt-2 text-sm leading-7 text-purple-50/82">{currentSchedule.theme}</p>
-              <div className="mt-4 grid grid-cols-3 border border-white/15">
+              <div className="mt-4 grid grid-cols-3 border border-white/15 [&>*]:min-w-0">
                 {dayStats.map((stat) => (
-                  <div key={stat.label} className="border-r border-white/15 p-3 last:border-r-0">
-                    <p className="font-display text-2xl leading-none text-white">{stat.value}</p>
-                    <p className="mt-2 text-[10px] font-bold uppercase tracking-[0.14em] text-purple-100/68">
+                  <div key={stat.label} className="border-r border-white/15 p-2 last:border-r-0 sm:p-3">
+                    <p className="font-display text-lg leading-none text-white sm:text-2xl">{stat.value}</p>
+                    <p className="mt-2 text-[9px] font-bold uppercase tracking-[0.08em] text-purple-100/68 sm:text-[10px] sm:tracking-[0.14em]">
                       {stat.label}
                     </p>
                   </div>
@@ -347,11 +347,11 @@ export default function ScheduleSection() {
             </div>
           </div>
 
-          <div className="relative lg:h-[calc(100vh-8.5rem)] lg:min-h-[610px]">
+          <div className="relative min-w-0 max-h-[70vh] overflow-y-auto sm:max-h-none lg:h-[calc(100vh-8.5rem)] lg:min-h-[610px] lg:overflow-y-visible [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] lg:[scrollbar-width:thin] lg:[scrollbar-color:#f43f72_#160b24]">
             <div className="absolute left-5 top-0 hidden h-full w-px bg-gradient-to-b from-[#f43f72]/80 via-purple-300/25 to-transparent sm:block" />
 
             {filteredEvents.length > 0 ? (
-              <div className="space-y-4 lg:h-full lg:overflow-y-auto lg:pr-4 lg:[scrollbar-color:#f43f72_#160b24] lg:[scrollbar-width:thin]">
+              <div className="space-y-3 sm:space-y-4 lg:h-full lg:overflow-y-auto lg:pr-4 lg:[scrollbar-color:#f43f72_#160b24] lg:[scrollbar-width:thin]">
                 {filteredEvents.map((event) => {
                   const uniqueId = `${activeDay}-${event.originalIndex}`;
                   const isExpanded = expandedEventId === uniqueId;
@@ -369,26 +369,28 @@ export default function ScheduleSection() {
                         }`}
                       >
                         <div className="grid gap-0 md:grid-cols-[132px_1fr]">
-                          <div className="border-b border-white/15 p-5 md:border-b-0 md:border-r">
-                            <div className="flex items-center gap-2 text-purple-50/78">
-                              <Clock3 className="h-4 w-4" />
-                              <span className="font-mono text-sm font-bold">{event.time}</span>
-                            </div>
-                            <div
-                              className={`mt-4 inline-flex items-center gap-2 border px-3 py-2 text-[10px] font-bold uppercase tracking-[0.18em] ${meta.border} ${meta.soft} ${meta.accent}`}
-                            >
-                              <EventIcon className="h-3.5 w-3.5" />
-                              {meta.label}
+                          <div className="border-b border-white/15 p-4 sm:p-5 md:border-b-0 md:border-r">
+                            <div className="flex items-center justify-between gap-2 md:justify-start">
+                              <div className="flex items-center gap-2 text-purple-50/78">
+                                <Clock3 className="h-4 w-4" />
+                                <span className="font-mono text-sm font-bold">{event.time}</span>
+                              </div>
+                              <div
+                                className={`inline-flex items-center gap-2 border px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.18em] md:mt-4 md:py-2 ${meta.border} ${meta.soft} ${meta.accent}`}
+                              >
+                                <EventIcon className="h-3.5 w-3.5" />
+                                {meta.label}
+                              </div>
                             </div>
                           </div>
 
-                          <div className="p-5 sm:p-6">
+                          <div className="p-4 sm:p-5 md:p-6">
                             <div className="flex items-start justify-between gap-4">
                               <div>
                                 <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#f7d6ff]">
                                   {event.tag}
                                 </p>
-                                <h3 className="mt-2 font-heading text-xl font-bold text-white sm:text-2xl">
+                                <h3 className="mt-2 font-heading text-lg font-bold text-white sm:text-xl md:text-2xl">
                                   {event.title}
                                 </h3>
                               </div>
@@ -399,11 +401,11 @@ export default function ScheduleSection() {
                               />
                             </div>
 
-                            <p className="mt-3 text-base leading-7 text-purple-50/82">
+                            <p className="mt-2 text-sm leading-6 text-purple-50/82 sm:mt-3 sm:text-base sm:leading-7">
                               {event.description}
                             </p>
 
-                            <div className="mt-5 flex flex-wrap gap-3 text-sm font-semibold text-purple-50/72">
+                            <div className="mt-3 flex flex-wrap gap-2 text-xs font-semibold text-purple-50/72 sm:mt-5 sm:gap-3 sm:text-sm">
                               <span className="inline-flex items-center gap-2">
                                 <UsersRound className="h-4 w-4 text-[#c7a8ff]" />
                                 {event.speaker}
