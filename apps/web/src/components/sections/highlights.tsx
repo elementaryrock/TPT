@@ -156,7 +156,7 @@ export default function HighlightsSection() {
   return (
     <section
       id="highlights"
-      className="relative overflow-hidden bg-[#10071d] py-20 sm:py-24 md:py-32"
+      className="relative overflow-hidden bg-[#10071d] py-14 sm:py-20 md:py-28 lg:py-32"
     >
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.035)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.035)_1px,transparent_1px)] bg-[size:72px_72px]" />
@@ -172,20 +172,20 @@ export default function HighlightsSection() {
               <span className="h-1.5 w-1.5 rounded-full bg-[#f43f72]" />
               Previous Edition Archive
             </div>
-            <h2 className="font-display text-4xl uppercase leading-none tracking-wide text-white sm:text-5xl md:text-6xl lg:text-7xl">
+            <h2 className="font-display text-2xl uppercase leading-none tracking-normal text-white sm:text-4xl sm:tracking-wide md:text-5xl lg:text-6xl xl:text-7xl">
               <span className="block">TPT 3.0</span>
-              <span className="mt-3 block text-[#c7a8ff] sm:mt-4">Highlights</span>
+              <span className="mt-2 block text-[#c7a8ff] sm:mt-4">Highlights</span>
             </h2>
             <p className="mt-6 max-w-xl text-base leading-8 text-purple-50/82">
               A sharper look back at the sessions, rooms, faces, and campaign frames that shaped the last edition. The gallery is treated like an event archive, not filler below the fold.
             </p>
           </div>
 
-          <div className="mt-8 grid gap-3 sm:grid-cols-3 lg:max-w-3xl">
+          <div className="mt-8 grid grid-cols-3 gap-1.5 sm:gap-3 lg:max-w-3xl">
             {stats.map((stat) => (
-              <div key={stat.label} className="border border-white/15 bg-[#0b0414]/88 p-4 sm:p-5">
-                <p className="font-display text-3xl leading-none text-white sm:text-4xl">{stat.value}</p>
-                <p className="mt-3 max-w-[9rem] text-xs font-bold uppercase leading-5 tracking-[0.16em] text-purple-100/72">
+              <div key={stat.label} className="min-w-0 overflow-hidden border border-white/15 bg-[#0b0414]/88 p-2 sm:p-4 md:p-5">
+                <p className="font-display text-lg leading-none text-white sm:text-3xl md:text-4xl">{stat.value}</p>
+                <p className="mt-2 text-[9px] font-bold uppercase leading-4 tracking-[0.06em] text-purple-100/72 sm:mt-3 sm:text-xs sm:leading-5 sm:tracking-[0.16em]">
                   {stat.label}
                 </p>
               </div>
@@ -193,7 +193,7 @@ export default function HighlightsSection() {
           </div>
         </div>
 
-        <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-8 grid gap-3 sm:mt-10 sm:grid-cols-2 lg:grid-cols-3">
             {highlights.map(({ title, description, Icon }, index) => (
               <article
                 key={title}
@@ -220,13 +220,13 @@ export default function HighlightsSection() {
             ))}
         </div>
 
-        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-12">
+        <div className="mt-8 grid gap-3 sm:mt-10 sm:grid-cols-2 lg:grid-cols-12">
           {galleryImages.map((image, index) => (
             <button
               key={image.src}
               type="button"
               onClick={() => setActiveImageIndex(index)}
-              className={`group relative min-h-[240px] overflow-hidden border border-white/15 text-left transition hover:border-[#f43f72]/60 ${image.className}`}
+              className={`group relative min-h-[200px] overflow-hidden border border-white/15 text-left transition hover:border-[#f43f72]/60 sm:min-h-[240px] ${image.className}`}
             >
               <img
                 src={image.src}
@@ -255,7 +255,7 @@ export default function HighlightsSection() {
       </div>
 
       {activeImage && activeImageIndex !== null && (
-        <div className="fixed inset-0 z-[99999] flex items-center justify-center bg-[#07030d]/95 p-4 backdrop-blur-xl">
+        <div className="fixed inset-0 z-[99999] flex items-center justify-center bg-[#07030d]/95 p-3 backdrop-blur-xl sm:p-4">
           <button
             type="button"
             aria-label="Close lightbox"
@@ -295,7 +295,7 @@ export default function HighlightsSection() {
               <img
                 src={activeImage.src}
                 alt={activeImage.title}
-                className="max-h-[74vh] w-full object-contain"
+                className="max-h-[50vh] w-full object-contain sm:max-h-[74vh]"
               />
             </div>
             <div className="mt-4 flex flex-col justify-between gap-4 border border-white/15 bg-[#160b24]/95 p-4 sm:flex-row sm:items-center">

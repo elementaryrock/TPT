@@ -193,7 +193,7 @@
   transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease, border-color 0.5s ease;
 }
 .org-card-3d:hover > .org-card-inner {
-  transform: translateY(-6px) rotateX(2deg);
+  transform: translateY(-6px) rotateX(2deg) translateZ(10px);
 }
 
 /* Animated gradient border for grid cards */
