@@ -264,21 +264,21 @@ export default function ScheduleSection() {
       </div>
 
       <div className="relative z-10 mx-auto h-full max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid h-full gap-8 sm:gap-10 lg:grid-cols-[0.86fr_1.14fr] lg:items-center lg:pt-24 lg:pb-10">
-          <div className="min-w-0">
+        <div className="grid h-full gap-8 sm:gap-10 lg:grid-cols-[5fr_7fr] lg:gap-6 lg:items-start lg:pt-20 lg:pb-10 xl:gap-10">
+          <div className="min-w-0 overflow-hidden lg:pt-6">
             <p className="mb-4 inline-flex items-center gap-3 border border-white/15 bg-[#1a0d2a]/90 px-4 py-2 text-xs font-bold uppercase tracking-[0.2em] text-purple-50/85">
               <CalendarDays className="h-4 w-4 text-[#f43f72]" />
               Plan Your Days
             </p>
-            <h2 className="font-display text-2xl uppercase leading-none tracking-normal text-white sm:text-4xl sm:tracking-wide md:text-5xl xl:text-6xl">
+            <h2 className="font-display text-2xl uppercase leading-none text-white sm:text-3xl md:text-4xl lg:text-4xl">
               <span className="block">Event</span>
-              <span className="mt-3 block text-[#c7a8ff] sm:mt-4">Schedule</span>
+              <span className="mt-2 block text-[#c7a8ff] sm:mt-3">Schedule</span>
             </h2>
-            <p className="mt-5 max-w-xl text-base leading-8 text-purple-50/82">
+            <p className="mt-4 max-w-xl text-sm leading-7 text-purple-50/82 sm:text-base sm:leading-8">
               Two days built like a route map: arrive, align, build, and leave with a chapter action plan. Filter by track or open a block for the practical details.
             </p>
 
-            <div className="mt-7 grid grid-cols-2 gap-2 sm:gap-3">
+            <div className="mt-5 grid grid-cols-2 gap-2 sm:gap-3 lg:mt-5">
               {(["day1", "day2"] as const).map((day) => (
                 <button
                   key={day}
@@ -329,7 +329,7 @@ export default function ScheduleSection() {
               ))}
             </div>
 
-            <div className="mt-5 border border-white/15 bg-[#150a22]/90 p-3 sm:p-4 xl:p-5">
+            <div className="mt-4 border border-white/15 bg-[#150a22]/90 p-3 sm:p-4 xl:p-5">
               <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#f4c7ff]">
                 {currentSchedule.eyebrow}
               </p>
@@ -347,7 +347,7 @@ export default function ScheduleSection() {
             </div>
           </div>
 
-          <div className="relative min-w-0 max-h-[70vh] overflow-y-auto sm:max-h-none lg:h-[calc(100vh-8.5rem)] lg:min-h-[610px] lg:overflow-y-visible [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] lg:[scrollbar-width:thin] lg:[scrollbar-color:#f43f72_#160b24]">
+          <div className="relative min-w-0 max-h-[70vh] overflow-y-auto sm:max-h-none lg:h-[calc(100vh-7rem)] lg:min-h-[610px] lg:overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] lg:[scrollbar-width:thin] lg:[scrollbar-color:#f43f72_#160b24]">
             <div className="absolute left-5 top-0 hidden h-full w-px bg-gradient-to-b from-[#f43f72]/80 via-purple-300/25 to-transparent sm:block" />
 
             {filteredEvents.length > 0 ? (
@@ -368,15 +368,15 @@ export default function ScheduleSection() {
                           isExpanded ? "border-[#f43f72]/70" : "border-white/15"
                         }`}
                       >
-                        <div className="grid gap-0 md:grid-cols-[132px_1fr]">
-                          <div className="border-b border-white/15 p-4 sm:p-5 md:border-b-0 md:border-r">
-                            <div className="flex items-center justify-between gap-2 md:justify-start">
+                        <div className="grid gap-0 lg:grid-cols-[132px_1fr]">
+                          <div className="border-b border-white/15 p-4 sm:p-5 lg:border-b-0 lg:border-r">
+                            <div className="flex items-center justify-between gap-2 lg:flex-col lg:items-start lg:justify-start">
                               <div className="flex items-center gap-2 text-purple-50/78">
                                 <Clock3 className="h-4 w-4" />
                                 <span className="font-mono text-sm font-bold">{event.time}</span>
                               </div>
                               <div
-                                className={`inline-flex items-center gap-2 border px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.18em] md:mt-4 md:py-2 ${meta.border} ${meta.soft} ${meta.accent}`}
+                                className={`inline-flex items-center gap-2 border px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.18em] lg:mt-4 lg:py-2 ${meta.border} ${meta.soft} ${meta.accent}`}
                               >
                                 <EventIcon className="h-3.5 w-3.5" />
                                 {meta.label}
@@ -384,7 +384,7 @@ export default function ScheduleSection() {
                             </div>
                           </div>
 
-                          <div className="p-4 sm:p-5 md:p-6">
+                          <div className="p-4 sm:p-5 lg:p-6">
                             <div className="flex items-start justify-between gap-4">
                               <div>
                                 <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#f7d6ff]">

@@ -1,4 +1,4 @@
-import React from "react";
+import { Mail, MapPin, Phone, Send } from "lucide-react";
 
 function InstagramIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
@@ -36,193 +36,258 @@ function LinkedinIcon(props: React.SVGProps<SVGSVGElement>) {
   );
 }
 
+const contacts = [
+  {
+    name: "Adithi",
+    role: "Chief Executive Officer",
+    org: "MEC",
+    phone: "+91 79076 14412",
+  },
+  {
+    name: "Midhun",
+    role: "Chief Operational Officer",
+    org: "MEC",
+    phone: "+91 99952 93933",
+  },
+  {
+    name: "Amarnath Sujith",
+    role: "Chief Executive Officer-1",
+    org: "UCEK",
+    phone: "+91 90613 60241",
+  },
+  {
+    name: "Aswath S",
+    role: "Chief Executive Officer-2",
+    org: "UCEK",
+    phone: "+91 73566 90727",
+  },
+];
+
+const socials = [
+  {
+    label: "Instagram",
+    href: "https://www.instagram.com/marianiedc/",
+    Icon: InstagramIcon,
+    accent: "text-[#ff8eb3]",
+    hoverBorder: "hover:border-[#ff8eb3]/40",
+    hoverBg: "hover:bg-[#ff8eb3]/8",
+  },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/company/inspira-marian-iedc/",
+    Icon: LinkedinIcon,
+    accent: "text-[#8bd3ff]",
+    hoverBorder: "hover:border-[#8bd3ff]/40",
+    hoverBg: "hover:bg-[#8bd3ff]/8",
+  },
+];
+
 export default function ContactSection() {
   return (
-    <section id="contact" className="relative py-24 md:py-32 overflow-hidden">
-      {/* Background accent — untouched */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-purple-950/20 to-transparent pointer-events-none" />
-
-      {/* ── Wave foreground layer ─────────────────────────────────────────── */}
-      <div className="absolute inset-x-0 bottom-0 pointer-events-none select-none" style={{ height: "65%" }}>
-        {/* Wave 1 — deepest / back */}
-        <svg
-          className="absolute inset-x-0 bottom-0 w-full"
-          viewBox="0 0 1440 320"
-          preserveAspectRatio="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M0,160 C320,260 480,80 720,180 C960,280 1200,100 1440,200 L1440,320 L0,320 Z"
-            fill="rgba(88,28,135,0.28)"
-          />
-        </svg>
-
-        {/* Wave 2 — mid-purple */}
-        <svg
-          className="absolute inset-x-0 bottom-0 w-full"
-          viewBox="0 0 1440 280"
-          preserveAspectRatio="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M0,100 C180,40 420,200 660,120 C900,40 1200,180 1440,100 L1440,280 L0,280 Z"
-            fill="rgba(109,40,217,0.22)"
-          />
-        </svg>
-
-        {/* Wave 3 — lighter lavender */}
-        <svg
-          className="absolute inset-x-0 bottom-0 w-full"
-          viewBox="0 0 1440 220"
-          preserveAspectRatio="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M0,80 C360,160 720,40 1080,110 C1260,145 1380,60 1440,90 L1440,220 L0,220 Z"
-            fill="rgba(167,139,250,0.14)"
-          />
-        </svg>
-
-        {/* Wave 4 — faint blush highlight at the very bottom */}
-        <svg
-          className="absolute inset-x-0 bottom-0 w-full"
-          viewBox="0 0 1440 140"
-          preserveAspectRatio="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M0,50 C320,110 640,10 960,60 C1120,85 1300,30 1440,55 L1440,140 L0,140 Z"
-            fill="rgba(196,181,253,0.09)"
-          />
-        </svg>
+    <section
+      id="contact"
+      className="relative overflow-hidden bg-[#0b0515] py-14 sm:py-20 md:py-28 lg:py-32"
+    >
+      {/* Background */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.025)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.025)_1px,transparent_1px)] bg-[size:72px_72px]" />
+        <div className="absolute inset-x-0 top-0 h-64 bg-gradient-to-b from-[#1a0930] to-transparent" />
+        <div className="absolute right-[-10%] top-20 h-[500px] w-[500px] rounded-full bg-[#f43f72]/8 blur-[140px]" />
+        <div className="absolute left-[-8%] bottom-20 h-[450px] w-[450px] rounded-full bg-[#c7a8ff]/8 blur-[130px]" />
       </div>
-      {/* ── /Wave foreground layer ────────────────────────────────────────── */}
 
-      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-
-        {/* ── Section header ──────────────────────────────────────────────── */}
-        <div className="text-center mb-16">
-          <p className="text-purple-400 text-xs font-semibold tracking-[0.35em] uppercase mb-4">
-            Get in Touch
-          </p>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-normal font-display tracking-[0.3em] mb-6">
-            <span className="bg-gradient-to-r from-white via-purple-100 to-purple-300 bg-clip-text text-transparent py-2 -my-2 inline-block">
-              Contact Us
-            </span>
-          </h2>
-          {/* Decorative rule */}
-          <div className="flex items-center justify-center gap-3 mb-6">
-            <div className="h-px w-16 bg-gradient-to-r from-transparent to-purple-500/60" />
-            <div className="w-1.5 h-1.5 rounded-full bg-purple-400" />
-            <div className="h-px w-16 bg-gradient-to-l from-transparent to-purple-500/60" />
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        {/* Header */}
+        <div className="grid gap-10 lg:grid-cols-[1fr_1fr] lg:items-end lg:gap-16">
+          <div>
+            <div className="mb-5 inline-flex items-center gap-3 border border-white/15 bg-[#1a0d2a]/90 px-4 py-2 text-xs font-bold uppercase tracking-[0.22em] text-[#eadcff]">
+              <Send className="h-3.5 w-3.5 text-[#f43f72]" />
+              Reach Out
+            </div>
+            <h2 className="font-display text-2xl uppercase leading-none tracking-normal text-white sm:text-4xl sm:tracking-wide md:text-5xl lg:text-6xl">
+              <span className="block">Get In</span>
+              <span className="mt-2 block text-[#c7a8ff] sm:mt-4">Touch</span>
+            </h2>
+            <p className="mt-5 max-w-lg text-sm leading-7 text-purple-50/75 sm:text-base sm:leading-8">
+              Questions about TPT 4.0? Connect with our organising team. We're here to help you with registration, logistics, or anything about the program.
+            </p>
           </div>
-          <p className="text-purple-200/50 text-base max-w-xl mx-auto leading-relaxed">
-            Have questions about TPT 4.0? Reach out to our team — we're happy to help.
-          </p>
+
+          {/* Quick info cards */}
+          <div className="grid grid-cols-2 gap-3">
+            <div className="border border-white/15 bg-[#10071d]/80 p-4 sm:p-5">
+              <div className="flex h-10 w-10 items-center justify-center border border-[#f43f72]/30 bg-[#f43f72]/10">
+                <Mail className="h-4 w-4 text-[#f43f72]" />
+              </div>
+              <p className="mt-4 text-[10px] font-bold uppercase tracking-[0.16em] text-purple-100/55">
+                Email Us
+              </p>
+              <a
+                href="mailto:inspiramarianiedc@gmail.com"
+                className="mt-1 block text-xs font-semibold text-purple-50/85 transition hover:text-[#f43f72] sm:text-sm"
+              >
+                inspiramarianiedc
+                <br className="sm:hidden" />
+                @gmail.com
+              </a>
+            </div>
+            <div className="border border-white/15 bg-[#10071d]/80 p-4 sm:p-5">
+              <div className="flex h-10 w-10 items-center justify-center border border-[#c7a8ff]/30 bg-[#c7a8ff]/10">
+                <MapPin className="h-4 w-4 text-[#c7a8ff]" />
+              </div>
+              <p className="mt-4 text-[10px] font-bold uppercase tracking-[0.16em] text-purple-100/55">
+                Venue
+              </p>
+              <p className="mt-1 text-xs font-semibold text-purple-50/85 sm:text-sm">
+                Marian Engineering
+                <br />
+                College, Trivandrum
+              </p>
+            </div>
+          </div>
         </div>
 
-        {/* ── Contact cards ───────────────────────────────────────────────── */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-14">
-          {[
-            { name: "Adithi",   role: "CEO — Chief Executive Officer (MEC)", phone: "+91 79076 14412" },
-            { name: "Midhun",   role: "COO — Chief Operational Officer (MEC)", phone: "+91 99952 93933" },
-            { name: "Amarjith", role: "CEO — Chief Executive Officer 1 (UCEK)", phone: "+91 90613 60241" },
-            { name: "Aswath",   role: "CEO — Chief Executive Officer 2 (UCEK)", phone: "+91 73566 90727" },
-          ].map((contact, i) => (
-            <div
-              key={contact.name}
-              className="group relative rounded-3xl overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-purple-900/40"
-              style={{ animationDelay: `${i * 80}ms` }}
-            >
-              {/* Card glow border */}
-              <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-purple-500/20 via-violet-600/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <div className="absolute inset-[1px] rounded-3xl bg-gradient-to-b from-purple-950/70 to-[#0d0518]/80 backdrop-blur-xl" />
+        {/* Contact cards */}
+        <div className="mt-10 sm:mt-14">
+          <div className="mb-5 flex items-center gap-4">
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-purple-100/55">
+              Core Team
+            </p>
+            <div className="h-px flex-1 bg-white/10" />
+          </div>
 
-              {/* Card content */}
-              <div className="relative p-7 flex flex-col h-full border border-purple-500/15 rounded-3xl group-hover:border-purple-400/35 transition-colors duration-300">
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {contacts.map((contact, i) => (
+              <article
+                key={contact.name}
+                className="group relative border border-white/15 bg-[#10071d]/70 transition hover:border-[#f43f72]/50 hover:bg-[#160b24]"
+              >
+                {/* Hover accent */}
+                <div className="absolute left-0 top-0 h-full w-1 bg-gradient-to-b from-[#f43f72] via-[#b46cff] to-transparent opacity-0 transition group-hover:opacity-100" />
 
-                {/* Avatar ring */}
-                <div className="w-12 h-12 rounded-full mb-5 flex items-center justify-center relative">
-                  <div className="absolute inset-0 rounded-full bg-gradient-to-br from-purple-500/30 to-violet-700/30 group-hover:from-purple-400/40 group-hover:to-violet-600/40 transition-all duration-300" />
-                  <svg className="relative w-5 h-5 text-purple-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
-                  </svg>
-                </div>
+                <div className="p-5 sm:p-6">
+                  {/* Index */}
+                  <p className="font-display text-2xl leading-none text-white/15 sm:text-3xl">
+                    {String(i + 1).padStart(2, "0")}
+                  </p>
 
-                {/* Name */}
-                <h3 className="font-display font-normal tracking-[0.3em] text-sm text-white/90 mb-1 group-hover:text-purple-100 transition-colors uppercase">
-                  {contact.name}
-                </h3>
+                  {/* Name */}
+                  <h3 className="mt-4 font-heading text-lg font-bold text-white">
+                    {contact.name}
+                  </h3>
 
-                {/* Designation */}
-                <p className="text-[10px] tracking-widest uppercase text-purple-400/50 mb-4">
-                  {contact.role ?? "— TBA —"}
-                </p>
+                  {/* Role */}
+                  <p className="mt-1 text-[10px] font-bold uppercase tracking-[0.16em] text-[#c7a8ff]/70">
+                    {contact.role}
+                  </p>
 
-                {/* Divider */}
-                <div className="h-px bg-gradient-to-r from-purple-500/20 via-violet-400/15 to-transparent mb-4" />
+                  {/* Org badge */}
+                  <div className="mt-3 inline-flex items-center gap-2 border border-white/15 bg-white/5 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.18em] text-purple-50/60">
+                    {contact.org}
+                  </div>
 
-                {/* Phone */}
-                {contact.phone && (
+                  {/* Divider */}
+                  <div className="my-4 h-px bg-white/10" />
+
+                  {/* Phone */}
                   <a
                     href={`tel:${contact.phone.replace(/\s/g, "")}`}
-                    className="flex items-center gap-2.5 text-xs text-purple-300/60 hover:text-purple-200 transition-colors duration-200 mt-auto group/link"
+                    className="group/link flex items-center gap-3 text-sm text-purple-50/70 transition hover:text-white"
                   >
-                    <span className="w-6 h-6 rounded-lg bg-purple-500/10 flex items-center justify-center flex-shrink-0 group-hover/link:bg-purple-500/20 transition-colors">
-                      <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z" />
-                      </svg>
+                    <span className="flex h-8 w-8 shrink-0 items-center justify-center border border-[#f43f72]/25 bg-[#f43f72]/8 transition group-hover/link:border-[#f43f72]/50 group-hover/link:bg-[#f43f72]/15">
+                      <Phone className="h-3.5 w-3.5 text-[#f43f72]" />
                     </span>
-                    <span className="font-mono">{contact.phone}</span>
+                    <span className="font-mono text-xs sm:text-sm">
+                      {contact.phone}
+                    </span>
                   </a>
-                )}
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* ── Social row ──────────────────────────────────────────────────── */}
-        <div className="relative max-w-lg mx-auto">
-          {/* Ambient glow */}
-          <div className="absolute -inset-4 bg-gradient-to-r from-purple-600/15 via-violet-500/10 to-purple-600/15 rounded-3xl blur-2xl pointer-events-none" />
-
-          <div className="relative rounded-3xl border border-purple-500/15 bg-purple-950/40 backdrop-blur-xl p-8 text-center">
-            <p className="text-purple-300/50 text-xs tracking-[0.25em] uppercase mb-6">
-              Connect with us
-            </p>
-            <div className="grid grid-cols-2 gap-4">
-              {[
-                {
-                  label: "Instagram",
-                  href: "https://www.instagram.com/marianiedc/",
-                  icon: InstagramIcon,
-                  hover: "hover:text-pink-300 hover:border-pink-400/30 hover:bg-pink-500/8 hover:shadow-pink-500/10",
-                },
-                {
-                  label: "LinkedIn",
-                  href: "https://www.linkedin.com/company/inspira-marian-iedc/",
-                  icon: LinkedinIcon,
-                  hover: "hover:text-sky-300 hover:border-sky-400/30 hover:bg-sky-500/8 hover:shadow-sky-500/10",
-                },
-              ].map((social) => {
-                const Icon = social.icon;
-                return (
-                  <a
-                    key={social.label}
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`flex items-center justify-center gap-3 px-6 py-4 rounded-2xl border border-purple-500/15 bg-purple-500/5 text-sm font-medium text-purple-200/70 transition-all duration-300 hover:scale-[1.03] hover:shadow-lg ${social.hover}`}
-                  >
-                    <Icon className="w-5 h-5 flex-shrink-0" />
-                    <span className="tracking-wide">{social.label}</span>
-                  </a>
-                );
-              })}
-            </div>
+                </div>
+              </article>
+            ))}
           </div>
         </div>
 
+        {/* Social links & CTA */}
+        <div className="mt-10 grid gap-3 sm:mt-14 sm:grid-cols-3">
+          {/* Social cards */}
+          {socials.map(({ label, href, Icon, accent, hoverBorder, hoverBg }) => (
+            <a
+              key={label}
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`group flex items-center gap-4 border border-white/15 bg-[#10071d]/70 p-5 transition ${hoverBorder} ${hoverBg}`}
+            >
+              <div className="flex h-11 w-11 shrink-0 items-center justify-center border border-purple-300/20 bg-[#190a29]">
+                <Icon className={`h-5 w-5 ${accent}`} />
+              </div>
+              <div>
+                <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-purple-100/50">
+                  Follow Us
+                </p>
+                <p className="mt-1 font-heading text-base font-bold text-white">
+                  {label}
+                </p>
+              </div>
+              <svg
+                className="ml-auto h-4 w-4 text-purple-50/30 transition group-hover:translate-x-1 group-hover:text-white"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2.5}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M13 7l5 5m0 0l-5 5m5-5H6"
+                />
+              </svg>
+            </a>
+          ))}
+
+          {/* CTA card */}
+          <a
+            href="https://makemypass.com/event/the-perfect-trajectory-4-0"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group relative overflow-hidden border border-[#f43f72]/40 bg-[#f43f72]/10 p-5 transition hover:border-[#f43f72]/70 hover:bg-[#f43f72]/15"
+          >
+            <div className="absolute right-0 top-0 h-full w-1/2 bg-gradient-to-l from-[#f43f72]/10 to-transparent opacity-0 transition group-hover:opacity-100" />
+            <div className="relative flex items-center gap-4">
+              <div className="flex h-11 w-11 shrink-0 items-center justify-center bg-gradient-to-br from-[#f43f72] to-[#b46cff]">
+                <Send className="h-5 w-5 text-white" />
+              </div>
+              <div>
+                <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-[#ffd38a]">
+                  Register Now
+                </p>
+                <p className="mt-1 font-heading text-base font-bold text-white">
+                  Join TPT 4.0
+                </p>
+              </div>
+              <svg
+                className="ml-auto h-5 w-5 text-white/50 transition group-hover:translate-x-1 group-hover:text-white"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2.5}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M13 7l5 5m0 0l-5 5m5-5H6"
+                />
+              </svg>
+            </div>
+          </a>
+        </div>
+
+        {/* Bottom note */}
+        <div className="mt-10 border-t border-white/10 pt-6 text-center sm:mt-14">
+          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-purple-100/40">
+            Organised by Inspira — Marian IEDC &amp; UCEK IEDC  ·  July 17–18, 2026
+          </p>
+        </div>
       </div>
     </section>
   );
