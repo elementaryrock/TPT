@@ -156,11 +156,11 @@ export default function HighlightsSection() {
   return (
     <section
       id="highlights"
-      className="relative overflow-hidden bg-[#10071d] py-14 sm:py-20 md:py-28 lg:py-32"
+      className="relative overflow-hidden bg-[#0d0518] py-14 sm:py-20 md:py-28 lg:py-32"
     >
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.035)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.035)_1px,transparent_1px)] bg-[size:72px_72px]" />
-        <div className="absolute inset-x-0 top-0 h-64 bg-gradient-to-b from-[#2a1242] to-transparent" />
+        <div className="absolute inset-x-0 top-0 h-64 bg-gradient-to-b from-[#0d0518] to-transparent" />
         <div className="absolute left-[-12%] top-24 h-[520px] w-[520px] rounded-full bg-[#f0b5ff]/10 blur-[120px]" />
         <div className="absolute right-[-16%] bottom-10 h-[620px] w-[620px] rounded-full bg-[#f43f72]/10 blur-[150px]" />
       </div>

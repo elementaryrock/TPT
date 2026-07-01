@@ -86,7 +86,7 @@ export default function Footer() {
           </div>
 
           {/* Quick Links Column (Spans 3 cols) */}
-          <div className="md:col-span-3">
+          <div className="hidden md:block md:col-span-3">
             <h4 className="text-xs font-normal tracking-[0.25em] text-purple-400/40 uppercase mb-5">
               Navigate
             </h4>

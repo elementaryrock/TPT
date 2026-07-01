@@ -256,16 +256,16 @@ export default function ScheduleSection() {
   return (
     <section
       id="schedule"
-      className="relative overflow-hidden bg-[#090411] py-14 sm:py-20 md:py-24 lg:h-screen lg:min-h-[760px] lg:py-0"
+      className="relative overflow-hidden bg-[#090411] py-14 sm:py-20 md:py-24 lg:py-24"
     >
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(244,63,114,0.16),transparent_32%),radial-gradient(circle_at_85%_18%,rgba(168,85,247,0.18),transparent_28%)]" />
         <div className="absolute inset-0 bg-[linear-gradient(120deg,transparent_0%,transparent_48%,rgba(255,255,255,0.05)_49%,transparent_50%,transparent_100%)] bg-[size:180px_180px]" />
       </div>
 
-      <div className="relative z-10 mx-auto h-full max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid h-full gap-8 sm:gap-10 lg:grid-cols-[5fr_7fr] lg:gap-6 lg:items-start lg:pt-20 lg:pb-10 xl:gap-10">
-          <div className="min-w-0 overflow-hidden lg:pt-6">
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="grid gap-8 sm:gap-10 lg:grid-cols-[5fr_7fr] lg:gap-6 lg:items-start xl:gap-10">
+          <div className="min-w-0 lg:pt-2">
             <p className="mb-4 inline-flex items-center gap-3 border border-white/15 bg-[#1a0d2a]/90 px-4 py-2 text-xs font-bold uppercase tracking-[0.2em] text-purple-50/85">
               <CalendarDays className="h-4 w-4 text-[#f43f72]" />
               Plan Your Days
@@ -347,11 +347,11 @@ export default function ScheduleSection() {
             </div>
           </div>
 
-          <div className="relative min-w-0 max-h-[70vh] overflow-y-auto sm:max-h-none lg:h-[calc(100vh-7rem)] lg:min-h-[610px] lg:overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] lg:[scrollbar-width:thin] lg:[scrollbar-color:#f43f72_#160b24]">
+          <div className="relative min-w-0 lg:max-h-[80vh] lg:overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
             <div className="absolute left-5 top-0 hidden h-full w-px bg-gradient-to-b from-[#f43f72]/80 via-purple-300/25 to-transparent sm:block" />
 
             {filteredEvents.length > 0 ? (
-              <div className="space-y-3 sm:space-y-4 lg:h-full lg:overflow-y-auto lg:pr-4 lg:[scrollbar-color:#f43f72_#160b24] lg:[scrollbar-width:thin]">
+              <div className="space-y-3 sm:space-y-4 lg:pr-4">
                 {filteredEvents.map((event) => {
                   const uniqueId = `${activeDay}-${event.originalIndex}`;
                   const isExpanded = expandedEventId === uniqueId;

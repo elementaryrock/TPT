@@ -108,7 +108,7 @@ export default function HeroSection() {
             </div>
             <div>
               <p className="text-[9px] sm:text-[10px] font-semibold tracking-[0.2em] uppercase text-purple-300/50 mb-0.5">Venue</p>
-              <p className="text-xs sm:text-base font-bold text-white font-heading leading-tight">Marian Engg. College</p>
+              <p className="text-xs sm:text-base font-bold text-white font-heading leading-tight">Marian Engg. College,Tvm</p>
             </div>
           </div>
         </div>

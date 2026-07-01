@@ -285,7 +285,7 @@ export default function ContactSection() {
         {/* Bottom note */}
         <div className="mt-10 border-t border-white/10 pt-6 text-center sm:mt-14">
           <p className="text-xs font-semibold uppercase tracking-[0.16em] text-purple-100/40">
-            Organised by Inspira — Marian IEDC &amp; UCEK IEDC  ·  July 17–18, 2026
+            Organised by Inspira Marian IEDC &amp; Legacy IEDC · July 17–18, 2026
           </p>
         </div>
       </div>
