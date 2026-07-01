@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   ArrowLeft,
   ArrowRight,
@@ -113,6 +113,57 @@ const stats = [
 export default function HighlightsSection() {
   const [activeImageIndex, setActiveImageIndex] = useState<number | null>(null);
 
+  // Mobile Gallery Slider State & Ref
+  const [mobileGalleryIndex, setMobileGalleryIndex] = useState(0);
+  const mobileGalleryRef = useRef<HTMLDivElement>(null);
+
+  const handleMobileGalleryScroll = (e: React.UIEvent<HTMLDivElement>) => {
+    const container = e.currentTarget;
+    const scrollPosition = container.scrollLeft;
+    const step = container.scrollWidth / galleryImages.length;
+    const index = Math.round(scrollPosition / step);
+    if (index >= 0 && index < galleryImages.length) {
+      setMobileGalleryIndex(index);
+    }
+  };
+
+  const scrollToImage = (index: number) => {
+    if (mobileGalleryRef.current) {
+      const step = mobileGalleryRef.current.scrollWidth / galleryImages.length;
+      mobileGalleryRef.current.scrollTo({
+        left: index * step,
+        behavior: "smooth",
+      });
+      setMobileGalleryIndex(index);
+    }
+  };
+
+  // Mobile Highlights Modules State & Ref
+  const [mobileModulesIndex, setMobileModulesIndex] = useState(0);
+  const mobileModulesRef = useRef<HTMLDivElement>(null);
+
+  const handleMobileModulesScroll = (e: React.UIEvent<HTMLDivElement>) => {
+    const container = e.currentTarget;
+    const scrollPosition = container.scrollLeft;
+    const step = container.scrollWidth / highlights.length;
+    const index = Math.round(scrollPosition / step);
+    if (index >= 0 && index < highlights.length) {
+      setMobileModulesIndex(index);
+    }
+  };
+
+  const scrollToModule = (index: number) => {
+    if (mobileModulesRef.current) {
+      const step = mobileModulesRef.current.scrollWidth / highlights.length;
+      mobileModulesRef.current.scrollTo({
+        left: index * step,
+        behavior: "smooth",
+      });
+      setMobileModulesIndex(index);
+    }
+  };
+
+
   const handlePrev = useCallback(() => {
     setActiveImageIndex((prev) =>
       prev === null ? null : prev === 0 ? galleryImages.length - 1 : prev - 1,
@@ -193,7 +244,8 @@ export default function HighlightsSection() {
           </div>
         </div>
 
-        <div className="mt-8 grid gap-3 sm:mt-10 sm:grid-cols-2 lg:grid-cols-3">
+        {/* Desktop grid for Modules (hidden on mobile) */}
+        <div className="mt-8 hidden sm:grid gap-3 sm:mt-10 sm:grid-cols-2 lg:grid-cols-3">
             {highlights.map(({ title, description, Icon }, index) => (
               <article
                 key={title}
@@ -220,7 +272,55 @@ export default function HighlightsSection() {
             ))}
         </div>
 
-        <div className="mt-8 grid gap-3 sm:mt-10 sm:grid-cols-2 lg:grid-cols-12">
+        {/* Mobile Swipe Slider for Modules */}
+        <div
+          ref={mobileModulesRef}
+          onScroll={handleMobileModulesScroll}
+          className="mt-10 flex gap-4 overflow-x-auto snap-x snap-mandatory scrollbar-none pb-4 sm:hidden"
+        >
+          {highlights.map(({ title, description, Icon }, index) => (
+            <article
+              key={title}
+              className="group relative overflow-hidden border border-white/15 bg-[#160b24]/78 p-5 transition hover:border-[#f43f72]/55 hover:bg-[#1d0f30] w-[80vw] shrink-0 snap-center"
+            >
+              <div className="absolute right-0 top-0 h-full w-1 bg-gradient-to-b from-[#f43f72] via-[#b46cff] to-transparent opacity-0 transition group-hover:opacity-100" />
+              <div className="flex gap-4">
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center border border-purple-300/20 bg-[#190a29] text-[#e2c8ff]">
+                  <Icon className="h-5 w-5" />
+                </div>
+                <div>
+                  <p className="text-xs font-bold uppercase tracking-[0.18em] text-purple-100/65">
+                    Module {String(index + 1).padStart(2, "0")}
+                  </p>
+                  <h3 className="mt-1 font-heading text-lg font-bold text-white">
+                    {title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-6 text-purple-50/78">
+                    {description}
+                  </p>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        {/* Mobile Dots for Modules */}
+        <div className="mt-4 flex justify-center gap-1.5 sm:hidden">
+          {highlights.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => scrollToModule(index)}
+              className={`h-1.5 rounded-full transition-all duration-300 ${
+                mobileModulesIndex === index ? "w-6 bg-[#f43f72]" : "w-1.5 bg-white/20"
+              }`}
+              aria-label={`Go to module ${index + 1}`}
+            />
+          ))}
+        </div>
+
+
+        {/* Desktop grid for gallery (hidden on mobile) */}
+        <div className="mt-8 hidden sm:grid gap-3 sm:mt-10 sm:grid-cols-2 lg:grid-cols-12">
           {galleryImages.map((image, index) => (
             <button
               key={image.src}
@@ -252,6 +352,59 @@ export default function HighlightsSection() {
             </button>
           ))}
         </div>
+
+        {/* Mobile Swipe Slider for Gallery */}
+        <div
+          ref={mobileGalleryRef}
+          onScroll={handleMobileGalleryScroll}
+          className="mt-10 flex gap-4 overflow-x-auto snap-x snap-mandatory scrollbar-none pb-4 sm:hidden"
+        >
+          {galleryImages.map((image, index) => (
+            <button
+              key={image.src}
+              type="button"
+              onClick={() => setActiveImageIndex(index)}
+              className="group relative min-h-[320px] w-[85vw] shrink-0 snap-center overflow-hidden border border-white/15 text-left transition hover:border-[#f43f72]/60"
+            >
+              <img
+                src={image.src}
+                alt={image.title}
+                loading="lazy"
+                className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0b0414]/95 via-[#0b0414]/15 to-transparent" />
+              <div className="absolute left-4 top-4 flex h-9 w-9 items-center justify-center border border-white/15 bg-black/35 text-white backdrop-blur">
+                <Expand className="h-4 w-4" />
+              </div>
+              <div className="absolute bottom-0 left-0 right-0 p-4">
+                <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#f7d6ff]">
+                  {String(index + 1).padStart(2, "0")}
+                </p>
+                <h4 className="mt-1 font-heading text-xl font-bold text-white">
+                  {image.title}
+                </h4>
+                <p className="mt-1 line-clamp-2 text-sm leading-5 text-purple-50/80">
+                  {image.caption}
+                </p>
+              </div>
+            </button>
+          ))}
+        </div>
+
+        {/* Mobile Dots for Gallery */}
+        <div className="mt-4 flex justify-center gap-1.5 sm:hidden">
+          {galleryImages.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => scrollToImage(index)}
+              className={`h-1.5 rounded-full transition-all duration-300 ${
+                mobileGalleryIndex === index ? "w-6 bg-[#f43f72]" : "w-1.5 bg-white/20"
+              }`}
+              aria-label={`Go to slide ${index + 1}`}
+            />
+          ))}
+        </div>
+
       </div>
 
       {activeImage && activeImageIndex !== null && (

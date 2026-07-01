@@ -401,21 +401,33 @@ export default function ScheduleSection() {
                               />
                             </div>
 
-                            <p className="mt-2 text-sm leading-6 text-purple-50/82 sm:mt-3 sm:text-base sm:leading-7">
-                              {event.description}
-                            </p>
+                            {/* Description, Speaker, Location - Collapsible on Mobile, Always Visible on Desktop */}
+                            <div
+                              className={`grid md:block transition-all duration-300 ${
+                                isExpanded
+                                  ? "grid-rows-[1fr] opacity-100 mt-3"
+                                  : "grid-rows-[0fr] md:grid-rows-[1fr] opacity-0 md:opacity-100 mt-0 md:mt-3"
+                              }`}
+                            >
+                              <div className="overflow-hidden md:overflow-visible">
+                                <p className="mt-2 text-sm leading-6 text-purple-50/82 sm:mt-3 sm:text-base sm:leading-7">
+                                  {event.description}
+                                </p>
 
-                            <div className="mt-3 flex flex-wrap gap-2 text-xs font-semibold text-purple-50/72 sm:mt-5 sm:gap-3 sm:text-sm">
-                              <span className="inline-flex items-center gap-2">
-                                <UsersRound className="h-4 w-4 text-[#c7a8ff]" />
-                                {event.speaker}
-                              </span>
-                              <span className="inline-flex items-center gap-2">
-                                <MapPin className="h-4 w-4 text-[#f43f72]" />
-                                {event.location}
-                              </span>
+                                <div className="mt-3 flex flex-wrap gap-2 text-xs font-semibold text-purple-50/72 sm:mt-5 sm:gap-3 sm:text-sm">
+                                  <span className="inline-flex items-center gap-2">
+                                    <UsersRound className="h-4 w-4 text-[#c7a8ff]" />
+                                    {event.speaker}
+                                  </span>
+                                  <span className="inline-flex items-center gap-2">
+                                    <MapPin className="h-4 w-4 text-[#f43f72]" />
+                                    {event.location}
+                                  </span>
+                                </div>
+                              </div>
                             </div>
 
+                            {/* Block Brief (collapsible on both mobile and desktop) */}
                             <div
                               className={`grid transition-all duration-300 ${
                                 isExpanded
